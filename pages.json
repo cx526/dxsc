@@ -1,0 +1,398 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "店下商城",
+				"navigationBarBackgroundColor":"#FED940"
+			}
+		}
+	    ,{
+            "path" : "pages/classify/classify",
+            "style" : {
+							"navigationBarTitleText":"商品分类"
+						}
+        }
+        ,{
+            "path" : "pages/car/car",
+            "style" : {
+							"navigationBarTitleText":"店下爆品"
+						}
+        }
+        ,{
+            "path" : "pages/mine/mine",
+            "style" : {
+							"navigationBarTitleText":"个人中心",
+							"navigationBarBackgroundColor":"#FED940"
+							
+						}
+        }
+     
+        ,{
+            "path" : "pages/components/search-page/search-page",
+            "style" : {
+							"navigationBarTitleText":"搜索"
+						}
+        }
+        ,{
+            "path" : "pages/common/goods-list/goods-list"
+        }
+        ,{
+            "path" : "pages/components/goods-result/goods-result",
+            "style" : {
+							"navigationBarTitleText":"商品列表"
+						}
+        }
+  
+        ,{
+            "path" : "pages/common/goods-detail/goods-detail",
+            "style" : {
+							"navigationBarTitleText":"商品详情"
+						}
+        }
+        ,{
+            "path" : "pages/components/pay/pay",
+            "style" : {
+							"navigationBarTitleText":"付款页面"
+						}
+        }
+        ,{
+            "path" : "pages/components/choose-shop/choose-shop",
+            "style" : {
+							"navigationBarTitleText":"选择门店"
+						}
+        }
+        ,{
+            "path" : "pages/components/address/address",
+            "style" : {
+							"navigationBarTitleText":"地址"
+						}
+        }
+        ,{
+            "path" : "pages/components/new-address/new-address",
+            "style" : {
+							"navigationBarTitleText":"新建地址"
+						}
+        }
+        ,{
+            "path" : "pages/components/register/register",
+            "style" : {
+							"navigationBarTitleText":"注册页"
+						}
+        }
+        ,{
+            "path" : "pages/components/login/login",
+            "style" : {
+							"navigationBarTitleText":"登录页"
+						}
+        }
+        ,{
+            "path" : "pages/components/edit-address/edit-address",
+            "style" : {
+							"navigationBarTitleText":"编辑地址"
+						}
+        }
+        ,{
+            "path" : "pages/components/order/order",
+            "style" : {
+							"navigationBarTitleText":"我的订单"
+						}
+        }
+        ,{
+            "path" : "pages/components/order-detail/order-detail",
+            "style" : {
+							"navigationBarTitleText":"订单详情"
+						}
+        }
+        ,{
+            "path" : "pages/components/return-goods/return-goods",
+            "style" : {
+							"navigationBarTitleText":"申请退货"
+						}
+        }
+        ,{
+            "path" : "pages/components/appraise/appraise",
+            "style" : {
+							"navigationBarTitleText":"评价"
+						}
+        }
+        ,{
+            "path" : "pages/components/collect/collect",
+            "style" : {
+							"navigationBarTitleText":"我的收藏"
+						}
+        }
+        ,{
+            "path" : "pages/components/cart/cart",
+            "style" : {
+							"navigationBarTitleText":"购物车"
+						}
+        }
+        ,{
+            "path" : "pages/components/money/money",
+            "style" : {
+							"navigationBarTitleText":"我的钱包"
+						}
+        }
+        ,{
+            "path" : "pages/components/bill/bill",
+            "style" : {
+							"navigationBarTitleText":"我的账单"
+						}
+        }
+        ,{
+            "path" : "pages/components/business/business",
+            "style" : {
+							"navigationBarTitleText":"商家入驻"
+						}
+        }
+        ,{
+            "path" : "pages/components/forget/forget",
+            "style" : {
+							"navigationBarTitleText":"找回密码"
+						}
+        }
+        ,{
+            "path" : "pages/components/QRlogin/QRlogin",
+            "style" : {
+							"navigationBarTitleText":"手机验证码登录"
+						}
+        }
+        ,{
+            "path" : "pages/components/userInfo/userInfo",
+            "style" : {
+							"navigationBarTitleText":"资料卡"
+						}
+        }
+        ,{
+            "path" : "pages/components/reset/reset",
+            "style" : {
+							"navigationBarTitleText":"重置密码"
+						}
+        }
+        ,{
+            "path" : "pages/components/telephone/telephone",
+            "style" : {
+							"navigationBarTitleText":"绑定手机号"
+						}
+        }
+        ,{
+            "path" : "pages/components/generalize/generalize",
+            "style" : {
+							"navigationBarTitleText":"我的推广"
+						}
+        }
+        ,{
+            "path" : "pages/components/line-detail/line-detail",
+            "style" : {
+							"navigationBarTitleText":"商品详情"
+							
+						}
+        }
+        ,{
+            "path" : "pages/components/change-username/change-username",
+            "style" : {
+							"navigationBarTitleText":"修改昵称"
+						}
+        }
+        ,{
+            "path" : "pages/components/logistics/logistics",
+            "style" : {
+							"navigationBarTitleText":"物流详情"
+						}
+        }
+        ,{
+            "path" : "pages/components/shop/shop",
+            "style" : {
+							"navigationBarTitleText":"店家详情"
+						}
+        }
+        ,{
+            "path" : "pages/components/product-down/product-down",
+            "style" : {
+							"navigationBarTitleText":"折扣区"
+						}
+        }
+        ,{
+            "path" : "pages/components/refer-member/refer-member",
+            "style" : {
+							"navigationBarTitleText":"优惠买单"
+						}
+        }
+        ,{
+            "path" : "pages/components/checkstand/checkstand",
+            "style" : {
+							"navigationBarTitleText":"收银台"
+						}
+        }
+        ,{
+            "path" : "pages/components/coupon/coupon",
+            "style" : {
+							"navigationBarTitleText":"折扣券"
+						}
+        }
+        ,{
+            "path" : "pages/components/payMoney/payMoney",
+            "style" : {
+							"navigationBarTitleText":"充值"
+						}
+        }
+        ,{
+            "path" : "pages/components/withdraw/withdraw",
+            "style" : {
+							"navigationBarTitleText":"提现"
+						}
+        }
+        ,{
+            "path" : "pages/components/bank/bank",
+            "style" : {
+							"navigationBarTitleText":"我的银行卡"
+						}
+        },{
+            "path" : "pages/components/wechatpay/wechatpay",
+            "style" : {
+							"navigationBarTitleText":"支付"
+						}
+        }
+        ,{
+            "path" : "pages/components/setPayPassword/setPayPassword",
+            "style" : {
+							"navigationBarTitleText":"设置支付密码"
+						}
+        }
+				,{
+						"path" : "pages/mine/invite",
+						"style" : {
+									"navigationBarTitleText":"绑定员工"
+								}
+						}
+				,{
+						"path" : "pages/mine/staff",
+						"style" : {
+									"navigationBarTitleText":"员工管理"
+						}
+				},
+				{
+						"path" : "pages/components/wechatpay/applypay",
+						"style" : {
+									"navigationBarTitleText":"付款"
+						}
+				}
+        ,{
+            "path" : "pages/components/preson-status/preson-status",
+            "style" : {
+							"navigationBarTitleText":"个人身份"
+						}
+        }
+        ,{
+            "path" : "pages/components/my-staff/my-staff",
+            "style" : {
+							"navigationBarTitleText":"我的员工"
+						}
+        }
+        ,{
+            "path" : "pages/components/staff-info/staff-info",
+            "style" : {
+							"navigationBarTitleText":"员工详情"
+						}
+        }
+        ,{
+            "path" : "pages/components/vip-list/vip-list",
+            "style" : {
+							"navigationBarTitleText":"精品折扣"
+						}
+        }
+        ,{
+            "path" : "pages/components/more-list/more-list",
+            "style" : {
+							"navigationBarTitleText":"更多商品"
+						}
+        }
+        ,{
+            "path" : "pages/components/watching-tv/watching-tv",
+            "style" : {
+							"navigationBarTitleText":"会员充值折扣"
+						}
+        }
+        ,{
+            "path" : "pages/components/drinking/drinking",
+            "style" : {
+							"navigationBarTitleText":"饮品专区"
+						}
+        }
+				,{
+						"path" : "pages/components/staff-info/staff-set",
+						"style" : {
+								"navigationBarTitleText":"员工分润设置"
+							}
+						}
+        ,{
+            "path" : "pages/components/bankcard/bankcard",
+            "style": {
+							"navigationBarTitleText": "绑定银行卡"
+						}
+        }
+        ,{
+            "path" : "pages/components/withdraw-plan/withdraw-plan",
+            "style" : {
+							"navigationBarTitleText":"提现进度"
+						}
+        }
+        ,{
+            "path" : "pages/components/video-pay/video-pay",
+            "style" : {
+							"navigationBarTitleText":"特权充值"
+						}
+        }
+        ,{
+            "path" : "pages/components/online-goods/online-goods",
+            "style" : {
+							"navigationBarTitleText":"线上好货"
+						}
+        }
+        ,{
+            "path" : "pages/components/video-checkstand/video-checkstand",
+            "style" : {
+							"navigationBarTitleText":"结算"
+						}
+        }
+    ],
+	"tabBar": {
+			"color":"#676C74",
+			"selectedColor":"#333",
+			"list":[
+				{
+					"pagePath":"pages/index/index",
+					"iconPath":"/static/images/index1.png",
+					"selectedIconPath":"/static/images/index1-active.png",
+					"text":"首页"
+				},
+				{
+					"pagePath":"pages/car/car",
+					"iconPath":"/static/images/car2.png",
+					"selectedIconPath":"/static/images/car2-active.png",
+					"text":"店下爆品"
+				},
+				{
+					"pagePath":"pages/classify/classify",
+					"iconPath":"/static/images/classify1.png",
+					"selectedIconPath":"/static/images/classify1-active.png",
+					"text":"分类"
+				},
+		
+				{
+					"pagePath":"pages/mine/mine",
+					"iconPath":"/static/images/mine1.png",
+					"selectedIconPath":"/static/images/mine1-active.png",
+					"text":"个人中心"
+				}
+			]
+		},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "店下商城",
+		"navigationBarBackgroundColor": "#FED940",
+		"backgroundColor": "#F8F8F8",
+		"onReachBottomDistance":10
+	}
+}

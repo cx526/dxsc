@@ -1,0 +1,1 @@
+<view><image style="{{'height:'+(Height)+';'}}" src="{{url}}"></image></view>

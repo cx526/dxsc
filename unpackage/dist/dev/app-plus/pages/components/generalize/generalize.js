@@ -1,0 +1,2 @@
+setCssToHead(["@charset \x22UTF-8\x22;\nwx-image { width: 100%; }\n",],undefined,{path:"./pages/components/generalize/generalize.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/components/generalize/generalize.wxml') } }));

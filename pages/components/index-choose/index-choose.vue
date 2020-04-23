@@ -1,0 +1,116 @@
+<template>
+	<view>
+		<view class="choose-box" style="">
+			<block v-for="(item,index) in chooseList" :key="index">
+				<view class="choose" @click="choose(index)">
+					<view class="item">
+						<image :src="item.src" :style="item.WH"></image>
+						<view class="context"><text>{{item.text}}</text></view>
+					</view>
+				</view>
+			</block>
+		</view>
+	</view>
+	
+</template>
+
+<script>
+	import wechat from '../../../common/wechat.js'
+	import { mapMutations } from 'vuex'
+	export default {
+		props: {
+			chooseList: {
+				type: Array
+			}
+		},
+		data() {
+			return {
+				
+			};
+		},
+		methods: {
+			...mapMutations(['changeDiscount']),
+			choose(index) {
+				console.log(index);
+				switch (index) {
+					case 0:
+						wechat.sacn();
+					break;
+					case 1:
+					uni.navigateTo({
+						url: '/pages/components/coupon/coupon'
+					})
+					break;
+					case 2:
+					uni.switchTab({
+						url: '/pages/car/car'
+					})
+					break;
+					case 3:
+					uni.navigateTo({
+						url: '/pages/components/online-goods/online-goods'
+					})
+					break;
+					case 4:
+					this.changeDiscount({index: 0})
+					uni.navigateTo({
+						url: '/pages/components/vip-list/vip-list?type=all'
+					})
+					break;
+					case 7:
+					uni.navigateTo({
+						url: '/pages/components/drinking/drinking'
+					})
+					break;
+					case 9:
+					uni.navigateTo({
+						url: '/pages/components/watching-tv/watching-tv'
+					})
+					break;
+				}
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.choose-box {
+		box-sizing: border-box;
+		display: flex;
+		flex-wrap: wrap;
+		border-top: 1px solid #F5F5F5;
+		align-items: center;
+		padding: 20rpx 0;
+		flex-wrap: wrap;
+		.choose {
+			box-sizing: border-box;
+			width: 20%;
+			height: 126rpx;
+			margin-bottom: 10rpx;
+			.item {
+				position: relative;
+				top: 50%;
+				transform: translateY(-42%);
+				text-align: center;
+				image {
+					width: 50rpx;
+					height: 50rpx;
+				}
+				.context {
+					width: 100%;
+					font-size: 20rpx;
+					text-align: center;
+					color: #626262;
+					position: absolute;
+					bottom: -30rpx;
+					left: 50%;
+					transform: translateX(-51%);
+				}
+			}
+		}
+		
+		.choose:nth-child(5n) {
+			margin-right: 0;
+		}
+	}
+</style>
