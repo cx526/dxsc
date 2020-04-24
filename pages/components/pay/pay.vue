@@ -701,7 +701,7 @@
 						let importCash = parseInt(this.cash) ? parseInt(this.cash) : 0;
 						if(importCash + importBalance >= parseInt(this.res.count_money)) {
 							uni.navigateTo({
-								url: '/pages/components/order/order?status=1'
+								url: '/pages/components/order/order?status=2'
 							})
 						}		
 						else {
@@ -804,10 +804,6 @@
 			},
 			// 点击支付弹窗确定按钮核对支付密码
 			passwordSure() {
-				
-		
-
-				
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view v-if="loading">
 		<view class="list-box">
 			<view class="list-title">
 				<view style="flex:1"></view>
@@ -10,25 +10,6 @@
 				您所在的位置暂无爆品哦
 			</view>
 			<view class="list" v-if="list">
-				<!-- <block v-for="(item,index) in list" :key="index">
-					<view class="list-item" @click="downLineDetail(item.goods_id)">
-						<view class="list-img">
-							<image :src="baseURL + item.picture_cover" mode="aspectFill"></image>
-						</view>
-						<view class="list-context">
-							<view class="list-main">
-								<text>{{item.goods_name}}</text>
-							</view>
-							<view class="list-price" style="box-sizing: border-box;display: flex;justify-content: space-between;align-items: center;">
-								<view>
-									<text style="font-size: 26rpx;color: #FC3D3C;margin-right: 10rpx;">平台价：{{item.price}}</text>
-									<text style="font-size: 22rpx;color: #AAAAAA;text-decoration: line-through;">市场价：{{item.market_price}}</text>
-								</view>
-								<text style="color: #808080;">销售量：{{item.sales}}</text>
-							</view>
-						</view>
-					</view>
-				</block> -->
 				<block v-for="(item,index) in list" :key="index">
 					<view class="list-item" @click="downLineDetail(item.goods_id)">
 						<view class="list-img" >
@@ -71,6 +52,7 @@
 			</view>
 		</view>
 	</view>
+	<Loading v-else></Loading>
 </template>
 
 <script>
@@ -79,6 +61,7 @@
 		request
 	} from '../request.js'
 	import wechat from '../../common/wechat.js'
+	import Loading from '../common/loading/loading.vue'
 	export default {
 		data() {
 			return {
@@ -87,7 +70,11 @@
 				latitude: '',
 				longitude: '',
 				list: [],
+				loading: false
 			};
+		},
+		components: {
+			Loading
 		},
 		onLoad() {
 			let that = this;
@@ -192,6 +179,7 @@
 						}
 					})
 					.then(res => {
+						that.loading = true;
 						that.list = res.data.list;
 					});
 			},

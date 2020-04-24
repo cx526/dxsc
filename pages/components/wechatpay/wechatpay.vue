@@ -21,19 +21,26 @@
 		},
 		methods: {
 			getWechatPay(){
+				uni.showLoading({
+					title:"发起支付中",
+					mask:true
+				})
 				request({
 					url:"index.php?s=/wap/pay/getPaySessionInfo",
 				}).then(res=>{
+					uni.hideLoading();
 					var tmpp = JSON.parse(res.data.pay);
 					wechat.wchatapply(tmpp,res=>{
+						
 						uni.navigateTo({
 							url: '/pages/components/order/order?status=1'
 						})
 					},res=>{
-							uni.showToast({
-								title: '支付失败',
-								icon: 'none'
-							})
+						uni.hideLoading();
+						uni.showToast({
+							title: '支付失败',
+							icon: 'none'
+						})
 					});
 				})
 			}

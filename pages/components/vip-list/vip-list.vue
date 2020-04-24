@@ -105,7 +105,7 @@
 		},
 		onLoad(options) {
 			// 定位当前处于哪个栏目列表中
-			this.navList.currentIndex = this.$store.state.discount
+			this.navList.currentIndex = this.$store.state.discount;
 			if(!options.type) {
 				for(let key in options) {
 					this.type = key;
@@ -123,7 +123,7 @@
 				}
 			})
 			// 默认读取全部
-			this.changeNav(0);
+			// this.changeNav(0);
 		},
 		onReachBottom() {
 			this.loadMore()

@@ -1,5 +1,5 @@
 <template>
-	<view class="container">
+	<view class="container" v-if="loading">
 		<!-- 搜索 -->
 		<view class="classify-search">
 			<view class="search">
@@ -61,10 +61,12 @@
 		
 		  
 	</view>
+	<Loading v-else></Loading>
 </template>
 
 <script>
 	import { request } from '../request.js'
+	import Loading from '../common/loading/loading.vue'
 	export default {
 		data() {
 			return {
@@ -99,8 +101,13 @@
 				// 控制否是执行上啦加载函数
 				isflag:true,
 				// 搜索内容
-				searchText: ''
+				searchText: '',
+				// 加载图
+				loading: false
 			};
+		},
+		components: {
+			Loading
 		},
 		methods: {
 			//	监听搜索框输入的值
@@ -147,14 +154,12 @@
 			},
 			// 实现点击切换tab
 			handleClick(item,index) {
+				this.loading = false;
 				this.page = 1;
 				this.category_id = item.category_id
 				this.currentIndex = index;
 				// 实现点击滚动
 				this.id = item.id;
-				uni.showLoading({
-					title: '加载中'
-				});
 				request({
 					url: 'index.php?s=/wap/goods/listCategoryGoods',
 					data: {
@@ -162,7 +167,7 @@
 						page: 1
 					}
 				}).then(res => {
-					uni.hideLoading()
+					this.loading = true
 					// 处理图片
 					let onLineGoods = res.data.list.data;
 					for(let i = 0;i < onLineGoods.length;i++) {
@@ -213,35 +218,35 @@
 				}
 			
 		},
-			onLoad() {
-				// 获取可视区域高度
-				uni.getSystemInfo({
-					success:(res) => {
-						this.cssText.height = res.windowHeight - 48 + 'px';
-					}
-				})
-				// 左侧分类请求数据
-				request({
-					url: 'index.php?s=/wap/goods/goodsClassificationList'
-				}).then(res => {
-					for(let i = 0; i < res.data.list.length;i++) {
-						res.data.list[i].id="item" + res.data.list[i].category_id
-					}
-					this.typeList = res.data.list;
-					this.category_id = res.data.list[0].category_id;
-					// 默认请求第一个分类数据
-					this.handleClick(this.typeList[0],0)
-				})
-			},
-			onShow() {
-				uni.getStorage({
-					key: 'keywords',
-					success: res => {
-						this.$store.state.keywords = res.data
-						this.list = res.data
-					}
-				})
-			}
+		onLoad() {
+			// 获取可视区域高度
+			uni.getSystemInfo({
+				success:(res) => {
+					this.cssText.height = res.windowHeight - 48 + 'px';
+				}
+			})
+			// 左侧分类请求数据
+			request({
+				url: 'index.php?s=/wap/goods/goodsClassificationList'
+			}).then(res => {
+				for(let i = 0; i < res.data.list.length;i++) {
+					res.data.list[i].id="item" + res.data.list[i].category_id
+				}
+				this.typeList = res.data.list;
+				this.category_id = res.data.list[0].category_id;
+				// 默认请求第一个分类数据
+				this.handleClick(this.typeList[0],0)
+			})
+		},
+		onShow() {
+			uni.getStorage({
+				key: 'keywords',
+				success: res => {
+					this.$store.state.keywords = res.data
+					this.list = res.data
+				}
+			})
+		}
 		}
 </script>
 

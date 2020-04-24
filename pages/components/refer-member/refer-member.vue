@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view v-if="loading">
 		<view class="user-info">
 			<image v-if="headJpg" :src="headJpg" mode=""></image>
 			<image v-else src="/static/images/user-default.jpeg" mode=""></image>
@@ -20,10 +20,12 @@
 			<button  style="font-size: 30rpx;background: #FED940;" @click="goPay">去买单</button>
 		</view>
 	</view>
+	<Loading v-else></Loading>
 </template>
 
 <script>
-	import {request} from"../../request.js"
+	import {request} from "../../request.js"
+	import Loading from '../../common/loading/loading.vue'
 	export default {
 		data() {
 			return {
@@ -35,7 +37,11 @@
 				shopInfo:[],
 				headJpg:"",
 				shopName:"",
+				loading: false
 			};
+		},
+		components: {
+			Loading
 		},
 		onLoad(ob){
 			//获取上级ID
@@ -48,8 +54,6 @@
 				this.getShopInfo(this.shop_id);
 			}
 			this.checkLogin();
-			console.log(this.$api);
-			
 		},
 		methods: {
 			changeCheck() {
@@ -71,6 +75,7 @@
 						discountamount:this.discountamount,
 					}
 				}).then(res=>{
+					this.loading = true
 					if(res.data==1){
 						uni.navigateTo({
 							url:"/pages/components/checkstand/checkstand",
@@ -115,6 +120,7 @@
 						shop_id:shop_id,
 					}
 				}).then(res=>{
+					this.loading = true;
 					if(res.data !=""){
 						this.shopInfo = res.data;
 						if(res.data.shop_avatar!=""){

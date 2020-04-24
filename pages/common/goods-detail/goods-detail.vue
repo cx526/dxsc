@@ -1,5 +1,5 @@
 <template>
-	<view style="padding-bottom: 140rpx;">
+	<view style="padding-bottom: 140rpx;" v-if="loading">
 		<!-- 分享组件 -->
 		<Share :shareShow="shareShow" @shareClose="shareClose" @wxShare="wxShare" @getImg="getImg"></Share>
 		<view class="swiper-box" >
@@ -238,13 +238,14 @@
 				<button @click="cart()" :disabled="disabled" style="background: #FED940;color: #000;">确定</button>
 			</view>
 		</view>
-		
 	</view>
+	<Loading v-else></Loading>
 </template>
 
 <script>
 	import uniBadge from "@/components/uni-badge/uni-badge.vue"
 	import Share from '../share/share.vue'
+	import Loading from '../loading/loading.vue'
 	import Vue from 'vue'
 	import weChat from '../../../common/wechat.js'
 	import { request } from '../../request.js'
@@ -333,12 +334,15 @@
 				// 控制分享遮罩显示隐藏
 				shareShow: false,
 				// 海报
-				goods_img_src: []
+				goods_img_src: [],
+				// 加载图标
+				loading: false
 			};
 		},
 		components: {
 			Share,
-			uniBadge
+			uniBadge,
+			Loading
 		},
 		onLoad(options) {
 			// 存储商品的id
@@ -355,10 +359,7 @@
 		methods: {
 			// 请求商品数据
 			getGoodsInfo() {
-				uni.showToast({
-					title: '数据加载中',
-					icon: 'loading'
-				});
+				
 				request({
 					url :'index.php?s=/wap/goods/Apigoodsdetail',
 					method: 'POST',
@@ -367,10 +368,9 @@
 						// id: 33
 					}
 				}).then(res => {
-					uni.hideToast()
+					this.loading = true;
 					// 储存商品详情
 					this.dataList = res.data.goods_detail;
-					console.log(this.dataList);
 					this.is_favorate = res.data.is_member_fav_goods;
 					this.offline = res.data.goods_detail.offline;
 					this.shop_info = res.data.shop_info;

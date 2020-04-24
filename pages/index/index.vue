@@ -1,6 +1,6 @@
 <template>
 
-	<view>
+	<view v-if="loading">
 		<!-- 导航 -->
 		<index-nav @goCart="goCart()" :locationName="locationName" v-on:getLocation="getLocartion"></index-nav>
 		<!-- 分割线 -->
@@ -29,6 +29,7 @@
 		<index-recommend :recommendList="recommendList"></index-recommend>
 		<view v-if="loadall==1" class="load-all">已全部加载</view>
 	</view>
+	<Loading v-else></Loading>
 </template>
 
 <script>
@@ -40,6 +41,7 @@
 	import IndexDiscount from '../components/index-discount/index-discount.vue'
 	import IndexNews from '../common/goods-list/goods-list.vue'
 	import IndexRecommend from '../components/index-recommend/index-recommend.vue'
+	import Loading from '../common/loading/loading.vue'
 	import {
 		getSwiper,
 		request
@@ -122,7 +124,9 @@
 				// vip货品位
 				vip_product: [],
 				// 储存折扣数据
-				discount_ad: []
+				discount_ad: [],
+				// loading加载图
+				loading: false,
 			}
 		},
 		components: {
@@ -133,7 +137,8 @@
 			IndexVip,
 			IndexDiscount,
 			IndexNews,
-			IndexRecommend
+			IndexRecommend,
+			Loading
 		},
 		onLoad() {
 			let that = this;
@@ -143,6 +148,7 @@
 					url: 'index.php?s=/wap/index/index',
 				})
 				.then(res => {
+					that.loading = true;
 					// 存储轮播图数据
 					let imgUrl = res.data.plat_adv_list.adv_list;
 					// 存储新品上架数据
@@ -283,9 +289,9 @@
 				let that = this;
 				let page = this.shopPage;
 				if(that.loadall==1) return '';
-				uni.showLoading({
-					title: '加载中'
-				});
+				// uni.showLoading({
+				// 	title: '加载中'
+				// });
 				request({
 						url: 'index.php?s=/wap/index/apiGetShopList',
 						data: {
@@ -309,7 +315,7 @@
 								that.recommendList = list;
 							}
 						}
-						uni.hideLoading();
+						// uni.hideLoading();
 						
 					});
 			},
@@ -335,4 +341,5 @@
 		height: 4rpx;
 		background: #E5E5E5;
 	}
+
 </style>

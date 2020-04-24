@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view v-if="loading">
 		<!-- 用户未登录时显示 -->
 		<view class="noLogin" v-if="!isLogin">
 			<view class="logo">
@@ -161,7 +161,6 @@
 						<text>商家入驻</text>
 					</view>
 				</view>
-				<!--  -->
 				<view class="list-item order-item" @click="staff" v-if="is_parter">
 					<view class="order-img">
 						<image src="/static/images/user-manage.png" mode=""></image>
@@ -170,14 +169,24 @@
 						<text>管理中心</text>
 					</view>
 				</view>
+				<view class="list-item order-item" @click="goGroup()" v-if="0">
+					<view class="order-img">
+						<image src="/static/images/tuandui.png" mode=""></image>
+					</view>
+					<view class="order-text">
+						<text>我的团队</text>
+					</view>
+				</view>
 			</view>
 		</view>
 		
 	</view>
+	<Loading v-else></Loading>
 </template>
 
 <script>
 	import { request,getToken,Token } from '../request.js'
+	import Loading from '../common/loading/loading.vue'
 	export default {
 		data() {
 			return {
@@ -197,8 +206,13 @@
 				uid: '',
 				res: '',
 				// 用户的余额信息
-				user_balance: ''
+				user_balance: '',
+				// 加载图
+				loading: false
 			};
+		},
+		components: {
+			Loading
 		},
 		onShow() {
 			this.getLogin();
@@ -257,6 +271,7 @@
 						url:"index.php?s=/wap/member/checkLogin",
 						method:"POST",
 					}).then(res=>{
+						that.loading = true
 						// 未登录
 						if(res.data.code == 201) {
 							this.isLogin = false
@@ -272,6 +287,7 @@
 						url:"index.php?s=/wap/member/Api_member_index",
 						method:"POST",
 					}).then(function(res){
+						that.loading = true;
 						that.res = res;
 						that.is_parter = res.data.is_parter;
 						// 储存推广的uid
@@ -326,6 +342,12 @@
 			goPayMoney() {
 				uni.navigateTo({
 					url: '/pages/components/payMoney/payMoney'
+				})
+			},
+			// 跳转到我的团队
+			goGroup() {
+				uni.navigateTo({
+					url: '/pages/components/group/group'
 				})
 			}
 		},

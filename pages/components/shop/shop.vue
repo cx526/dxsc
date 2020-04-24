@@ -1,94 +1,101 @@
 <template>
 	<view style="padding-bottom: 100rpx;">
-		<view class="swiper-box" v-if="imgUrl">
-			<swiper indicator-dots indicator-color="rgba(187,187,187,0.4)" indicator-active-color="rgba(255,255,255,0.7)" style="height: 600rpx;">
-				<block v-if="imgUrl && imgUrl.length > 0">
-					<swiper-item v-for="(item,index) in imgUrl" :key="index" style="height: 600rpx;">
-						<view style="height: 100%;">
-							<image :src="item" style="height: 600rpx"></image>
-						</view>
-					</swiper-item>
-				</block>
-			</swiper>
-		</view>
-		<!-- 店铺详情 -->
-		<view class="shop-box">
-			<view class="shop">
-				<view class="shop-item">
-					<text>店名：</text>
-					<text style="font-weight: 700;">{{shop_name}}</text>
-				</view>
-				<view class="shop-item">
-					<text>预约电话：</text>
-					<text v-if="shop_phone != ''">{{shop_phone}}</text>
-					<text v-else>暂无资料</text>
-				</view>
-				<view class="shop-item">
-					<text>店铺二维码：</text>
-					<image :src="baseURL+'index.php?s=/wap/shop/apiShopQrcode?shop_id='+shop_id" mode="" style="width:100px;height:100px" ref="shopImg" @click="preview"></image>
-				</view>
-				<view class="shop-item">
-					<text>店铺地址：</text>
-					<view style="display: flex;align-items: center;">
-						<text style="color: #BEBEBE;" v-if="shop_address">{{shop_address}}</text>
+		<view v-if="flag">
+			<view class="swiper-box" v-if="imgUrl">
+				<swiper indicator-dots indicator-color="rgba(187,187,187,0.4)" indicator-active-color="rgba(255,255,255,0.7)" style="height: 600rpx;">
+					<block v-if="imgUrl && imgUrl.length > 0">
+						<swiper-item v-for="(item,index) in imgUrl" :key="index" style="height: 600rpx;">
+							<view style="height: 100%;">
+								<image :src="item" style="height: 600rpx" v-if="item != 'https://admin.dxsc.vip/'"></image>
+								<image 	src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1208538952,1443328523&fm=26&gp=0.jpg" style="height: 600rpx"></image>
+							</view>
+						</swiper-item>
+					</block>
+				</swiper>
+			</view>
+			<!-- 店铺详情 -->
+			<view class="shop-box">
+				<view class="shop">
+					<view class="shop-item">
+						<text>店名：</text>
+						<text style="font-weight: 700;">{{shop_name}}</text>
+					</view>
+					<view class="shop-item">
+						<text>预约电话：</text>
+						<text v-if="shop_phone != ''">{{shop_phone}}</text>
 						<text v-else>暂无资料</text>
 					</view>
-				</view>
-			</view>
-		</view>
-		<!-- 商品展示 -->
-<!-- 		<view>{{goods}}</view> -->
-		<view class="product-show">
-			<view class="product-title">
-				<text style="border-bottom: 3px solid #FED940;display: inline-block;">为你推荐</text>
-			</view>
-			<view class="product" v-if="goods && goods.length > 0">
-				<block v-for="(v,index) in goods" :key="index">
-					<view class="product-item" @click="goodsinfo(v.goods_id)">
-						<view class="product-img">
-							<image :src="baseURL + v.img" mode=""></image>
-						</view>
-						<view class="product-context" style="text-align: left;display: flex;flex-direction: column;">
-							<text style="display: -webkit-box;-webkit-line-clamp:2;-webkit-box-orient: vertical;overflow: hidden;margin: 12rpx 0;">{{v.goods_name}}</text>
-							<view>
-								<text style="color: #C3000B;font-size: 26rpx;margin-right: 10rpx;">平台价：{{v.price}}</text>
-								<text style="color: #AAAAAA;font-size: 24rpx;text-decoration: line-through;">
-									市场价：{{v.market_price}}
-								</text>
-							</view>
-							
+					<view class="shop-item">
+						<text>店铺二维码：</text>
+						<image :src="baseURL+'index.php?s=/wap/shop/apiShopQrcode?shop_id='+shop_id" mode="" style="width:100px;height:100px" ref="shopImg" @click="preview"></image>
+					</view>
+					<view class="shop-item">
+						<text>店铺地址：</text>
+						<view style="display: flex;align-items: center;">
+							<text style="color: #BEBEBE;" v-if="shop_address">{{shop_address}}</text>
+							<text v-else>暂无资料</text>
 						</view>
 					</view>
-				</block>
-			</view>
-			<view v-else style="text-align: center;box-sizing: border-box;padding: 30rpx;font-size: 24rpx;">暂无相关推荐</view>
-		</view>
-		<!-- 底部 -->
-		<view class="footer-box">
-			<view class="footer">
-				<view class="cart" @click="goMoney" style="background: #333333;">
-					<text>充值会员</text>
-				</view>
-				<!-- 点击跳转到付款页面pay -->
-				<view class="buy" @click="goRefer" style="background: #FED22E;color: #1F0A00;">
-					<text>咨询买单</text>
 				</view>
 			</view>
+			<!-- 商品展示 -->
+			<view class="product-show">
+				<view class="product-title">
+					<text style="border-bottom: 3px solid #FED940;display: inline-block;">为你推荐</text>
+				</view>
+				<view class="product" v-if="goods && goods.length > 0">
+					<block v-for="(v,index) in goods" :key="index">
+						<view class="product-item" @click="goodsinfo(v.goods_id)">
+							<view class="product-img">
+								<image :src="baseURL + v.img" mode=""></image>
+							</view>
+							<view class="product-context" style="text-align: left;display: flex;flex-direction: column;">
+								<text style="display: -webkit-box;-webkit-line-clamp:2;-webkit-box-orient: vertical;overflow: hidden;margin: 12rpx 0;">{{v.goods_name}}</text>
+								<view>
+									<text style="color: #C3000B;font-size: 26rpx;margin-right: 10rpx;">平台价：{{v.price}}</text>
+									<text style="color: #AAAAAA;font-size: 24rpx;text-decoration: line-through;">
+										市场价：{{v.market_price}}
+									</text>
+								</view>
+								
+							</view>
+						</view>
+					</block>
+				</view>
+				<view v-else style="text-align: center;box-sizing: border-box;padding: 30rpx;font-size: 24rpx;">暂无相关推荐</view>
+			</view>
+			<!-- 底部 -->
+			<view class="footer-box">
+				<view class="footer">
+					<view class="cart" @click="goMoney" style="background: #333333;">
+						<text>充值会员</text>
+					</view>
+					<!-- 点击跳转到付款页面pay -->
+					<view class="buy" @click="goRefer" style="background: #FED22E;color: #1F0A00;">
+						<text>咨询买单</text>
+					</view>
+				</view>
+			</view>
 		</view>
+		<Loading v-else></Loading>
+		
+		
+		
+		
+		
+		
 		
 	</view>
 </template>
 
 <script>
 	import { request,getToken,Token } from '../../request.js'
+	import Loading from '../../common/loading/loading.vue'
 	export default {
 		data() {
 			return {
 				baseURL:this.$api,
-				imgUrl: [
-					"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3386247472,87720242&fm=26&gp=0.jpg",
-					"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1208538952,1443328523&fm=26&gp=0.jpg",
-				],
+				imgUrl: [],
 				shop_name:'',
 				shop_address:'',
 				shop_phone:'',
@@ -98,8 +105,12 @@
 				qr:'',
 				isLogin: '',
 				// 储存预览店铺图片的路径
-				shopSrc: []
+				shopSrc: [],
+				flag: false
 			};
+		},
+		components: {
+			Loading
 		},
 		onShow() {
 			this.getUserInfo();
@@ -139,6 +150,7 @@
 							shop_id: this.shop_id,
 						}
 					}).then(function(res){
+						that.flag = true;
 						that.shop_name = res.data.shop_info.shop_name;
 						that.shop_address = res.data.shop_info.shop_address;
 						that.shop_phone = res.data.shop_info.shop_phone;
@@ -258,6 +270,7 @@
 			flex-wrap: wrap;
 			justify-content: space-between;
 			margin-top: 24rpx;
+			padding: 0 24rpx;
 			.product-item {
 				box-sizing: border-box;
 				margin-bottom: 20rpx;
@@ -341,5 +354,12 @@
 				background: #6C2E2E;
 			}
 		}
+	}
+	// 加载图标
+	.loading {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%)
 	}
 </style>
