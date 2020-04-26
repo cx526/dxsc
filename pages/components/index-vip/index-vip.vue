@@ -60,7 +60,7 @@
 			},
 			goMoney() {
 				uni.navigateTo({
-					url: '/pages/components/money/money'
+					url: '/pages/components/member/member'
 				})
 			}
 		}

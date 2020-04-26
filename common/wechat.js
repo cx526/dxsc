@@ -168,6 +168,7 @@ export default {
 									scanType: ["qrCode","barCode"],
 									success: function (res) {
 										var result = res.resultStr;
+										callback()
 									}
 								});
 						});

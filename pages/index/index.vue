@@ -212,10 +212,12 @@
 			this.getShopList();
 		},
 		methods: {
+			// 获取经纬度
 			getlocationpoint() {
 				let that = this;
 				let latitude;
 				let longitude;
+				// 微信浏览器
 				if(wechat.isWechat()){
 					wechat.location(function(res){
 						latitude = res.latitude;
@@ -230,6 +232,7 @@
 						that.getShopList();
 					});
 				}else{
+					// H5端
 					if (navigator.geolocation) {
 						navigator.geolocation.getCurrentPosition(
 							function(position) {
@@ -289,9 +292,6 @@
 				let that = this;
 				let page = this.shopPage;
 				if(that.loadall==1) return '';
-				// uni.showLoading({
-				// 	title: '加载中'
-				// });
 				request({
 						url: 'index.php?s=/wap/index/apiGetShopList',
 						data: {
@@ -310,20 +310,17 @@
 								res.data.data[i].all = res.data.data[i].shop_deliverycredit/1;
 								res.data.data[i].half = res.data.data[i].shop_deliverycredit % 1 != 0? 1: 0;
 								res.data.data[i].none = 5 - res.data.data[i].all - res.data.data[i].half;
-								// res.data.data[i].distance_number = typeof(res.data.data[i].distance_number) == 'number'?res.data.data[i].distance_number/1000: 0;
 								list.push(res.data.data[i]);
 								that.recommendList = list;
 							}
 						}
-						// uni.hideLoading();
-						
 					});
 			},
-			goCart() {
-				uni.navigateTo({
-					url: '/pages/components/cart/cart'
-				})
-			},
+				goCart() {
+					uni.navigateTo({
+						url: '/pages/components/cart/cart'
+					})
+				},
 		},
 	}
 </script>

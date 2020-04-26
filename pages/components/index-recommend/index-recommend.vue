@@ -1,6 +1,5 @@
 <template>
 	<view class="recommend-box">
-<!-- 		<view>{{recommendList}}</view> -->
 		<view class="recommend" v-if="recommendList.length > 0">
 			<block v-for="(item,index) in recommendList" :key="index">
 				<view class="recommend-item" @click="goShop(item.shop_id)">
@@ -79,7 +78,6 @@
 		},
 		methods:{
 			goShop(id){
-				let that = this;
 				uni.navigateTo({
 					url: '/pages/components/shop/shop?id='+id
 				})

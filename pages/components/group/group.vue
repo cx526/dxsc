@@ -9,7 +9,9 @@
 		<view class="group-box">
 			<view class="group" v-if="dataList && dataList.length > 0">
 				<block v-for="(item,index) in dataList" :key="item.name">
-					<view class="group-item" v-if="parseInt(item.list[0].id) <= parseInt(id)">
+					<view class="group-item" 
+					v-if="parseInt(item.list[0].id) <= parseInt(id)"
+					@click="goGroup(item.list[0].id,item.name)">
 						<view class="group-name">
 							<text>{{item.name}}</text>
 							<image src="/static/images/icon-right.png" mode=""></image>
@@ -80,6 +82,11 @@
 					this.dataList = arr;
 				})
 			},
+			goGroup(id,name) {
+				uni.navigateTo({
+					url:'/pages/components/my-group/my-group?id='+id+'&name='+name
+				})
+			}
 		}
 	}
 </script>

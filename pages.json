@@ -234,7 +234,7 @@
         ,{
             "path" : "pages/components/payMoney/payMoney",
             "style" : {
-							"navigationBarTitleText":"充值"
+							"navigationBarTitleText":"提升等级"
 						}
         }
         ,{
@@ -366,6 +366,34 @@
             "path" : "pages/tv/tv",
             "style" : {
 							"navigationBarTitleText":"直播"
+						}
+        }
+        ,{
+            "path" : "pages/components/my-group/my-group",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/components/refund/refund",
+            "style" : {
+							"navigationBarTitleText":"退货"
+						}
+        }
+        ,{
+            "path" : "pages/components/payUp/payUp",
+            "style" : {
+							"navigationBarTitleText":"充值"
+						}
+        }
+        ,{
+            "path" : "pages/components/member/member",
+            "style" : {
+							"navigationBarTitleText":"成为会员"
+						}
+        }
+        ,{
+            "path" : "pages/components/business-nav/business-nav",
+            "style" : {
+							"navigationBarTitleText":"商家入驻"
 						}
         }
     ],

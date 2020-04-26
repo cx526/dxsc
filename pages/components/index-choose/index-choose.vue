@@ -33,7 +33,11 @@
 			choose(index) {
 				switch (index) {
 					case 0:
-						wechat.sacn();
+					uni.showToast({
+						title: '启动扫一扫中',
+						icon: 'loading'
+					});
+						wechat.sacn(() => {uni.hideToast()});
 					break;
 					case 1:
 					uni.navigateTo({

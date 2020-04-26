@@ -49,6 +49,9 @@
 						name: '充值'
 					},
 					{
+						name: '提升等级'
+					},
+					{
 						name: '我的银行卡'
 					},
 					{
@@ -94,25 +97,30 @@
 				switch(index) {
 					case 0:
 					uni.navigateTo({
-						url:'/pages/components/payMoney/payMoney'
-					})
+						url: '/pages/components/payUp/payUp'
+					});
 					break;
 					case 1:
 					uni.navigateTo({
-						url: '/pages/components/bank/bank'
+						url:'/pages/components/payMoney/payMoney'
 					})
 					break;
 					case 2:
 					uni.navigateTo({
-						url: '/pages/components/withdraw/withdraw'
+						url: '/pages/components/bank/bank'
 					})
 					break;
 					case 3:
 					uni.navigateTo({
-						url: '/pages/components/bill/bill'
+						url: '/pages/components/withdraw/withdraw'
 					})
 					break;
 					case 4:
+					uni.navigateTo({
+						url: '/pages/components/bill/bill'
+					})
+					break;
+					case 5:
 					uni.navigateTo({
 						url: '/pages/components/withdraw-plan/withdraw-plan'
 					})

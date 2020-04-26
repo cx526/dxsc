@@ -40,21 +40,21 @@
 					</view>
 					<view class="money" style="display: flex;align-items: center;overflow: hidden;" v-if="user_balance">
 						<view>
-							<text style="font-size: 26rpx;font-weight: 700;">{{user_balance.balance ? user_balance.balance: 0.00}}</text>
+							<text style="font-size: 22rpx;font-weight: 700;">{{user_balance.balance ? user_balance.balance: 0.00}}</text>
 							<text>余额</text>
 						</view>
 						<view>
-							<text style="font-size: 26rpx;font-weight: 700;">{{user_balance.n_money ? user_balance.n_money: 0.00}}</text>
+							<text style="font-size: 22rpx;font-weight: 700;">{{user_balance.n_money ? user_balance.n_money: 0.00}}</text>
 							<text>现金券</text>
 						</view>
 						<view>
-							<text style="font-size: 26rpx;font-weight: 700;">{{user_balance.n_coupon ? user_balance.n_coupon: 0.00}}</text>
+							<text style="font-size: 22rpx;font-weight: 700;">{{user_balance.n_coupon ? user_balance.n_coupon: 0.00}}</text>
 							<text>折扣券</text>
 						</view>
 					</view>
 				</view>
 				<view class="user-member">
-					<image src="/static/images/member1.png" mode="" @click="goPayMoney"></image>
+					<image src="/static/images/member1.jpg" mode="" @click="goPayMoney"></image>
 				</view>
 			</view>
 			<!-- 我的订单 -->
@@ -316,7 +316,7 @@
 			// 跳转到商家入驻页面
 			goBusiness() {
 				uni.navigateTo({
-					url: '/pages/components/business/business'
+					url: '/pages/components/business-nav/business-nav'
 				})
 			},
 			// 跳转到我的推广页面
@@ -342,7 +342,7 @@
 			// 跳转到充值页面
 			goPayMoney() {
 				uni.navigateTo({
-					url: '/pages/components/payMoney/payMoney'
+					url: '/pages/components/member/member'
 				})
 			},
 			// 跳转到我的团队
