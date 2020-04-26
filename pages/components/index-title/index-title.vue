@@ -18,11 +18,16 @@
 </template>
 
 <script>
+	import { mapMutations } from 'vuex'
 	export default {
 		props: {
 			title: String,
 			des: String,
 			flag: {
+				type: Boolean,
+				default: false
+			},
+			hot: {
 				type: Boolean,
 				default: false
 			}
@@ -33,6 +38,7 @@
 			};
 		},
 		methods: {
+			...mapMutations(['changeDiscount']),
 			checkMore() {
 				console.log(this.flag)
 				if(this.flag) {
@@ -40,9 +46,15 @@
 						url: '/pages/components/more-list/more-list'
 					})
 				}
-				else {
+				else if(this.hot) {
 					uni.navigateTo({
-						url: '/pages/components/vip-list/vip-list'
+						url: '/pages/components/online-goods/online-goods'
+					})
+				}
+				else {
+					this.changeDiscount({index: 0})
+					uni.navigateTo({
+						url: '/pages/components/vip-list/vip-list?type=all'
 					})
 				}
 			}

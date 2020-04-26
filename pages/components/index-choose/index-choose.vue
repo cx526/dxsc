@@ -31,7 +31,6 @@
 		methods: {
 			...mapMutations(['changeDiscount']),
 			choose(index) {
-				console.log(index);
 				switch (index) {
 					case 0:
 						wechat.sacn();
@@ -56,6 +55,17 @@
 					uni.navigateTo({
 						url: '/pages/components/vip-list/vip-list?type=all'
 					})
+					break;
+					case 5:
+					this.changeDiscount({index: 4})
+					uni.navigateTo({
+						url: '/pages/components/vip-list/vip-list?price=9.9'
+					})
+					break;
+					case 6:
+					uni.navigateTo({
+						url: '/pages/components/more-list/more-list'
+					});
 					break;
 					case 7:
 					uni.navigateTo({

@@ -31,10 +31,17 @@
 					uni.hideLoading();
 					var tmpp = JSON.parse(res.data.pay);
 					wechat.wchatapply(tmpp,res=>{
+						if(this.url && this.url != '') {
+							uni.switchTab({
+								url: this.url
+							})
+						}
+						else {
+							uni.navigateTo({
+								url: '/pages/components/order/order?status=1'
+							})
+						}
 						
-						uni.navigateTo({
-							url: '/pages/components/order/order?status=1'
-						})
 					},res=>{
 						uni.hideLoading();
 						uni.showToast({

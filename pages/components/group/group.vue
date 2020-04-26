@@ -1,27 +1,37 @@
 <template>
-	<view>
+	<view v-if="loading">
 		<!-- 个人信息 -->
 		<view class="user-info">
-			<text class="user">小A</text>
-			<text>区域顺德</text>
+			<text class="user" v-if="res.data">{{res.data.user_name}}</text>
+			<!-- <text>区域顺德</text> -->
 		</view>
 		<!-- 我的团队 -->
 		<view class="group-box">
-			<view class="group">
+			<view class="group" v-if="dataList && dataList.length > 0">
 				<block v-for="(item,index) in dataList" :key="item.name">
-					<view class="group-item">
+					<view class="group-item" v-if="parseInt(item.list[0].id) <= parseInt(id)">
 						<view class="group-name">
 							<text>{{item.name}}</text>
 							<image src="/static/images/icon-right.png" mode=""></image>
 						</view>
 						<view class="group-main">
-							<view class="main">
-								<block v-for="(list,listIndex) in item.list" :key="listIndex">
-									<view class="group-list">
-										<text class="number">{{list.number}}</text>
-										<text class="name">{{list.classify}}</text>
-									</view>
-								</block>
+							<view class="main" v-for="(list,listIndex) in item.list" :key="listIndex">
+								<view class="group-list">
+									<text class="number">{{item.list[listIndex].count}}</text>
+									<text class="name">合计</text>
+								</view>
+								<view class="group-list">
+									<text class="number">{{item.list[listIndex].today}}</text>
+									<text class="name">今日增长</text>
+								</view>
+								<view class="group-list">
+									<text class="number">{{item.list[listIndex].yesterday}}</text>
+									<text class="name">昨天增加</text>
+								</view>
+								<view class="group-list">
+									<text class="number">{{item.list[listIndex].thismonth}}</text>
+									<text class="name">本月增长</text>
+								</view>
 							</view>
 						</view>
 					</view>
@@ -29,121 +39,47 @@
 			</view>
 		</view>
 	</view>
+	<Loading v-else></Loading>
 </template>
 
 <script>
+	import { request } from '../../request.js'
+	import Loading from '../../common/loading/loading.vue'
 	export default {
 		data() {
 			return {
-				dataList: [
-					{
-						name: "代理",
-						list: [
-							{
-								number: 0,
-								classify: "合计"
-							},
-							{
-								number: 1,
-								classify: "今日新增"
-							},
-							{
-								number: 2,
-								classify: "昨日新增"
-							},
-							{
-								number: 3,
-								classify: "本月新增"
-							},
-						]
-					},
-					{
-						name: "团队长",
-						list: [
-							{
-								number: 0,
-								classify: "合计"
-							},
-							{
-								number: 1,
-								classify: "今日新增"
-							},
-							{
-								number: 2,
-								classify: "昨日新增"
-							},
-							{
-								number: 3,
-								classify: "本月新增"
-							},
-						]
-					},
-					{
-						name: "商家",
-						list: [
-							{
-								number: 0,
-								classify: "合计"
-							},
-							{
-								number: 1,
-								classify: "今日新增"
-							},
-							{
-								number: 2,
-								classify: "昨日新增"
-							},
-							{
-								number: 3,
-								classify: "本月新增"
-							},
-						]
-					},
-					{
-						name: "VIP会员",
-						list: [
-							{
-								number: 0,
-								classify: "合计"
-							},
-							{
-								number: 1,
-								classify: "今日新增"
-							},
-							{
-								number: 2,
-								classify: "昨日新增"
-							},
-							{
-								number: 3,
-								classify: "本月新增"
-							},
-						]
-					},
-					{
-						name: "普通会员",
-						list: [
-							{
-								number: 0,
-								classify: "合计"
-							},
-							{
-								number: 1,
-								classify: "今日新增"
-							},
-							{
-								number: 2,
-								classify: "昨日新增"
-							},
-							{
-								number: 3,
-								classify: "本月新增"
-							},
-						]
-					},
-				
-				]
+				res:'',
+				dataList: [],
+				loading: false,
+				id: ''
 			};
+		},
+		components: {
+			Loading
+		},
+		onShow() {
+			this.getUserGroup()
+		},
+		methods: {
+			// 获取我的团队资料
+			getUserGroup() {
+				this.loading = false;
+				request({
+					url: 'index.php?s=/wap/member/getTeamMembers',
+					method: 'post'
+				}).then(res => {
+					this.loading = true;
+					// 等级
+					this.id = res.data.level_id;
+					this.res = res;
+					const arr = []
+					const list = res.data.list;
+					for(let key in list) {
+						arr.push({name: key,list:[list[key]]});
+					};
+					this.dataList = arr;
+				})
+			},
 		}
 	}
 </script>

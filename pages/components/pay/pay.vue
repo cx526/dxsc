@@ -34,7 +34,8 @@
 				</view>
 				<view class="product-price">
 					<view class="price">
-						<text>￥{{item.price}}</text>
+						<text v-if="parseFloat(res.cashback_price)">￥{{item.price}}</text>
+						<text v-else>￥{{res.count_money}}</text>
 					</view>
 					<view class="number">
 						<text>×{{item.num}}</text>
@@ -242,7 +243,6 @@
 					url: 'index.php?s=/wap/order/ApiorderInfo',
 					method:"POST",
 				}).then(res => {
-
 					// 处理图片
 					for(let i = 0;i < res.data.itemlist.length;i++) {
 						res.data.itemlist[i].picture_info.pic_cover = this.$api + res.data.itemlist[i].picture_info.pic_cover
@@ -271,10 +271,8 @@
 							// 储存地址数据
 							this.addressList = res.data;
 							// 获取物流类型
-							console.log(this.addressList);
 							if(this.addressList.express_company_list && this.addressList.express_company_list.length > 0) {
 								this.co_id = this.addressList.express_company_list[this.index3].co_id;
-								console.log(this.addressList.express_company_list[this.index3])
 								for(let i = 0;i < this.addressList.express_company_list.length;i++) {
 									this.flowway = this.flowway.concat(this.addressList.express_company_list[i].company_name)
 								}
@@ -378,7 +376,6 @@
 				this.cash = parseInt(event.detail.value) || 0;
 				if(this.res.n_money == 0 || !this.res.n_money) {
 					// uni的bug
-					console.log(0)
 					setTimeout(() => {this.cash = 0;},50)
 					uni.showToast({
 						title: '现金券为零',
@@ -708,7 +705,6 @@
 							// 调起微信支付
 							let tmp = res;
 							var token = uni.getStorageSync('token')[0];
-							console.log(token);
 							if(token == '') {
 								uni.showToast({
 									title: '请先登录',

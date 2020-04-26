@@ -81,8 +81,10 @@
 			// 定位
 			uni.getStorage({
 				key: "position",
-				fail: function(res) {
+				fail: function(res) { 
+					that.loading = true;
 					that.getLocartion();
+					
 				},
 				success: function(res) {
 					that.latitude = res.data[0];
@@ -137,7 +139,7 @@
 						uni.showToast({
 							title: '不支持定位功能',
 							icon: 'none'
-						})
+						});
 					}
 				}
 			},

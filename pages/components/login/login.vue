@@ -12,7 +12,7 @@
 			<view class="form-list">
 				<view class="form-item">
 					<image src="/static/images/arrow-user.png" mode=""></image>
-					<input type="text" value="" placeholder="请输入用户名"
+					<input type="number" value="" placeholder="请输入手机号"
 					 placeholder-class="input-placeholder" v-model="username" 
 					 @blur="user"/>
 				</view>

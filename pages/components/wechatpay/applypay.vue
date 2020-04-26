@@ -21,13 +21,11 @@
 		},
 		methods: {
 			getWechatPay(){
-				alert("applypay");
 				request({
 					url:"index.php?s=/wap/pay/getPaySessionInfo",
 				}).then(res=>{
 					var tmpp = JSON.parse(res.data.pay);
 					wechat.wchatapply(tmpp,res => {
-						alert('callback');
 						if(url) {
 							uni.switchTab({
 								url: this.url

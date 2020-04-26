@@ -362,6 +362,12 @@
 							"navigationBarTitleText":"我的团队"
 						}
         }
+        ,{
+            "path" : "pages/tv/tv",
+            "style" : {
+							"navigationBarTitleText":"直播"
+						}
+        }
     ],
 	"tabBar": {
 			"color":"#676C74",
@@ -385,7 +391,12 @@
 					"selectedIconPath":"/static/images/classify1-active.png",
 					"text":"分类"
 				},
-		
+				{
+					"pagePath":"pages/tv/tv",
+					"iconPath":"/static/images/TV.png",
+					"selectedIconPath":"/static/images/TV-active.png",
+					"text":"直播"
+				},
 				{
 					"pagePath":"pages/mine/mine",
 					"iconPath":"/static/images/mine1.png",

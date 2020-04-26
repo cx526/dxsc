@@ -1,13 +1,20 @@
 <template>
-	<view>
+	<view v-if="loading">
 		<!-- userinfo -->
 		<view class="user-info">
 			<view class="user-img">
-				<image src="/static/images/user-default.jpeg" mode=""></image>
-				<text>狗熊</text>
+				<view v-if="userInfo">
+					<image :src="$api + userInfo.user_headimg"></image>
+				</view>
+				<view v-else>
+					<image src="/static/images/user-default.jpeg" mode=""></image>
+				</view>
+				<text v-if="userInfo">{{userInfo.nick_name}}</text>
+				<text v-else @click="goLogin()">请先登录</text>
 			</view>
 			<view class="user-number">
-				<text>1200.00</text>
+				<text v-if="userInfo">{{userInfo.n_coupon}}</text>
+				<text v-else>0.00</text>
 				<view>
 					<text>折扣券余额</text>
 				</view>
@@ -22,17 +29,20 @@
 			<view class="product-title">
 				<text>精品推荐</text>
 			</view>
-			<view class="product-context">
-				<block v-for="n in 4" :key="n">
-					<view class="product-item">
+			<view class="product-context" v-if="goodsList && goodsList.length > 0">
+				<block v-for="(item,index) in goodsList" :key="index">
+					<view class="product-item" @click="goDetail(item.goods_id)">
 						<view class="product-show">
-							<image src="/static/images/product.png" mode=""></image>
+							<image :src="$api + item.pic_cover" mode=""></image>
 						</view>
 						<view class="product-main">
-							<view style="color: #414141;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">莫次有机洗面奶莫次有机洗面奶</view>
+							<view 
+							style="color: #414141;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+							{{item.goods_name}}
+							</view>
 							<view class="price">
 								<view>
-									<text style="color: #FE1E1C;">￥244</text>
+									<text style="color: #FE1E1C;">￥{{item.price}}</text>
 									<text style="font-size: 22rpx;color: #DCDCDC;text-decoration: line-through;margin-left: 8rpx;">￥399</text>
 								</view>
 								<view style="background: #FE1E1C;padding: 0 20rpx;border-radius: 30rpx;">
@@ -43,19 +53,92 @@
 						</view>
 					</view>
 				</block>
-				
+				<view v-if="!flag" class="none">
+					<text>暂无更多数据</text>
+				</view>
 			</view>
 		</view>
 	</view>
+	<Loading v-else></Loading>
 </template>
 
 <script>
+	import { request } from '../../request.js'
+	import Loading from '../../common/loading/loading.vue'
 	export default {
 		data() {
 			return {
-				
+				userInfo: '',
+				goodsList: [],
+				page: 1,
+				flag: true,
+				$api: this.$api,
+				loading: false
 			};
-		}
+		},
+		components:{
+			Loading
+		},
+		onShow() {
+			this.getUserInfo();
+			this.getGoodsList();
+		},
+		onReachBottom() {
+			if(this.flag) {
+				this.page+=1;
+				this.getGoodsList()
+			}
+		},
+		methods: {
+			// 前往登录页
+			goLogin() {
+				uni.navigateTo({
+					url:"/pages/components/login/login"
+				})
+			},
+			// 获取用户个人信息
+			getUserInfo() {
+				request({
+					url: 'index.php?s=/wap/member/couponList'
+				}).then(res => {
+					this.userInfo = res.data.member;
+				})
+			},
+			// 获取推荐商品
+			getGoodsList() {
+				if(this.page != 1) {
+					uni.showLoading({
+						title:"数据加载中",
+						mask:true
+					});
+				}
+				request({
+					url: 'index.php?s=/wap/member/couponList',
+					method: 'post',
+					data: {
+						page: this.page
+					}
+				}).then(res => {
+					this.loading = true
+					if(res.data.code != 201) {
+						
+						uni.hideLoading()
+						if(res.data.goods && res.data.goods.length < 10) {
+							this.flag = false;
+						}
+						this.goodsList = [...this.goodsList,...res.data.goods];
+					}
+					
+				})
+			},
+			// 跳转到商品详情页
+			goDetail(id) {
+				uni.navigateTo({
+					url: '/pages/common/goods-detail/goods-detail?id='+id
+				})
+			}
+		},
+		
 	}
 </script>
 
@@ -151,6 +234,11 @@
 				}
 			}
 		}
-		
+	}
+	.none {
+		box-sizing: border-box;
+		padding: 30rpx;
+		font-size: 30rpx;
+		text-align: center;
 	}
 </style>

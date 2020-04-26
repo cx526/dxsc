@@ -20,7 +20,7 @@
 		<!-- 折扣区 -->
 		<index-discount :discountList="discount_ad"></index-discount>
 		<!-- 标题 -->
-		<index-title title="今日热卖" des="爆款热卖，人手一份"></index-title>
+		<index-title title="今日热卖" des="爆款热卖，人手一份" :hot="true"></index-title>
 		<!-- 新品上架 -->
 		<index-news :newsList="newsList" :isMarginTop="isMarginTop"></index-news>
 		<!-- 标题 -->

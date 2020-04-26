@@ -466,7 +466,6 @@
 						fav_type:'goods',
 					}
 				}).then(res => {
-					console.log(res);
 					if(res.data.code==1){
 						if(is_favorate==0){
 							that.is_favorate = 1;
@@ -530,12 +529,7 @@
 						url:"index.php?s=/wap/member/checkLogin",
 						method:"POST",
 					}).then(res=>{
-						console.log(res.data.code,res)
 						if(res.data.code == 201) {
-							// uni.showToast({
-							// 	title: '请先登录',
-							// 	icon: 'none'
-							// });
 							uni.showModal({
 								title: '请先登录',
 								content: '是否前往登录页面',
@@ -603,7 +597,6 @@
 											method: 'post',
 											data: {cart_detail:JSON.stringify(data),cart_tag:'addCart'},
 										}).then(res => {
-											console.log(res);
 											if(res.data > 0) {
 												uni.showToast({
 													title: '加入购物车成功',
@@ -742,25 +735,18 @@
 			},
 			// 处理当前商品的所有规格参数
 			handleSku_list() {
-				// var arr =[]
-				// console.log(this.dataList)
 				for(let i = 0;i < this.dataList.sku_list.length;i++) {
 					this.arr.push(this.dataList.sku_list[i].attr_value_items)
 				}
-				// console.log(arr);
 				for(let j = 0;j < this.arr.length;j++) {
 					let Array = [];
 					let arrItem = this.arr[j].split(";");
-					// console.log(arrItem);
 				 for(let z= 0;z < arrItem.length;z++) {
 					 let data = arrItem[z].split(":");
 					 Array = Array.concat(data).sort()
 				 }
 					this.arr[j] = Array
-
 				}
-				 // this.dataList.sku_list = arr;
-				 // console.log(this.arr)
 			},
 			// 处理当前商品所选的参数	
 			handleSelectParams() {
@@ -776,12 +762,10 @@
 				}
 				// 数组去重
 				this.shopParams=[...new Set(this.shopParams)];
-				// console.log(this.shopParams);
 				if(this.shopParams && this.shopParams.length > 0) {
 					var dataItem = [];
 					for(let i = 0;i < this.shopParams.length;i++) {
 						let data = this.shopParams[i].split(";");
-						// console.log(data)
 						for(let j = 0;j < data.length;j++) {
 							let arr = data[j].split((":"))
 							dataItem.push(...arr);
@@ -800,7 +784,6 @@
 						this.cost_price = this.dataList.sku_list[i].cost_price
 						this.chooseItem = JSON.stringify(this.arr[i]);
 						this.stock = this.dataList.sku_list[i].stock
-						console.log(this.shopPrice,this.shopId,this.sku_name,this.cost_price,	this.stock);
 						
 					}
 				}

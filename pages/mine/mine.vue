@@ -169,7 +169,7 @@
 						<text>管理中心</text>
 					</view>
 				</view>
-				<view class="list-item order-item" @click="goGroup()" v-if="0">
+				<view class="list-item order-item" @click="goGroup()" v-if="res.data&&res.data.level_id >= 2">
 					<view class="order-img">
 						<image src="/static/images/tuandui.png" mode=""></image>
 					</view>
@@ -225,10 +225,58 @@
 			this.getUserMoney()
 
 		},
-		onLoad() {
-			// Token()
-		},
 		methods:{
+			
+			// 检测登录状态
+			getLogin() {
+				let that = this;
+				request({
+						url:"index.php?s=/wap/member/checkLogin",
+						method:"POST",
+					}).then(res=>{
+						that.loading = true
+						// 未登录
+						if(res.data.code == 201) {
+							this.isLogin = false
+						}else{
+							this.isLogin = true;
+							// 获取用户信息
+							that.getUserInfo();
+						}
+					});
+			},
+			// 获取用户个人信息
+			getUserInfo(){
+				let that = this;
+				request({
+						url:"index.php?s=/wap/member/Api_member_index",
+						method:"POST",
+					}).then(function(res){
+						that.loading = true;
+						that.res = res;
+						that.is_parter = res.data.is_parter;
+						// 储存推广的uid
+						that.uid = res.data.uid;
+						that.user_name = res.data.user_name;
+						that.avatar = that.baseURL + res.data.member_img;
+						that.ordernum = {
+							0:res.data.unpaidOrder,
+							1:res.data.shipmentPendingOrder,
+							2:res.data.goodsNotReceivedOrder,
+						};
+						let address = res.data.address;
+						that.area = address.province + " " + address.city + " " + address.district;
+					});
+			},
+			// 获取用户余额信息
+			getUserMoney() {
+				request({
+					url: 'index.php?s=/wap/member/getMomeyInfo'
+				}).then(res => {
+					this.user_balance = res.data.data;
+				})
+			},
+
 			// 跳转到登录页
 			login() {
 				uni.navigateTo({
@@ -265,44 +313,6 @@
 					url: '/pages/components/money/money'
 				})
 			},
-			getLogin() {
-				let that = this;
-				request({
-						url:"index.php?s=/wap/member/checkLogin",
-						method:"POST",
-					}).then(res=>{
-						that.loading = true
-						// 未登录
-						if(res.data.code == 201) {
-							this.isLogin = false
-						}else{
-							this.isLogin = true;
-							that.getUserInfo();
-						}
-					});
-			},
-			getUserInfo(){
-				let that = this;
-				request({
-						url:"index.php?s=/wap/member/Api_member_index",
-						method:"POST",
-					}).then(function(res){
-						that.loading = true;
-						that.res = res;
-						that.is_parter = res.data.is_parter;
-						// 储存推广的uid
-						that.uid = res.data.uid;
-						that.user_name = res.data.user_name;
-						that.avatar = that.baseURL + res.data.member_img;
-						that.ordernum = {
-							0:res.data.unpaidOrder,
-							1:res.data.shipmentPendingOrder,
-							2:res.data.goodsNotReceivedOrder,
-						};
-						let address = res.data.address;
-						that.area = address.province + " " + address.city + " " + address.district;
-					});
-			},
 			// 跳转到商家入驻页面
 			goBusiness() {
 				uni.navigateTo({
@@ -315,7 +325,6 @@
 					url: '/pages/components/generalize/generalize?uid='+this.uid
 				})
 			},
-			
 			// 跳转到个人中心页
 			userInfo() {
 				uni.navigateTo({
@@ -329,15 +338,7 @@
 					url: '/pages/components/preson-status/preson-status'
 				})
 			},
-			// 获取用户余额信息
-			getUserMoney() {
-				request({
-					url: 'index.php?s=/wap/member/getMomeyInfo'
-				}).then(res => {
-					console.log(res);
-					this.user_balance = res.data.data;
-				})
-			},
+			
 			// 跳转到充值页面
 			goPayMoney() {
 				uni.navigateTo({
