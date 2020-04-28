@@ -22,60 +22,45 @@
 						<text>{{item.create_date}}</text>
 						<text>{{item.status_name}}</text>
 					</view>
-					<!-- 线上商品 -->
-					<block v-if="item.order_item_list">
-						<view class="product" 
-						v-for="(good,i) in item.order_item_list" :key="i"
-						@click="orderDetail(item.order_id)">
-							<view class="product-img">
-								<image :src="baseURL + good.picture.pic_cover" mode=""></image>
+					<!-- 商品 -->
+					<block v-for="(good,i) in item.order_item_list" :key="i">
+					<view class="product" @click="orderDetail(item.order_id)">
+						<view class="product-img">
+							<image :src="baseURL + good.picture.pic_cover" mode=""></image>
+						</view>
+						<view class="product-title">
+							<view class="title">
+								<text style=" display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;">{{good.goods_name}}</text>
 							</view>
-							<view class="product-title">
-								<view class="title">
-									<text style=" display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;">{{good.goods_name}}</text>
-								</view>
-								<view class="params">
-									<text>{{good.sku_name}}</text>
-								</view>
-							</view>
-							<view class="product-price">
-								<view class="price">
-									<text>￥{{good.price}}</text>
-								</view>
-								<view class="number">
-									<text>×{{good.num}}</text>
-								</view>
+							<view class="params">
+								<text>{{good.sku_name}}</text>
 							</view>
 						</view>
-					</block>
-					<!-- 线下商品 -->
-					<block v-if="!item.order_item_list.length">
-						<view style="display: flex;align-items: center;box-sizing: border-box;padding: 20rpx;border-bottom: 1px solid #F6F6F6;justify-content: space-between;">
-							<view style="display: flex;box-sizing: border-box;padding-right: 80rpx;">
-								<image :src="baseURL + item.shop_logo" style="width: 120rpx;height: 120rpx;margin-right: 30rpx;"></image>
-								<view style="display: flex;flex-direction: column;justify-content: center;">
-									<text style="font-size: 30rpx;color: #474747;">{{item.shop_name}}</text>
-									<text style="font-size: 26rpx;color: #BFBFBF;margin-top: 20rpx;">{{item.live_store_address}}</text>
-								</view>
+						<view class="product-price">
+							<view class="price">
+								<text>￥{{good.price}}</text>
 							</view>
-							<text>{{item.order_money}}</text>
-							
+							<view class="number">
+								<text>×{{good.num}}</text>
+							</view>
 						</view>
-						
+					</view>
+					<view class="product-status">
+						<text class="status"></text>
+						<text v-if="item.is_refund==1 && good.refund_status==0" class="btn" @click="refundGoods(good.order_goods_id)">退款/退货</text>
+						<text v-if="good.refund_status!=0" class="btn" @click="refundGoods(good.order_goods_id)">{{good.status_name}}</text>
+					</view>
 					</block>
 					<!-- 合计 -->
 					<view class="total">
 						<view>
-							<text v-if="item.order_item_list.length">共{{item.order_item_list.length}}件商品，</text>
-							<text>合计：￥{{item.order_money}}</text>
-							<text v-if="item.order_item_list.length">(含运费￥{{item.shipping_money}})</text>
-							<text v-if="!item.order_item_list.length">(到店支付)</text>
+							<text>共{{item.order_item_list.length}}件商品，合计：￥{{item.order_money}}(含运费￥{{item.shipping_money}})</text>
 						</view>
 						<view>
 							<block v-for="(btn,bk) in item.member_operation" :key="bk">
 							<text v-if="btn.no == 'pay'" @click="payOrder(item.out_trade_no)" >{{btn.name}}</text>
 							<text v-if="btn.no == 'close'" @click="orderClose(item.order_id)">{{btn.name}}</text>
-							<text v-if="btn.no == 'logistics' && item.order_item_list.length" @click="orderLogistics(item.order_id)">{{btn.name}}</text>
+							<text v-if="btn.no == 'logistics'" @click="orderLogistics(item.order_id)">{{btn.name}}</text>
 							<text v-if="btn.no == 'getdelivery'" @click="OrderTakeDelivery(item.order_id)">{{btn.name}}</text>
 							<text v-if="btn.no == 'delete_order'" @click="orderDeleteOrder(item.order_id)">{{btn.name}}</text>
 							</block>
@@ -172,10 +157,8 @@
 					},
 					method: "POST",
 				}).then(function(res) {
-					
 					that.visible = 1;
 					that.list = res.data.order_list.data;
-					console.log(that.list);
 				});
 			},
 			//订单确认收货
@@ -279,7 +262,10 @@
 				uni.navigateTo({
 					url:"/pages/components/appraise/appraise?id="+order_id
 				});
-			}
+			},
+			refundGoods(id){
+				
+			},
 		}
 	}
 </script>
@@ -348,7 +334,6 @@
 				box-sizing: border-box;
 				padding: 30rpx;
 				display: flex;
-				border-bottom: 1px solid #E5E5E5;
 				.product-img {
 					width: 140rpx;
 					height: 140rpx;
@@ -377,7 +362,6 @@
 
 				.product-price {
 					box-sizing: border-box;
-
 					.price {
 						font-size: 30rpx;
 						color: #000;
@@ -389,6 +373,26 @@
 						text-align: right;
 					}
 				}
+			}
+			.product-status{
+				width:96%;
+				padding:10rpx 2%;
+				line-height: 60rpx;
+				font-size: 28rpx;
+				overflow: hidden;
+				.status{
+					color:#999;
+					min-width: 100rpx;
+					text-align: center;
+					float: left;
+				}
+				.btn{
+					padding:0 20rpx;
+					border: 1px solid #ccc;
+					color: #333;
+					float: right;
+				}
+				border-bottom: 1px solid #E5E5E5;
 			}
 
 			.total {

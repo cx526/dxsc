@@ -13,6 +13,8 @@ const store = new Vuex.Store({
 		goodsLength: false,
 		// 存储用户点击的是哪个折扣
 		discount: 0,
+		// 储存推广uid
+		uid: '',
 	},
 	mutations: {
 		// 搜索历史
@@ -47,6 +49,7 @@ const store = new Vuex.Store({
 		changeDiscount(state,payload) {
 			state.discount = payload.index;
 		},
+		
 	},
 	getters:{
 

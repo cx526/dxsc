@@ -602,6 +602,7 @@
 			},
 			// 余额支付
 			handleBalance() {
+				console.log(111);
 				this.balanceWay = !this.balanceWay;
 				this.payWay = !this.balanceWay;
 				if(this.balanceWay) {
@@ -632,8 +633,10 @@
 									this.add = (this.res.count_money - this.balance - cash).toFixed(2)
 								}
 							}
-							
-							
+							// 没有输入现金券
+							else {
+								this.balance = this.res.member_account.balance
+							}
 						}
 					}
 					

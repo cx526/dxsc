@@ -64,7 +64,7 @@
 		<view class="shop-box" @click="goShop(shop_info.shop_id)">
 			<view class="shop">
 				<view style="display: flex;align-items: center;" v-if="shop_info">
-					<image src="/static/images/user-logo.png" v-if="!shop_info.shop_logo"></image>
+					<image src="/static/images/shop-logo.png" v-if="!shop_info.shop_logo"></image>
 					<image  :src="baseURL + shop_info.shop_logo" mode="" v-else></image>
 					<view class="shop-title">
 						<view><text>{{shop_info.shop_name}}</text></view>
@@ -145,10 +145,10 @@
 		<view class="footer-box" style="padding:  24rpx;">
 			<view class="footer" >
 				<view class="collect" style="background: #fff;position: relative;top: 8rpx;">
-					<view>
+					<!-- <view>
 						<image src="/static/images/service.png" mode=""></image>
 						<view><text style="color: #797979">客服</text></view>
-					</view>
+					</view> -->
 					<view @click="share">
 						<image src="/static/images/fenxiang.png" mode=""></image>
 						<view><text style="color: #797979">分享</text></view>
@@ -380,7 +380,7 @@
 						this.navList = navlist;
 					}
 					const regex = new RegExp('<img', 'gi');
-					res.data.goods_detail.description = res.data.goods_detail.description.replace(regex, `<img style="max-width: 100%;"`);
+					res.data.goods_detail.description = res.data.goods_detail.description.replace(regex, `<img style="max-width: 100%;display: block"`);
 					this.stock = this.dataList.stock;
 					// 储存商品规格
 					// 动态为每个商品属性添加一条active点击属性
@@ -630,10 +630,7 @@
 								}
 							}
 						}
-					});
-				 
-		
-					
+					});					
 				},
 			// 增加商品
 			increment() {
@@ -1339,8 +1336,8 @@
 			justify-content: space-between;
 			
 			image {
-				width: 90rpx;
-				height: 65rpx;
+				width: 80rpx;
+				height: 80rpx;
 				margin-right: 16rpx;
 			}
 			.shop-title {

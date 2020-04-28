@@ -1,13 +1,13 @@
 <template>
 	<view style="padding-bottom: 100rpx;">
 		<view v-if="flag">
-			<view class="swiper-box" v-if="imgUrl">
+			<view class="swiper-box" v-if="imgUrl && swiperShow">
 				<swiper indicator-dots indicator-color="rgba(187,187,187,0.4)" indicator-active-color="rgba(255,255,255,0.7)" style="height: 600rpx;">
 					<block v-if="imgUrl && imgUrl.length > 0">
 						<swiper-item v-for="(item,index) in imgUrl" :key="index" style="height: 600rpx;">
-							<view style="height: 100%;">
+							<view style="height: 100%;" >
 								<image :src="item" style="height: 600rpx" v-if="item != 'https://admin.dxsc.vip/'"></image>
-								<image 	src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1208538952,1443328523&fm=26&gp=0.jpg" style="height: 600rpx"></image>
+							
 							</view>
 						</swiper-item>
 					</block>
@@ -18,21 +18,21 @@
 				<view class="shop">
 					<view class="shop-item">
 						<text>店名：</text>
-						<text style="font-weight: 700;">{{shop_name}}</text>
+						<text style="font-weight: 700;" v-if="shop_name">{{shop_name}}</text>
 					</view>
-					<view class="shop-item">
+					<view class="shop-item" @click="call">
 						<text>预约电话：</text>
 						<text v-if="shop_phone != ''">{{shop_phone}}</text>
 						<text v-else>暂无资料</text>
 					</view>
-					<view class="shop-item">
+					<view class="shop-item" v-if="shopImg">
 						<text>店铺二维码：</text>
-						<image :src="baseURL+'index.php?s=/wap/shop/apiShopQrcode?shop_id='+shop_id" mode="" style="width:100px;height:100px" ref="shopImg" @click="preview"></image>
+						<image :src="baseURL+'index.php?s=/wap/shop/apiShopQrcode?shop_id='+shop_id" mode="" style="width:100px;height:100px" ref="shopImg" @click="preview" @error="imgLoadError()"></image>
 					</view>
 					<view class="shop-item">
 						<text>店铺地址：</text>
 						<view style="display: flex;align-items: center;">
-							<text style="color: #BEBEBE;" v-if="shop_address">{{shop_address}}</text>
+							<text style="color: #BEBEBE;" v-if="shop_address" @click="getLocation">{{shop_address}}</text>
 							<text v-else>暂无资料</text>
 						</view>
 					</view>
@@ -46,8 +46,10 @@
 				<view class="product" v-if="goods && goods.length > 0">
 					<block v-for="(v,index) in goods" :key="index">
 						<view class="product-item" @click="goodsinfo(v.goods_id)">
-							<view class="product-img">
+							
+							<view class="product-img" >
 								<image :src="baseURL + v.img" mode=""></image>
+								
 							</view>
 							<view class="product-context" style="text-align: left;display: flex;flex-direction: column;">
 								<text style="display: -webkit-box;-webkit-line-clamp:2;-webkit-box-orient: vertical;overflow: hidden;margin: 12rpx 0;">{{v.goods_name}}</text>
@@ -78,13 +80,6 @@
 			</view>
 		</view>
 		<Loading v-else></Loading>
-		
-		
-		
-		
-		
-		
-		
 	</view>
 </template>
 
@@ -94,6 +89,7 @@
 	export default {
 		data() {
 			return {
+				location: '',
 				baseURL:this.$api,
 				imgUrl: [],
 				shop_name:'',
@@ -106,7 +102,12 @@
 				isLogin: '',
 				// 储存预览店铺图片的路径
 				shopSrc: [],
-				flag: false
+				flag: false,
+				// 店铺经纬度
+				latitude:'',
+				longitude: '',
+				shopImg: true,
+				swiperShow: true
 			};
 		},
 		components: {
@@ -123,9 +124,42 @@
 		},
 		mounted() {
 			// 获取要预览图片的路径
-			this.shopSrc.push(this.$refs.shopImg.src);
+			if(this.shopImg) {
+				setTimeout(() => {
+					this.shopSrc.push(this.$refs.shopImg.src);
+				},2000)
+			}
+			
+				
+			
 		},
 		methods: {
+			// 店铺二维码读取失败事件
+			imgLoadError() {
+				this.shopImg = false
+			},
+			// 打开地图
+			getLocation() {
+				if(this.latitude=='' || this.location == '') {
+					uni.showToast({
+						title: '该商家暂未提供经纬度',
+						icon: 'none'
+					})
+				}
+				else {
+					uni.getLocation({
+						type: 'wgs84 ',
+						success: res => {
+							uni.openLocation({
+								latitude: res.latitude,
+								longitude:res.longitude,
+								name: this,shop_address
+							})
+						}
+					});
+				}
+				
+			},
 			// 检测登录
 			checkLogin() {
 				request({
@@ -154,11 +188,18 @@
 						that.shop_name = res.data.shop_info.shop_name;
 						that.shop_address = res.data.shop_info.shop_address;
 						that.shop_phone = res.data.shop_info.shop_phone;
-						that.imgUrl = [
-							that.baseURL + res.data.shop_info.shop_logo,
-							// that.baseURL + res.data.shop_info.shop_banner,
-							// that.baseURL + res.data.shop_info.shop_avatar,
-						];
+						that.latitude = res.data.shop_info.latitude;
+						that.longitude = res.data.shop_info.longitude;
+						// 如果没有上传店铺详情页默认隐藏
+						if(res.data.shop_info.shop_logo) {
+							that.imgUrl = [
+								that.baseURL + res.data.shop_info.shop_logo,
+							];
+						}
+						else {
+							that.swiperShow = false;
+						}
+						
 						that.goods = res.data.goods;
 						that.qr = res.data.qr;
 					});
@@ -206,6 +247,20 @@
 					urls: this.shopSrc
 				})
 			},
+			// 打电话
+			call() {
+				if(this.shop_phone == '') {
+					uni.showToast({
+						title: '该商家暂未提供预约号码',
+						icon: 'none'
+					})
+				}
+				else {
+					uni.makePhoneCall({
+						phoneNumber: this.shop_phone
+					})
+				}
+			}
 		}
 	}
 </script>

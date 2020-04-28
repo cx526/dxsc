@@ -72,9 +72,19 @@
 					});
 					break;
 					case 7:
-					uni.navigateTo({
-						url: '/pages/components/drinking/drinking'
+					uni.showToast({
+						title: '该功能暂未开放',
+						icon: 'none'
 					})
+					// uni.navigateTo({
+					// 	url: '/pages/components/drinking/drinking'
+					// })
+					break;
+					case 8:
+					uni.showToast({
+						title: '该功能暂未开放',
+						icon: 'none'
+					});
 					break;
 					case 9:
 					uni.navigateTo({

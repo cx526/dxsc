@@ -7,9 +7,6 @@
 						<view style="flex:1" @click="openView"  class="uni-title">{{year}}年{{month}}月</view>
 						<view @click="openType" style="flex:1" class="uni-title">{{sType}}</view>
 					</view>
-					<!-- <view class="uni-padding-wrap">
-						<view @click="openView" class="uni-title">{{year}}年{{month}}月</view>	
-					</view> -->
 				</view>
 				<view class="method">
 					<view class="expend">
@@ -26,7 +23,7 @@
 			<block v-for="(item,index) in list" :key="index">
 			<view class="shop-item">
 				<view class="shop-img">
-					<image src="/static/images/user-default.jpeg" mode=""></image>
+					<image src="/static/images/shop-logo.png" mode=""></image>
 				</view>
 				<view class="shop-main">
 					<view class="title">

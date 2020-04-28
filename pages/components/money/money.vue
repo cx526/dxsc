@@ -61,7 +61,7 @@
 						name: '收入明细'
 					},
 					{
-						name: '提现明细'
+						name: '提现列表'
 					},
 				],
 				// 储存用户个人余额
@@ -122,7 +122,7 @@
 					break;
 					case 5:
 					uni.navigateTo({
-						url: '/pages/components/withdraw-plan/withdraw-plan'
+						url: '/pages/components/withdraw-list/withdraw-list'
 					})
 					break;
 				}

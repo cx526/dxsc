@@ -1,7 +1,7 @@
 <template>
 
 	<view v-if="loading">
-		<!-- 导航 -->
+	<!-- 	导航 -->
 		<index-nav @goCart="goCart()" :locationName="locationName" v-on:getLocation="getLocartion"></index-nav>
 		<!-- 分割线 -->
 	<!-- 	<view class="cut-line"></view> -->

@@ -30,7 +30,7 @@
 					<view style="display: flex;align-items: center;justify-content: space-between;">
 						<view class="user-img">
 						
-							<image src="/static/images/user-default.jpeg" mode="" v-if="avatar == this.$api" @click="userInfo"></image>
+							<image src="/static/images/shop-logo.png" mode="" v-if="avatar == this.$api" @click="userInfo"></image>
 							<image :src="avatar" v-else @click="userInfo"></image>
 						</view>
 						<view class="user-main" style="width: 200rpx;overflow: hidden;">
@@ -54,7 +54,7 @@
 					</view>
 				</view>
 				<view class="user-member">
-					<image src="/static/images/member1.jpg" mode="" @click="goPayMoney"></image>
+					<image src="/static/images/member1.png" mode="" @click="goPayMoney"></image>
 				</view>
 			</view>
 			<!-- 我的订单 -->
@@ -222,11 +222,11 @@
 				}
 			})
 			// 获取用户余额信息
-			this.getUserMoney()
+			this.getUserMoney();
+			
 
 		},
 		methods:{
-			
 			// 检测登录状态
 			getLogin() {
 				let that = this;
@@ -252,6 +252,11 @@
 						url:"index.php?s=/wap/member/Api_member_index",
 						method:"POST",
 					}).then(function(res){
+						// 推广uid保存到本地
+						uni.setStorage({
+							key: 'uid',
+							data: res.data.uid
+						});
 						that.loading = true;
 						that.res = res;
 						that.is_parter = res.data.is_parter;

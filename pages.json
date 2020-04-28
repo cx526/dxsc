@@ -396,6 +396,12 @@
 							"navigationBarTitleText":"商家入驻"
 						}
         }
+        ,{
+            "path" : "pages/components/withdraw-list/withdraw-list",
+            "style" : {
+							"navigationBarTitleText":"提现列表"
+						}
+        }
     ],
 	"tabBar": {
 			"color":"#676C74",

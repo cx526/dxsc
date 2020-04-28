@@ -7,7 +7,7 @@
 					<image :src="$api + userInfo.user_headimg"></image>
 				</view>
 				<view v-else>
-					<image src="/static/images/user-default.jpeg" mode=""></image>
+					<image src="/static/images/shop-logo.png" mode=""></image>
 				</view>
 				<text v-if="userInfo">{{userInfo.nick_name}}</text>
 				<text v-else @click="goLogin()">请先登录</text>

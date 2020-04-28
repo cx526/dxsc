@@ -5,7 +5,7 @@
 				<view class="radio">
 						 <checkbox 
 						 style="transform: scale(0.7)"
-						 color="#FED940"
+						 color="#f00"
 						 @click="sellectAll()"
 						 :checked="selectAllchecked"
 						 />
@@ -27,7 +27,7 @@
 						<label>
 						 <checkbox 
 						 style="transform: scale(0.7)"
-						 color="#FED940"
+						 color="#f00"
 						 @click="checkBox(index)"
 						 :checked="goods.act"
 						  />
@@ -57,7 +57,7 @@
 					</view>
 					<view class="product-amount" v-if="!isShow">
 						<text @click="decrement(index)">-</text>
-						<input type="number"  :value="goods.num"/>
+						<input type="number"  :value="goods.num" disabled/>
 						<text @click="increment(index)">+</text>
 					</view>
 					
@@ -87,70 +87,14 @@
 				isShow: true,
 				goods_list:[],
 				sumGoodsPrice:0.00,//合计金额
-				selectAllchecked:false//全选按钮checked状态
+				selectAllchecked:false,//全选按钮checked状态
+				selectArr: []
 			};
 		},
 		created() {
 
 		},
 		methods: {
-			// 输入的数量
-			handleAmount(event) {
-				this.amount = event.target.value;	
-			},
-			// 增加
-			increment(index) {
-				let num = this.goods_list[index].num;
-				let max_buy = this.goods_list[index].max_buy;
-				var that =this;
-				if(max_buy > 0 ){
-					if(num + 1 > max_buy){
-						uni.showToast({
-							title:"该商品最多购买:"+max_buy+"个",
-							icon:"none"
-						});
-						return;
-					}else{
-						this.setGoodsNum(this.goods_list[index].cart_id,num+1,function(){
-							that.goods_list[index].num += 1;
-						});
-					}
-				}else{
-						this.setGoodsNum(this.goods_list[index].cart_id,num+1,function(){
-							that.goods_list[index].num += 1;
-						});
-				}
-			},
-			// 减少
-			decrement(index) {
-				let num = this.goods_list[index].num;
-				let min_buy = this.goods_list[index].min_buy;
-				var that =this
-				if(min_buy > 0 ){
-					if(num - 1 < min_buy&& num-1 > 0){
-						uni.showToast({
-							title:"购买数量不能少于最少购买数:"+min_buy,
-							icon:"none"
-						});
-						return;
-					}else{
-						this.setGoodsNum(this.goods_list[index].cart_id,num-1,function(){
-							that.goods_list[index].num -= 1;
-						});
-						
-					}
-				}else{
-					if(num-1>0){
-						this.setGoodsNum(this.goods_list[index].cart_id,num-1,function(){
-							that.goods_list[index].num -= 1;
-						});
-					}
-				}
-			},
-			// 点击编辑
-			edit() {
-				this.isShow = !this.isShow
-			},
 			//请求接口获取货品信息
 			getGoods(){
 				request({
@@ -167,37 +111,6 @@
 					}
 				});
 			},
-			//复选框点击时间,计算合计金额
-			checkBox(index){
-				if(this.selectAllchecked==true){
-					this.selectAllchecked=false;
-				}
-				if(this.goods_list[index].act == false){
-					this.sumGoodsPrice +=this.goods_list[index].price*this.goods_list[index].num;
-					this.goods_list[index].act = true;
-				}else{
-					this.sumGoodsPrice -=this.goods_list[index].price*this.goods_list[index].num;
-					this.goods_list[index].act = false;
-				}
-			},
-			//全选
-			sellectAll(){
-				if(this.selectAllchecked == false){
-					this.sumGoodsPrice=0.00;
-					for(let i = 0;i<this.goods_list.length;i++){
-						this.goods_list[i].act=true;
-						this.sumGoodsPrice +=this.goods_list[i].price*this.goods_list[i].num;
-					}
-					this.selectAllchecked=true;
-				}else{
-					this.sumGoodsPrice=0.00;
-					for(let i = 0;i<this.goods_list.length;i++){
-						this.goods_list[i].act=false;
-					}
-					this.selectAllchecked=false;
-				}
-				
-			},
 			//更改货品购买数量
 			setGoodsNum(car_id,num,call_back){
 				request({
@@ -205,36 +118,161 @@
 					method:"POST",
 					data:{cartid:car_id,num:num}
 				}).then(res =>{
+					console.log(res);
 					if(res.data ==1){
 						if(call_back != undefined){
 							call_back();
+							this.total()
 						}
 					}
 				})
 			},
-			//结算
-			submitOrder(){
-				let car_id = ""; 
-				let goods_List = this.goods_list;
-				for(let i =0;i<goods_List.length;i++){
-					if(goods_List[i].act == true){
-						if(car_id.length >0){
-							car_id += ","+goods_List[i].cart_id;
-						}else{
-							car_id += goods_List[i].cart_id;
-						}
+			// 点击编辑
+			edit() {
+				this.isShow = !this.isShow
+			},
+			// 增加
+			increment(index) {
+				console.log(this.goods_list[index]);
+				//获取当前点击商品数量
+				 let currentNum = this.goods_list[index].num + 1;
+				// 获取当前点击商品的id
+				let currentId = this.goods_list[index].cart_id;
+				// 有限制最大购买数
+				if(this.goods_list[index].max_buy > 0) {
+					if(currentNum > this.goods_list[index].max_buy) {
+						uni.showToast({
+							title:"该商品最多购买:"+this.goods_list[index].max_buy+"个",
+							icon: 'none'
+						});
+						this.setGoodsNum(currentId,currentNum,() => {
+								this.goods_list[index].num = this.goods_list[index].max_buy;
+						});
 					}
 				}
-				if(car_id.length <=0){
+				else {
+					this.setGoodsNum(currentId,currentNum,() => {
+							this.goods_list[index].num += 1;
+						});
+					}
+				
+			},
+			// 减少
+			decrement(index) {
+				//获取当前点击商品数量
+				 let currentNum = this.goods_list[index].num>1? this.goods_list[index].num - 1:1;
+				 console.log(currentNum);
+				// 获取当前点击商品的id
+				let currentId = this.goods_list[index].cart_id;
+				// 有限制最小购买数
+				if(this.goods_list[index].min_buy > 0 && currentNum < this.goods_list[index].min_buy) {
 					uni.showToast({
-						title:"请先选择货品再进行结算!",
-						icon:"none"
+						title:"该商品最少:"+this.goods_list[index].min_buy+"件起购",
+						icon: 'none'
 					});
-					return;
-				}else{
-					this.createOrderSession(car_id);
+					this.setGoodsNum(currentId,currentNum,() => {
+							this.goods_list[index].num = this.goods_list[index].min_buy;
+					});
+				}
+				else if(currentNum <= 1) {
+					uni.showToast({
+						title: '商品数量不能少于1件',
+						icon: 'none'
+					});
+					this.setGoodsNum(currentId,currentNum,() => {
+							this.goods_list[index].num = 1;
+					});
+				}
+				else {
+					this.setGoodsNum(currentId,currentNum,() => {
+							this.goods_list[index].num -= 1;
+						});
+					}
+				this.total()
+			},
+
+			//单选
+			checkBox(index){
+				this.goods_list[index].act = !this.goods_list[index].act;
+				// 判断全选状态
+				for(let i = 0;i < this.goods_list.length;i++) {
+					if(!this.goods_list[i].act) {
+						this.selectAllchecked = false;
+						break;
+					}
+					else {
+						this.selectAllchecked = true;
+					}
+				}
+				this.total();
+			},
+			//全选
+			sellectAll(){
+				this.selectAllchecked = !this.selectAllchecked
+				for(let i = 0;i < this.goods_list.length;i++) {
+					this.goods_list[i].act = this.selectAllchecked
+				}
+				this.total()
+			},
+			// 结算"1,1,2,3"
+			total() {
+				this.sumGoodsPrice = 0;
+				this.selectArr = [];
+				this.goods_list.map(item => {
+					if(item.act) {
+						this.selectArr.push(item)
+					}
+				})
+				console.log(this.selectArr);
+				for(let i = 0;i < this.selectArr.length;i++) {
+					this.sumGoodsPrice += this.selectArr[i].price * this.selectArr[i].num
 				}
 			},
+			// 点击结算
+			submitOrder() {
+				console.log(this.selectArr);
+				let arr = [];
+				let cart_id = '';
+				if(this.selectArr.length <= 0) {
+					uni.showToast({
+						title: '当前没有选中商品',
+						icon: 'none'
+					})
+					return
+				}
+				else if(this.selectArr && this.selectArr.length > 0) {
+					for(let i =0;i<this.selectArr.length;i++){
+						arr.push(this.selectArr[i].cart_id);
+					}
+					console.log(arr);
+					cart_id = (arr.join(","));
+					this.createOrderSession(cart_id);
+				}
+				
+			},
+			//结算
+			// submitOrder(){
+			// 	let car_id = ""; 
+			// 	let goods_List = this.goods_list;
+			// 	for(let i =0;i<goods_List.length;i++){
+			// 		if(goods_List[i].act == true){
+			// 			if(car_id.length >0){
+			// 				car_id += ","+goods_List[i].cart_id;
+			// 			}else{
+			// 				car_id += goods_List[i].cart_id;
+			// 			}
+			// 		}
+			// 	}
+			// 	if(car_id.length <=0){
+			// 		uni.showToast({
+			// 			title:"请先选择货品再进行结算!",
+			// 			icon:"none"
+			// 		});
+			// 		return;
+			// 	}else{
+			// 		this.createOrderSession(car_id);
+			// 	}
+			// },
 			//提交到后台创建session
 			createOrderSession(car_id){
 				request({
