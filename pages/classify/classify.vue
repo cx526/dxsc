@@ -170,6 +170,7 @@
 					this.loading = true
 					// 处理图片
 					let onLineGoods = res.data.list.data;
+					console.log(onLineGoods);
 					for(let i = 0;i < onLineGoods.length;i++) {
 						onLineGoods[i].pic_cover_micro = this.$api + onLineGoods[i].pic_cover_micro
 					}
@@ -218,35 +219,35 @@
 				}
 			
 		},
-		onLoad() {
-			// 获取可视区域高度
-			uni.getSystemInfo({
-				success:(res) => {
-					this.cssText.height = res.windowHeight - 48 + 'px';
-				}
-			})
-			// 左侧分类请求数据
-			request({
-				url: 'index.php?s=/wap/goods/goodsClassificationList'
-			}).then(res => {
-				for(let i = 0; i < res.data.list.length;i++) {
-					res.data.list[i].id="item" + res.data.list[i].category_id
-				}
-				this.typeList = res.data.list;
-				this.category_id = res.data.list[0].category_id;
-				// 默认请求第一个分类数据
-				this.handleClick(this.typeList[0],0)
-			})
-		},
-		onShow() {
-			uni.getStorage({
-				key: 'keywords',
-				success: res => {
-					this.$store.state.keywords = res.data
-					this.list = res.data
-				}
-			})
-		}
+			onLoad() {
+				// 获取可视区域高度
+				uni.getSystemInfo({
+					success:(res) => {
+						this.cssText.height = res.windowHeight - 48 + 'px';
+					}
+				})
+				// 左侧分类请求数据
+				request({
+					url: 'index.php?s=/wap/goods/goodsClassificationList'
+				}).then(res => {
+					for(let i = 0; i < res.data.list.length;i++) {
+						res.data.list[i].id="item" + res.data.list[i].category_id
+					}
+					this.typeList = res.data.list;
+					this.category_id = res.data.list[0].category_id;
+					// 默认请求第一个分类数据
+					this.handleClick(this.typeList[0],0)
+				})
+			},
+			onShow() {
+				uni.getStorage({
+					key: 'keywords',
+					success: res => {
+						this.$store.state.keywords = res.data
+						this.list = res.data
+					}
+				})
+			}
 		}
 </script>
 

@@ -635,7 +635,10 @@
 							}
 							// 没有输入现金券
 							else {
-								this.balance = this.res.member_account.balance
+								if(parseInt(this.res.member_account.balance)!= 0) {
+									this.balance = this.res.member_account.balance
+								}
+								
 							}
 						}
 					}

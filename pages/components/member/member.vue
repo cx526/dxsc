@@ -1,8 +1,8 @@
 <template>
 	<view>
-		<image src="/static/images/member-01.png" class="top"></image>
-		<image src="/static/images/member-02.png" class="main"></image>
-		<image src="/static/images/member-03.png" class="bottom"></image>
+		<image src="https://www.dxsc.vip/images/member-01.png" class="top"></image>
+		<image src="https://www.dxsc.vip/images/member-02.png" class="main"></image>
+		<image src="https://www.dxsc.vip/images/member-03.png" class="bottom"></image>
 		<button class="btn" @click="pay">成为会员</button>
 	</view>
 </template>

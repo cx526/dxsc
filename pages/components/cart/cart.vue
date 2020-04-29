@@ -94,6 +94,9 @@
 		created() {
 
 		},
+		onLoad() {
+			this.getGoods();
+		},
 		methods: {
 			//请求接口获取货品信息
 			getGoods(){
@@ -230,7 +233,6 @@
 			},
 			// 点击结算
 			submitOrder() {
-				console.log(this.selectArr);
 				let arr = [];
 				let cart_id = '';
 				if(this.selectArr.length <= 0) {
@@ -244,35 +246,10 @@
 					for(let i =0;i<this.selectArr.length;i++){
 						arr.push(this.selectArr[i].cart_id);
 					}
-					console.log(arr);
 					cart_id = (arr.join(","));
 					this.createOrderSession(cart_id);
-				}
-				
+				}	
 			},
-			//结算
-			// submitOrder(){
-			// 	let car_id = ""; 
-			// 	let goods_List = this.goods_list;
-			// 	for(let i =0;i<goods_List.length;i++){
-			// 		if(goods_List[i].act == true){
-			// 			if(car_id.length >0){
-			// 				car_id += ","+goods_List[i].cart_id;
-			// 			}else{
-			// 				car_id += goods_List[i].cart_id;
-			// 			}
-			// 		}
-			// 	}
-			// 	if(car_id.length <=0){
-			// 		uni.showToast({
-			// 			title:"请先选择货品再进行结算!",
-			// 			icon:"none"
-			// 		});
-			// 		return;
-			// 	}else{
-			// 		this.createOrderSession(car_id);
-			// 	}
-			// },
 			//提交到后台创建session
 			createOrderSession(car_id){
 				request({
@@ -288,9 +265,7 @@
 				});
 			}
 		},
-		onLoad() {
-			this.getGoods();
-		}
+		
 	}
 </script>
 

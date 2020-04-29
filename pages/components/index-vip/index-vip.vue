@@ -22,9 +22,9 @@
 								<!-- <text class="new-unit"></text> -->
 								<text>市场价：{{item.market_price}}</text>
 							</view>
-							<view>
+							<!-- <view>
 								<text style="color: #B7B7B7;font-size: 18rpx;">已售{{item.sales}}</text>
-							</view>
+							</view> -->
 						</view>
 						<!-- <image src="/static/images/red-tuijian%20.png" style="position: absolute;left: 0;top: 0;width: 40rpx;height: 40rpx;"></image> -->
 					</view>
@@ -106,7 +106,7 @@
 						text-overflow: ellipsis;
 						white-space: nowrap;
 						color: #0F0F0F;
-						font-size: 23rpx;
+						font-size: 26rpx;
 						margin-top: 14rpx;
 					}
 					.goods-price {
@@ -119,6 +119,7 @@
 						justify-content: space-between;
 						.new-price,.new-unit {
 							color: #FC4746;
+							font-size: 24rpx;
 						}
 						.new-unit,.old-unit {
 							font-weight: normal;

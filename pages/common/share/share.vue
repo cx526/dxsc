@@ -5,21 +5,21 @@
 		<view class="share-box animated slideInUp" v-if="flag">
 			<view class="share-title">
 				<text>分享</text>
-				<image src="/static/images/error.png" mode="" @click="shareClose"></image>
+				<image src="https://www.dxsc.vip/images/error.png" mode="" @click="shareClose"></image>
 			</view>
 			<view class="share-main" >
 				<view class="share-item" @click="wxShare">
-					<image src="/static/images/wxshare.png" mode=""></image>
+					<image src="https://www.dxsc.vip/images/wxshare.png" mode=""></image>
 					<text>分享给好友</text>
 				</view>
 				<view class="share-item" @click="getImg">
-					<image src="/static/images/haibao.png" mode=""></image>
+					<image src="https://www.dxsc.vip/images/haibao.png" mode=""></image>
 					<text>生成海报</text>
 				</view>
 			</view>
 		</view>
 		<!-- 引导用户浏览器分享 -->
-		<image src="/static/images/share-goods.png" mode="" v-if="show" class="lead"></image>
+		<image src="https://www.dxsc.vip/images/share-goods.png" mode="" v-if="show" class="lead"></image>
 	</view>
 </template>
 

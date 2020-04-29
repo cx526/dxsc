@@ -64,7 +64,7 @@
 			box-sizing: border-box;
 			padding: 0 50rpx;
 			.bank-item {
-				background: url(/static/images/bankCard.png) no-repeat;
+				background: url(https://www.dxsc.vip/images/bankCard.png) no-repeat;
 				background-size: 100%;
 				height: 320rpx;
 				.card {

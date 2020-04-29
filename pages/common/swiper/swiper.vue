@@ -23,11 +23,7 @@
 		},
 		data() {
 			return {
-				radioImg: [
-					'/static/images/topBanner.png',
-					'/static/images/topBanner.png',
-					'/static/images/topBanner.png'
-				]
+				
 			};
 		}
 	}

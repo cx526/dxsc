@@ -14,7 +14,7 @@
 		<view class="pay-money">
 			<view class="money">
 				<view>充值金额</view>
-				<view style="margin-top: 84rpx" >￥{{currentFace}}</view>
+				<view style="margin-top: 40rpx;font-size: 38rpx;">￥{{currentFace}}</view>
 			</view>
 		</view>
 		<!-- 协议 -->
@@ -109,10 +109,6 @@
 					}
 				});
 			}
-			
-			
-			
-			
 		}
 	}
 </script>
@@ -130,7 +126,7 @@
 	background: #fff;
 	.pay {
 		box-sizing: border-box;
-		font-size: 24rpx;
+		font-size: 28rpx;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -155,7 +151,7 @@
 	box-sizing: border-box;
 	height: 200rpx;
 	padding: 35rpx;
-	font-size: 24rpx;
+	font-size: 28rpx;
 	color: #AAAAAA;
 	border-bottom: 1px solid #E4E4E4;
 	background: #fff;
@@ -180,7 +176,7 @@
 		.choose-item {
 			box-sizing: border-box;
 			width: calc(50% - 12rpx);
-			border: 1px solid #B4302D;
+			border: 1px solid #FED940;
 			background: #fff;
 			padding: 24rpx;
 			border-radius: 12rpx;
@@ -189,6 +185,7 @@
 				font-size: 40rpx;
 				color: #B4302D;
 				text-align: center;
+				
 			}
 			.discount {
 				font-size: 24rpx;

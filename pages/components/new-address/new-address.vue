@@ -148,13 +148,22 @@
 					method:'POST',
 				}).then(res=>{
 					let district = res.data;
-					if(address_id>0){
-						for(var i in district){
-							console.log(district[i].district_id + ' - ' + address_info.district);
-							if(district[i].district_id==address_info.district){
-								that.selectDistrict = i;
+					if(typeof district[0] != 'undefined'){
+						if(address_id>0){
+							for(var i in district){
+								console.log(district[i].district_id + ' - ' + address_info.district);
+								if(district[i].district_id==address_info.district){
+									that.selectDistrict = i;
+								}
 							}
 						}
+					}else{
+						district = [
+							{
+								district_id:0,
+								district_name:'默认',
+							}
+						]
 					}
 					that.district = district;
 				});

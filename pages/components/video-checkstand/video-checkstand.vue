@@ -301,6 +301,12 @@
 									this.add = (this.userPay.price - this.balance - cash).toFixed(2)
 								}
 							}
+							else {
+								if(parseInt(this.res.balance) != 0) {
+									this.balance = this.res.balance
+								}
+								
+							}
 						}
 					}
 				}

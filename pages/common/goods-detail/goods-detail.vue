@@ -64,7 +64,7 @@
 		<view class="shop-box" @click="goShop(shop_info.shop_id)">
 			<view class="shop">
 				<view style="display: flex;align-items: center;" v-if="shop_info">
-					<image src="/static/images/shop-logo.png" v-if="!shop_info.shop_logo"></image>
+					<image src="https://www.dxsc.vip/images/shop-logo.png" v-if="!shop_info.shop_logo"></image>
 					<image  :src="baseURL + shop_info.shop_logo" mode="" v-else></image>
 					<view class="shop-title">
 						<view><text>{{shop_info.shop_name}}</text></view>
@@ -468,8 +468,14 @@
 				}).then(res => {
 					if(res.data.code==1){
 						if(is_favorate==0){
+							uni.showToast({
+								title: '收藏成功'
+							})
 							that.is_favorate = 1;
 						}else{
+							uni.showToast({
+								title: '已取消收藏'
+							})
 							that.is_favorate = 0;
 						}
 					}else{

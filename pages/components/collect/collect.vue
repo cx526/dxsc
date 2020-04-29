@@ -71,9 +71,10 @@
 		methods: {
 			//商品详情
 			openDetail(goods_id){
-				uni.navigateTo({
-					url:"/pages/common/goods-detail/goods-detail?id="+goods_id
-				});
+				console.log(goods_id)
+				// uni.navigateTo({
+				// 	url:"/pages/common/goods-detail/goods-detail?id="+goods_id
+				// });
 			},
 			//获取列表
 			getList(){
@@ -87,6 +88,7 @@
 					},
 				}).then(res=>{
 					that.goodsList = res.data.data.data;
+					console.log(that.goodsList)
 				});
 			},
 			// 点击编辑

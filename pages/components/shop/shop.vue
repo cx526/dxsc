@@ -184,6 +184,7 @@
 							shop_id: this.shop_id,
 						}
 					}).then(function(res){
+						console.log(res);
 						that.flag = true;
 						that.shop_name = res.data.shop_info.shop_name;
 						that.shop_address = res.data.shop_info.shop_address;
@@ -195,6 +196,7 @@
 							that.imgUrl = [
 								that.baseURL + res.data.shop_info.shop_logo,
 							];
+							console.log(that.imgUrl)
 						}
 						else {
 							that.swiperShow = false;

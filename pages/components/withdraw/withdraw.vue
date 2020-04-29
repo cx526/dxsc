@@ -2,13 +2,15 @@
 	<view>
 		<view class="money-box">
 			<view class="money">
-				<view style="margin: 0 30rpx;padding: 24rpx 0;"><text>金额</text></view>
+				<view style="margin: 0 30rpx;padding: 24rpx 0;">
+					<text>金额</text>
+				</view>
 				<view class="import" style="flex: 1;">
 					<view>
 						<input v-model="price" type="number" value="" placeholder="请输入提现的金额" />
 					</view>
 					<view>
-						<text style="font-size: 24rpx;color: #CECECE;">可提取余额￥{{userBalance > 0 ?userBalance:0}}</text>
+						<text style="font-size: 28rpx;color: #CECECE;">可提取余额￥{{userBalance > 0 ?userBalance:0}}</text>
 					</view>
 				</view>
 			</view>
@@ -39,19 +41,11 @@
 						<image src="/static/images/icon-right.png"></image>
 					</view>
 				</view>
-				<!-- <view class="choose-item">
-						<view>
-							<label class="radio" @click="wx">
-								<radio :checked="tixian_type ==1 ? true: false" color="#FED940"/><text></text>
-							</label>
-							<text style="margin-left: 20rpx;">微信提现</text>
-						</view>
-				</view> -->
 			</view>
 		</view>
 		<!-- 提交按钮 -->
 		<view class="btn">
-			<button style="background-color: #FED940;;" @click="tixian">提交</button>
+			<button @click="tixian">提交</button>
 		</view>
 
 	</view>
@@ -75,10 +69,6 @@
 
 			};
 		},
-		// onLoad() {
-		// 	this.getAccountNumberList();
-		// 	this.getUserBalance();
-		// },
 		onShow() {
 			this.getAccountNumberList();
 			this.getUserBalance();
@@ -203,7 +193,7 @@
 						return false;
 					}
 				}else if(this.tixian_type ==1){
-					//微信提现的逻辑 目前没木有  等有了后在这里添加 奥利给
+					//微信提现的逻辑 目前没有等有了后在这里添加
 					uni.showToast({
 						title:"暂不支持微信提现!",
 						icon:"none"
@@ -227,7 +217,7 @@
 		.money {
 			box-sizing: border-box;
 			display: flex;
-			font-size: 28rpx;
+			font-size: 34rpx;
 			height: 140rpx;
 			border-top: 1px solid #E6E6E6;
 			border-bottom: 1px solid #E6E6E6;
@@ -243,10 +233,10 @@
 
 				input {
 					height: 85rpx;
-					font-size: 28rpx;
+					font-size: 34rpx;
 					box-sizing: border-box;
 					border-bottom: 1px solid #F0F0F0;
-					width: 100%;
+					padding-top: 12rpx;
 				}
 			}
 		}
@@ -264,10 +254,8 @@
 	//	提现选择
 	.choose-box {
 		box-sizing: border-box;
-
 		.choose {
 			box-sizing: border-box;
-
 			.choose-item {
 				box-sizing: border-box;
 				line-height: 90rpx;
@@ -291,16 +279,11 @@
 	// 提交按钮
 	.btn {
 		box-sizing: border-box;
-		padding: 0 30rpx;
-		position: fixed;
-		width: 100%;
-		bottom: 0;
-		left: 0;
-
+		padding: 30rpx;
 		button {
-			font-size: 30rpx;
 			color: #fff;
 			width: 100%;
+			background-color: #FED940
 		}
 	}
 </style>

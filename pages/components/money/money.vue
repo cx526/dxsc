@@ -5,18 +5,18 @@
 			<view class="money">
 				<view class="item">
 						<view>
-							<text>{{user_balance.balance ? user_balance.balance: 0.00}}</text>
+							<text class="count">{{user_balance.balance ? user_balance.balance: 0.00}}</text>
 						</view>
 						<view><text>余额</text></view>
 						<view class="line"></view>
 				</view>
 				<view class="item">
-						<view><text>{{user_balance.n_money ? user_balance.n_money: 0.00}}</text></view>
+						<view><text class="count">{{user_balance.n_money ? user_balance.n_money: 0.00}}</text></view>
 						<view><text>现金券</text></view>
 						<view class="line"></view>
 				</view>
 				<view class="item">
-						<view><text>{{user_balance.n_coupon ? user_balance.n_coupon: 0.00}}</text></view>
+						<view><text class="count">{{user_balance.n_coupon ? user_balance.n_coupon: 0.00}}</text></view>
 						<view><text>优惠券</text></view>
 				</view>
 			</view>
@@ -149,6 +149,7 @@
 				flex: 1;
 				text-align: center;
 				position: relative;
+				
 				.line {
 					width: 1px;
 					height: 38rpx;
@@ -157,6 +158,9 @@
 					top: 50%;
 					background: #fff;
 					transform: translateY(-50%);
+				}
+				.count {
+					font-size: 30rpx;
 				}
 			}
 		}

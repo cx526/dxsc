@@ -107,6 +107,10 @@
 				}).then(function(res){
 					if(res.data.code==1){
 						that.info = res.data.info;
+						that.manageList[0].money = "￥"+res.data.stat.history;
+						that.manageList[1].money = "￥"+res.data.stat.last;
+						that.manageList[2].money = "￥"+res.data.stat.recharge;
+						that.manageList[3].money = "￥"+res.data.stat.predict;
 					}
 				});
 			},

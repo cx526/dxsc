@@ -29,12 +29,12 @@
 				<view>
 					<text>设为默认</text>
 				</view>
-				<label class="radio"><radio  checked="" color="#C93A3A"/></label>
+				<label class="radio"><radio  checked="" color="#fed940"/></label>
 			</view>
 		</view>
 		<view class="save">
 			<!-- 跳转到address页面 -->
-			<button type="warn" @click="address()">保存</button>
+			<button style="background: #FDE940;" @click="address()">保存</button>
 		</view>
 	</view>
 </template>

@@ -25,7 +25,7 @@
 
 <style lang="scss">
 	.bg {
-		background: url(../../static/images/TV-background.png) no-repeat;
+		background: url(https://www.dxsc.vip/images/TV-background.png) no-repeat;
 		background-size: 100% 100%;
 		// height: 100%;
 		box-sizing: border-box;

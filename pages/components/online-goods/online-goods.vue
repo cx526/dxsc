@@ -105,7 +105,6 @@
 					}
 					
 					this.typeList = res.data.list;
-					console.log(this.typeList)
 					this.category_id = res.data.list[0].category_id;
 					// 默认请求第一个分类数据
 					this.handleClick(this.typeList[0],0)
@@ -132,7 +131,6 @@
 						onLineGoods[i].pic_cover_mid = this.$api + onLineGoods[i].pic_cover_mid
 					}
 					this.onLineGoods = onLineGoods;
-					console.log(this.onLineGoods);
 				})
 			},
 			// 上拉加载更多

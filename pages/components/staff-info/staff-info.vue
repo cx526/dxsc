@@ -25,15 +25,15 @@
 							<text class="name">{{item.shop_name}}</text>
 							<text class="hidden">地址：{{item.shop_address}}</text>
 						</view>
-						<view class="order"><text>订单数：0</text></view>
+						<view class="order"><text>订单数：{{item.stat.ordernum}}</text></view>
 						<view class="params">
-							<text>总营业额：0</text>
-							<text>本月营业额：0</text>
+							<text>总营业额：{{item.stat.historysell}}</text>
+							<text>本月营业额：{{item.stat.monthsell}}</text>
 						</view>
 						<view class="params">
-							<text>总vip人数：0</text>
-							<text>当月vip人数：0</text>
-							<text>普通会员：0</text>
+							<text>总vip人数：{{item.stat.vipnum}}</text>
+							<text>当月vip人数：{{item.stat.monthvipnum}}</text>
+							<text>普通会员：{{item.stat.normalnum}}</text>
 						</view>
 					</view>
 				</view>
@@ -51,7 +51,7 @@
 					<view class="vip-context">
 						<view style="display: flex;justify-content: space-between;">
 							<text>{{item.nick_name}}</text>
-							<text style="color: #AAAAAA;">充值：0</text>
+							<text style="color: #AAAAAA;">充值：{{item.stat.recharge}}</text>
 						</view>
 						<view><text>{{item.user_tel}}</text></view>
 					</view>

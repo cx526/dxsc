@@ -1,7 +1,7 @@
 <template>
 	<view>
 		
-		<view class="shop-list">
+		<view class="shop-list" v-if="planList && planList.length > 0">
 			<block v-for="(item,index) in planList" :key="index">
 			<view class="shop-item" hover-class="clickActive" @click="checkPlan(index)">
 				<view class="shop-img">
@@ -26,7 +26,7 @@
 			</view>
 			</block>
 		</view>
-		
+		<view v-else class="none">暂无提现相关信息</view>
 		
 	</view>
 </template>
@@ -215,5 +215,12 @@
 	}
 	.clickActive {
 		background: #f1f1f1;
+	}
+	.none {
+		box-sizing: border-box;
+		padding: 30rpx;
+		font-size: 30rpx;
+		text-align: center;
+		color: #666;
 	}
 </style>

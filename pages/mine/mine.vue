@@ -30,7 +30,7 @@
 					<view style="display: flex;align-items: center;justify-content: space-between;">
 						<view class="user-img">
 						
-							<image src="/static/images/shop-logo.png" mode="" v-if="avatar == this.$api" @click="userInfo"></image>
+							<image src="https://www.dxsc.vip/images/shop-logo.png" mode="" v-if="avatar == this.$api" @click="userInfo"></image>
 							<image :src="avatar" v-else @click="userInfo"></image>
 						</view>
 						<view class="user-main" style="width: 200rpx;overflow: hidden;">
@@ -54,7 +54,7 @@
 					</view>
 				</view>
 				<view class="user-member">
-					<image src="/static/images/member1.png" mode="" @click="goPayMoney"></image>
+					<image src="https://www.dxsc.vip/images/member1.png" mode="" @click="goPayMoney"></image>
 				</view>
 			</view>
 			<!-- 我的订单 -->
@@ -68,7 +68,7 @@
 			style="background: #fff;margin: 0 30rpx;border-bottom-left-radius: 18rpx;border-bottom-right-radius: 18rpx;">
 				<view class="order-item"  @click="order('all')">
 					<view class="order-img">
-						<image src="/static/images/alldingdan.png" mode=""></image>
+						<image src="https://www.dxsc.vip/images/alldingdan.png" mode=""></image>
 					</view>
 					<view class="order-text">
 						<text>全部订单</text>
@@ -76,7 +76,7 @@
 				</view>
 				<view class="order-item" @click="order(1)">
 					<view class="order-img">
-						<image src="/static/images/fukuan.png" mode=""></image>
+						<image src="https://www.dxsc.vip/images/fukuan.png" mode=""></image>
 						<text class="order-icon">{{ordernum[0]}}</text>
 					</view>
 					<view class="order-text">
@@ -85,7 +85,7 @@
 				</view>
 				<view class="order-item" @click="order(2)">
 					<view class="order-img">
-						<image src="/static/images/shouhuo.png" mode=""></image>
+						<image src="https://www.dxsc.vip/images/shouhuo.png" mode=""></image>
 						<text class="order-icon">{{ordernum[1]}}</text>
 					</view>
 					<view class="order-text">
@@ -94,7 +94,7 @@
 				</view>
 				<view class="order-item" @click="order(4)">
 					<view class="order-img">
-						<image src="/static/images/pingjia.png" mode=""></image>
+						<image src="https://www.dxsc.vip/images/pingjia.png" mode=""></image>
 						<text class="order-icon">{{ordernum[2]}}</text>
 					</view>
 					<view class="order-text">
@@ -115,7 +115,7 @@
 			border-bottom-right-radius: 18rpx;">
 				<view class="list-item order-item" @click="money">
 					<view class="order-img">
-						<image src="/static/images/user-money.png" mode=""></image>
+						<image src="https://www.dxsc.vip/images/user-money.png" mode=""></image>
 					</view>
 					<view class="order-text">
 						<text>我的钱包</text>
@@ -123,7 +123,7 @@
 				</view>
 				<view class="list-item order-item" @click="address">
 					<view class="order-img">
-						<image src="/static/images/user-address.png" mode=""></image>
+						<image src="https://www.dxsc.vip/images/user-address.png" mode=""></image>
 					</view>
 					<view class="order-text">
 						<text>我的地址</text>
@@ -131,23 +131,23 @@
 				</view>
 				<view class="list-item order-item" @click="collect">
 					<view class="order-img">
-						<image src="/static/images/user-collect.png" mode=""></image>
+						<image src="https://www.dxsc.vip/images/user-collect.png" mode=""></image>
 					</view>
 					<view class="order-text">
 						<text>我的收藏</text>
 					</view>
 				</view>
-				<view class="list-item order-item">
+				<!-- <view class="list-item order-item">
 					<view class="order-img">
-						<image src="/static/images/user-xiaoxi.png" mode=""></image>
+						<image src="https://www.dxsc.vip/images/user-xiaoxi.png" mode=""></image>
 					</view>
 					<view class="order-text">
 						<text>我的消息</text>
 					</view>
-				</view>
+				</view> -->
 				<view class="list-item order-item" @click="tuiguang">
 					<view class="order-img">
-						<image src="/static/images/user-tuiguan.png" mode=""></image>
+						<image src="https://www.dxsc.vip/images/user-tuiguan.png" mode=""></image>
 					</view>
 					<view class="order-text">
 						<text>我的推广</text>
@@ -155,7 +155,7 @@
 				</view>
 				<view class="list-item order-item" @click="goBusiness">
 					<view class="order-img">
-						<image src="/static/images/user-ruzhu.png" mode=""></image>
+						<image src="https://www.dxsc.vip/images/user-ruzhu.png" mode=""></image>
 					</view>
 					<view class="order-text">
 						<text>商家入驻</text>
@@ -163,7 +163,7 @@
 				</view>
 				<view class="list-item order-item" @click="staff" v-if="is_parter">
 					<view class="order-img">
-						<image src="/static/images/user-manage.png" mode=""></image>
+						<image src="https://www.dxsc.vip/images/user-manage.png" mode=""></image>
 					</view>
 					<view class="order-text">
 						<text>管理中心</text>
@@ -171,7 +171,7 @@
 				</view>
 				<view class="list-item order-item" @click="goGroup()" v-if="res.data&&res.data.level_id >= 2">
 					<view class="order-img">
-						<image src="/static/images/tuandui.png" mode=""></image>
+						<image src="https://www.dxsc.vip/images/tuandui.png" mode=""></image>
 					</view>
 					<view class="order-text">
 						<text>我的团队</text>

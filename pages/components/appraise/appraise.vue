@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view>
-			<block v-for="(item,index) in goods">
+			<block v-for="(item,index) in goods" :key="index">
 			<!-- 退货商品 -->
 			<view class="goods-box">
 				<view class="goods">
@@ -42,7 +42,7 @@
 					<block v-for="(v,i) in comment[index]['imgs']" :key="i">
 					<view class="up-photo"><image :src="baseURL + v" mode=""></image></view>
 					</block>
-				</view>
+				</view>##FED940
 			</view>
 			<!-- 提示 -->
 			</block>
@@ -52,7 +52,7 @@
 				
 			</view>
 			<view class="btn">
-				<button type="warn" @click="submitSend()">确定</button>
+				<button style="background: #FED940;" @click="submitSend()">确定</button>
 			</view>
 		</view>
 	</view>

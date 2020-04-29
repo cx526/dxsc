@@ -9,7 +9,7 @@
 		<Swiper :imgUrl="imgUrl"></Swiper>
 		<index-choose :chooseList="chooseList"></index-choose>
 		<!-- 标题栏 -->
-		<index-title title="店下推荐，立享优惠" des="王牌精选，精洗店下享" :flag="true"></index-title>
+		<index-title title="店下推荐，立享优惠" des="王牌精选，惊喜店下享" :flag="true"></index-title>
 		<view style="padding: 16rpx 36rpx;">
 			<image src="/static/images/dianxia.png" mode="" style="height: 350rpx;width: 100%;"></image>
 		</view>
@@ -280,6 +280,7 @@
 						}
 					})
 					.then(res => {
+            console.log(res);
 						that.locationName = res.data.data.result.ad_info.city;
 						uni.setStorage({
 							key: 'positionName',

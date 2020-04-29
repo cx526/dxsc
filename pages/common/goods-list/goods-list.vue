@@ -13,12 +13,10 @@
 								<view class="news-title">
 									<text>{{item.goods_name}}</text>
 								</view>
-								<view class="news-price" style="display: flex;justify-content: space-between;align-items: center;width: 100%;">
-									<view style="flex: 4">
-										<text class="now">优惠价：{{item.price}}</text>
-										<text style="text-decoration: line-through;color: #AAAAAA;font-size: 22rpx;">市场价：{{item.market_price}}</text>
-									</view>
-									<text style="font-size: 20rpx;color: #BABABA;">已售：{{item.sales}}</text>
+								<view class="news-price">
+										<view class="now"><text>优惠价：{{item.price}}</text></view>
+										<view class="old"><text>市场价：{{item.market_price}}</text></view>
+									<!-- <text style="font-size: 20rpx;color: #BABABA;">已售：{{item.sales}}</text> -->
 								</view>
 							</view>
 						</view>
@@ -86,7 +84,7 @@
  				padding: 20rpx 16rpx;
 				width: 100%;
  				.news-title {
- 					font-size: 26rpx;
+ 					font-size: 30rpx;
  					color: #444444;
  					text {
 						text-overflow: ellipsis;
@@ -96,18 +94,21 @@
  				}
  				.news-price {
  					box-sizing: border-box;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
  					.now {
- 						font-size: 26rpx;
+ 						font-size: 28rpx;
  						color: #FC3D3C;
  						font-weight: 700;
  						margin-right: 10rpx;
  					}
- 					// .old {
- 					// 	font-size: 20rpx;
- 					// 	color: #D2D2D2;
- 					// 	text-decoration: line-through;
- 						
- 					// }
+					.old {
+						text-decoration: line-through;
+						color: #AAAAAA;
+						font-size: 24rpx;
+					}
+ 					
  				}
  			}
  		}
