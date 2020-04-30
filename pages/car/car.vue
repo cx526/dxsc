@@ -49,6 +49,7 @@
 						</view>
 					</view>
 				</block>
+				<view class="none" v-if="!loadMore">已加载全部</view>
 			</view>
 		</view>
 	</view>
@@ -70,7 +71,9 @@
 				latitude: '',
 				longitude: '',
 				list: [],
-				loading: false
+				loading: false,
+				page: 1,
+				loadMore: true,
 			};
 		},
 		components: {
@@ -101,6 +104,13 @@
 					})
 				}
 			})
+		},
+		// 加载更多商家
+		onReachBottom() {
+			if(this.loadMore) {
+				this.page += 1;
+				this.getGoodsList();
+			}
 		},
 		methods: {
 			getlocationpoint() {
@@ -173,16 +183,32 @@
 			},
 			getGoodsList() {
 				let that = this;
+				uni.showLoading({
+					title:"加载中",
+					mask:true
+				});
 				request({
 						url: 'index.php?s=/wap/index/apiGetBoomGoods',
 						data: {
 							latitude: that.latitude,
 							longitude: that.longitude,
+							page: that.page
 						}
 					})
 					.then(res => {
-						that.loading = true;
-						that.list = res.data.list;
+						uni.hideLoading();
+						that.flag = true;
+						if(res.data.list.length == 0) {
+							that.loadMore = false;
+							uni.showToast({
+								title: '暂无更多数据',
+								icon: 'none'
+							})
+						}
+						else {
+							that.loading = true;
+							that.list = [...that.list,...res.data.list];
+						}
 					});
 			},
 			downLineDetail(id) {
@@ -318,5 +344,12 @@
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		overflow: hidden;
+	}
+	.none {
+		box-sizing: border-box;
+		padding: 30rpx;
+		font-size: 30rpx;
+		color: #666;
+		text-align: center;
 	}
 </style>

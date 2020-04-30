@@ -252,7 +252,7 @@
 					// 储存商品的sku_id
 					this.sku_id = res.data.goods_sku_list;
 					// 存储门店自提id
-					this.shopId = res.data.pickup_point_list.data[0].shop_id;
+					this.shopId = res.data.pickup_point_list.data[0] ?res.data.pickup_point_list.data[0].shop_id:'';
 					// 获取门店自提的地址
 						for(let i = 0;i < this.res.pickup_point_list.data.length;i++) {
 							let item = this.res.pickup_point_list.data[i];

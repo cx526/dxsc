@@ -16,9 +16,9 @@
 						<label class="radio" ><radio  :checked="item.is_default==1" color="#FED940" style="transform:scale(0.7)"/>设为默认</label>
 					</view>
 					 <view class="edit-right">
-						<text @click="deleteAddress(item.id)">删除</text>
+						<text @click.stop="deleteAddress(item.id)">删除</text>
 						<!-- 跳转到edit-address页面 -->
-						<text @click="editAddress(item.id)">编辑</text>
+						<text @click.stop="editAddress(item.id)">编辑</text>
 					 </view>
 				</view>
 			</view>

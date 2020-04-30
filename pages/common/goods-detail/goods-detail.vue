@@ -359,7 +359,6 @@
 		methods: {
 			// 请求商品数据
 			getGoodsInfo() {
-				
 				request({
 					url :'index.php?s=/wap/goods/Apigoodsdetail',
 					method: 'POST',
