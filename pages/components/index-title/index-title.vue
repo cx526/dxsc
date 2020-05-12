@@ -4,14 +4,14 @@
 			<view class="main">
 				<view style="display: flex;align-items: baseline">
 					<text style="color: #393939;font-size: 32rpx;">{{title}}</text>
-					<image src="/static/images/triangle.png" mode="" style="margin-left: 10rpx;"></image>
+					<image :src="$src+'/images/triangle.png'" mode="" style="margin-left: 10rpx;"></image>
 				</view>
 				<text style="color: #CBCBCB;font-size: 22rpx;">{{des}}</text>
 				
 			</view>
 			<view class="context">
 				<text style="color: #CBCBCB" @click="checkMore">查看更多</text>
-				<image src="/static/images/icon-right.png" mode=""></image>
+				<image :src="$src+'/images/icon-right.png'" mode=""></image>
 			</view>
 		</view>
 	</view>
@@ -34,7 +34,7 @@
 		},
 		data() {
 			return {
-				
+				$src: this.$src
 			};
 		},
 		methods: {

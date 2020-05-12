@@ -1,0 +1,1 @@
+<view><block wx:if="{{is_boss}}"><image class="qrcode" src="{{qrcode}}"></image></block><block wx:if="{{is_boss}}"><view class="text">会员扫该码<view class="_br"></view>确认后即可绑定为您的员工</view></block></view>

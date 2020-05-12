@@ -14,7 +14,7 @@
 					</view>
 					<view class="icoming">
 						<text>收入￥{{income}}元</text>
-						<image src="/static/images/icon-right.png" mode=""></image>
+						<image :src="$src+'/images/icon-gray-right.png'" mode=""></image>
 					</view>
 				</view>
 			</view>
@@ -23,7 +23,7 @@
 			<block v-for="(item,index) in list" :key="index">
 			<view class="shop-item">
 				<view class="shop-img">
-					<image src="/static/images/shop-logo.png" mode=""></image>
+					<image :src="$src+'/images/shop-logo.png'" mode=""></image>
 				</view>
 				<view class="shop-main">
 					<view class="title">
@@ -105,7 +105,8 @@
 				visible: false,
 				visible_type:false,
 				resType:1,
-				indicatorStyle: `text-align:center;width:100%;height: ${Math.round(uni.getSystemInfoSync().screenWidth/(750/100))}px;`
+				indicatorStyle: `text-align:center;width:100%;height: ${Math.round(uni.getSystemInfoSync().screenWidth/(750/100))}px;`,
+				$src:this.$src
 			};
 		},
 		onLoad:function(){
@@ -265,8 +266,8 @@
 					align-items: center;
 
 					image {
-						width: 40rpx;
-						height: 40rpx;
+						width: 20rpx;
+						height: 20rpx;
 					}
 				}
 			}

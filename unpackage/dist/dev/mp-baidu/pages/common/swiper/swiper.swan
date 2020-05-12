@@ -1,0 +1,1 @@
+<view class="swiper-box"><swiper indicator-dots indicator-color="rgba(187,187,187,0.4)" indicator-active-color="rgba(255,255,255,0.7)"><block s-if="{{imgUrl&&imgUrl.length>0}}"><block><block s-for="{{imgUrl}}" s-for-item="item" s-for-index="index" s-key="index"><swiper-item><view><image src="{{item.adv_image}}"></image></view></swiper-item></block></block></block></swiper></view>

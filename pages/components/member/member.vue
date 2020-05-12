@@ -1,8 +1,8 @@
 <template>
 	<view>
-		<image src="https://www.dxsc.vip/images/member-01.png" class="top"></image>
-		<image src="https://www.dxsc.vip/images/member-02.png" class="main"></image>
-		<image src="https://www.dxsc.vip/images/member-03.png" class="bottom"></image>
+		<image :src="$src+'/images/member-01.png'" class="top"></image>
+		<image :src="$src+'/images/member-02.png'" class="main"></image>
+		<image :src="$src+'/images/member-03.png'" class="bottom"></image>
 		<button class="btn" @click="pay">成为会员</button>
 	</view>
 </template>
@@ -12,7 +12,7 @@
 	export default {
 		data() {
 			return {
-				
+				$src: this.$src
 			};
 		},
 		methods:{
@@ -37,6 +37,10 @@
 				}).then(res => {
 					// 微信支付
 					if (res.data.code == 203) {
+						uni.setStorage({
+							key: 'price',
+							data: 200
+						})
 						let tmp = res;
 						uni.getStorage({
 							key: 'token',

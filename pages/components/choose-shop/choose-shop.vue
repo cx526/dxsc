@@ -6,7 +6,7 @@
 				<text>城市选择</text>
 					<view class="city">
 					<input placeholder="请填写城市" placeholder-class="placeholder" style="display: inline-block;text-align: right;"/>
-					<image src="/static/images/icon-right.png" mode=""></image>
+					<image :src="$src+'/images/icon-right.png'" mode=""></image>
 				</view>
 			</view>
 			
@@ -15,7 +15,7 @@
 					<view class="city">
 						<picker @change="bindPickerChange" :value="index" :range="shopArray">
 							<text style="color: #AAAAAA;">请选择门店</text>
-							<image src="/static/images/icon-right.png" mode="">{{shopArray[index]}}</image>
+							<image :src="$src+'/images/icon-right.png'" mode="">{{shopArray[index]}}</image>
 						</picker>	
 				</view>
 			</view>
@@ -31,7 +31,8 @@
 		data() {
 			return {
 				shopArray: ['海珠门店','天河门店','白云门店'],
-				index: 1
+				index: 1,
+				$src: this.$src
 			};
 		},
 		methods: {

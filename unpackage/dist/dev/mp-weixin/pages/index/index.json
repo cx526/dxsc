@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "店下商城",
+  "navigationBarBackgroundColor": "#FED940",
   "usingComponents": {
     "index-nav": "/pages/components/index-nav/index-nav",
     "swiper": "/pages/common/swiper/swiper",
@@ -8,6 +9,7 @@
     "index-vip": "/pages/components/index-vip/index-vip",
     "index-discount": "/pages/components/index-discount/index-discount",
     "index-news": "/pages/common/goods-list/goods-list",
-    "index-recommend": "/pages/components/index-recommend/index-recommend"
+    "index-recommend": "/pages/components/index-recommend/index-recommend",
+    "loading": "/pages/common/loading/loading"
   }
 }

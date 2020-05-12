@@ -2,7 +2,7 @@
 	<view>
 		<view class="register" :style="{height: clientHeight + 'px'}">
 			<view class="logo">
-				<image src="/static/images/user-logo.png" mode=""></image>
+				<image :src="$src+'/images/user-logo.png'" mode=""></image>
 			</view>
 			<view class="choose">
 				<view @click="login()">登录</view>
@@ -11,7 +11,7 @@
 			</view>
 			<view class="form-list">
 				<!-- <view class="form-item">
-					<image src="/static/images/arrow-user.png" mode=""></image>
+					<image :src="$src+'/images/arrow-user.png'" mode=""></image>
 					<input 
 					type="text" value="" 
 					placeholder="请输入用户名" 
@@ -20,7 +20,7 @@
 					@blur="user()"/>
 				</view> -->
 				<view class="form-item">
-					<image src="/static/images/arrow-phone.png" mode=""></image>
+					<image :src="$src+'/images/arrow-phone.png'" mode=""></image>
 					<input 
 					type="text" value="" 
 					placeholder="请输入手机号" 
@@ -29,7 +29,7 @@
 					v-model="cellphone"/>
 				</view>
 				<view class="form-item">
-					<image src="/static/images/arrow-password.png" mode=""></image>
+					<image :src="$src+'/images/arrow-password.png'" mode=""></image>
 					<input 
 					type="password" value="" 
 					placeholder="请输入密码" 
@@ -83,7 +83,8 @@
 				uid:0,
 				// 存储第一次屏幕的可视高度
 				clientHeight: '',
-				tabbar: true
+				tabbar: true,
+				$src: this.$src
 			};
 		},
 		onLoad(ob){
@@ -237,7 +238,7 @@
 					}
 				}).then(res => {
 					
-					if(res.data.code > 0) {
+					if(res.data.retval > 0) {
 						uni.showToast({
 							title: '注册成功',
 							icon: 'none'

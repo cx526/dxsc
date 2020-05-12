@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "商品分类",
+  "component": true,
+  "usingComponents": {
+    "loading": "/pages/common/loading/loading"
+  }
+}

@@ -3,7 +3,7 @@
 		<view class="classify-search">
 			<view class="search">
 				<view class="search-input">
-					<image src="/static/images/search.png"></image>
+					<image :src="$src+'/images/search.png'"></image>
 					<input type="text"  placeholder="输入您要搜索的宝贝.." 
 					placeholder-class="placeholder" @input="handleSearch($event)"
 					/>
@@ -58,7 +58,8 @@
 				// 搜索结果模拟数据
 				newsList: [],
 				// 存储搜索的关键词
-				searchText: ''
+				searchText: '',
+				$src: this.$src
 			};
 		},
 		onShow() {

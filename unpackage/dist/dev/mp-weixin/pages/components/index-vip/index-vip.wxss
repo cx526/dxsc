@@ -26,7 +26,7 @@
 /* 文章场景相关 */
 .vip-box {
   box-sizing: border-box;
-  padding: 14rpx 42rpx 30rpx 42rpx;
+  padding: 0 36rpx;
 }
 .vip-box .vip-banner {
     box-sizing: border-box;
@@ -49,45 +49,55 @@
       white-space: nowrap;
 }
 .vip-box .vip-goods .goods-list .goods {
-        -webkit-flex-shrink: 0;
-                flex-shrink: 0;
         box-sizing: border-box;
-        margin-right: 12rpx;
+        margin-right: 18rpx;
         box-sizing: border-box;
-        width: calc(32% - 12rpx);
+        width: 210rpx;
+        position: relative;
 }
-.vip-box .vip-goods .goods-list .goods image {
+.vip-box .vip-goods .goods-list .goods .image {
           display: block;
           width: 100%;
           height: 208rpx;
 }
 .vip-box .vip-goods .goods-list .goods .goods-title {
+          white-space: normal;
           box-sizing: border-box;
-          width: 100%;
+          width: 210rpx;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
           color: #0F0F0F;
-          font-size: 23rpx;
+          font-size: 26rpx;
           margin-top: 14rpx;
 }
 .vip-box .vip-goods .goods-list .goods .goods-price {
           box-sizing: border-box;
           font-weight: 700;
-          font-size: 24rpx;
+          font-size: 20rpx;
           margin-top: 8rpx;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+                  flex-direction: column;
+          -webkit-box-pack: justify;
+          -webkit-justify-content: space-between;
+                  justify-content: space-between;
 }
 .vip-box .vip-goods .goods-list .goods .goods-price .new-price, .vip-box .vip-goods .goods-list .goods .goods-price .new-unit {
-            color: #35B9B9;
+            color: #FC4746;
+            font-size: 24rpx;
 }
 .vip-box .vip-goods .goods-list .goods .goods-price .new-unit, .vip-box .vip-goods .goods-list .goods .goods-price .old-unit {
             font-weight: normal;
 }
-.vip-box .vip-goods .goods-list .goods .goods-price .old-price, .vip-box .vip-goods .goods-list .goods .goods-price .old-unit {
-            color: #000;
-}
-.vip-box .vip-goods .goods-list .goods .goods-price .old-unit {
-            margin-left: 8rpx;
+.vip-box .vip-goods .goods-list .goods .goods-price .old-price {
+            font-weight: normal;
+            color: #AAAAAA;
+            text-decoration: line-through;
 }
 .vip-box .vip-goods .goods-list .goods:last-child {
         margin-right: 0;

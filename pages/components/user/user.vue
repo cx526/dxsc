@@ -2,7 +2,7 @@
 	<view>
 		<view class="noLogin">
 			<view class="logo">
-				<image src="/static/images/user-logo.png" mode=""></image>
+				<image :src="$src+'/images/user-logo.png'" mode=""></image>
 			</view>
 			<view class="des">
 				<view>
@@ -28,7 +28,7 @@
 	export default {
 		data() {
 			return {
-				
+				$src: this.$src
 			};
 		},
 		methods:{

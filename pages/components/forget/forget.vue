@@ -2,7 +2,7 @@
 	<view>
 		<view class="register">
 			<view class="logo">
-				<image src="/static/images/user-logo.png" mode=""></image>
+				<image :src="$src+'/images/user-logo.png'" mode=""></image>
 			</view>
 			<view class="form-list">
 				<view class="form-item">
@@ -62,7 +62,8 @@
 				// 倒计时秒数
 				count: 60,
 				clientHeight: '',
-				tabbar: true
+				tabbar: true,
+				$src: this.$src
 			};
 		},
 		onLoad() {
@@ -99,21 +100,21 @@
 					})
 					return false
 				}
-				await request({
-					url: 'index.php?s=/wap/login/checkMobileIsHas',
-					method: 'post',
-					data: {
-						mobile: this.cellphone
-					}
-				}).then(res => {
-					if(res.data) {
-						uni.showToast({
-							title: '手机号已被注册',
-							icon:'none'
-						});
+				// await request({
+				// 	url: 'index.php?s=/wap/login/checkMobileIsHas',
+				// 	method: 'post',
+				// 	data: {
+				// 		mobile: this.cellphone
+				// 	}
+				// }).then(res => {
+				// 	if(res.data) {
+				// 		uni.showToast({
+				// 			title: '手机号已被注册',
+				// 			icon:'none'
+				// 		});
 						
-					}
-				})
+				// 	}
+				// })
 			},
 			// 检测验证码
 			QRcode() {

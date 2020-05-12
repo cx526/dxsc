@@ -54,7 +54,7 @@
 		  		<picker @change="bindPickerChange" :value="index2" :range="modeway">
 						<view>{{modeway[index2]}}</view>
 					</picker>
-		  		<image src="/static/images/icon-right.png" mode=""></image>
+		  		<image :src="$src+'/images/icon-right.png'" mode=""></image>
 		  	</view>
 		  </view>
 			<!-- 物流配送 -->
@@ -67,12 +67,14 @@
 					<picker @change="bindFlowChange" :value="index3" :range="flowway">
 						<view>{{flowway[index3]}}</view>
 					</picker>
-					<image src="/static/images/icon-right.png" mode=""></image>
+					<image :src="$src+'/images/icon-right.png'" mode=""></image>
 				</view>
 			</view>
 			<!-- 门店自提 -->
 			<view class="delivery-item" v-if="!isAddress">
-				
+				<view class="delivery-title">
+					<text>门店自提</text>
+				</view>
 				<view class="delivery-title">
 					<text>{{salesType[list]}}</text>
 				</view>
@@ -80,7 +82,7 @@
 					<picker @change="bindShopChange" :value="list" :range="salesType">
 						<view>{{modeway[list]}}</view>
 					</picker>
-					<image src="/static/images/icon-right.png" mode=""></image>
+					<image :src="$src+'/images/icon-right.png'" mode=""></image>
 				</view>
 			</view>
 		</view>
@@ -139,7 +141,7 @@
 		<view class="delivery-box">
 			<view class="delivery-item">
 				<view class="delivery-title-choose" style="margin-right: 12rpx;">
-					<image src="/static/images/payment.png" mode=""></image>
+					<image :src="$src+'/images/payment.png'" mode=""></image>
 				</view>
 				<view class="delivery-title">
 					<text>余额付款</text>
@@ -152,7 +154,7 @@
 			<view class="delivery-item">
 				<view class="delivery-title-choose" style="margin-right: 12rpx;display: flex;align-items: center;">
 					
-					<image src="/static/images/wx-pay.png" mode=""></image>
+					<image :src="$src+'/images/wx-pay.png'" mode=""></image>
 				</view>
 				<view class="delivery-title">
 					<text>微信支付</text>
@@ -178,6 +180,7 @@
 
 <script>
 	import {request} from '../../request.js'
+	import { mapMutations } from 'vuex'
 	export default {
 		data() {
 			return {
@@ -227,7 +230,8 @@
 				passwordWin: false,
 				// 确定是否是支付方式
 				payWay: true,
-				balanceWay: false
+				balanceWay: false,
+				$src: this.$src
 			};
 		},
 		onLoad() {
@@ -237,6 +241,7 @@
 			this.getShopData()
 		},
 		methods:{
+			...mapMutations(['changePrice']),
 			// 请求商品的价格数量等相关数据
 			getShopOnload() {
 				request({
@@ -542,6 +547,7 @@
 					// 请求核对用户支付密码
 					else {
 						// 请求核对密码
+						// this.changePrice({price: this.add})
 						request({
 							url: 'index.php?s=/wap/member/checkPayPass',
 							method: 'post',
@@ -569,6 +575,10 @@
 									title: '支付成功',
 									icon: 'none'
 								});
+								uni.setStorage({
+									key: 'price',
+									data: this.add
+								})
 								// 物流配送
 								if(this.isAddress) {
 									this.handleFlowData();
@@ -584,6 +594,10 @@
 				}
 				// 直接调起微信支付
 				else if(!this.balance && !this.cash && this.payWay) {
+					uni.setStorage({
+						key: 'price',
+						data: this.add
+					})
 					if(isAddress) {
 						// 物流配送
 						this.handleFlowData()
@@ -741,63 +755,68 @@
 			},
 			// 门店自提(isAddress为假时调用)
 			handleShopData() {
-				uni.showToast({
-					title: '订单提交中',
-					icon: 'loading'
-				})
-				request({
-					url: 'index.php?s=/wap/order/ordercreate',
-					method: 'post',
-					data: {
-						goods_sku_list: this.res.goods_sku_list,
-						leavemessage: '',
-						use_coupon: 0,
-						integral: 0,
-						account_balance:this.balance ? this.balance : 0,
-						pay_type: 0,
-						buyer_invoice: '',
-						pick_up_id: this.shopId,
-						cashback_price: this.res.cashback_price,
-						n_money: this.cash ? this.cash : 0 ,
-					}
-				}).then(res => {
-					uni.hideToast();
-					// 如果输入的余额 + 现金券 > 商品总额，不调起微信支付
-					let importCash = parseInt(this.cash) ? parseInt(this.cash) : 0;
-					let importBalance = parseInt(this.balance) ? parseInt(this.balance) : 0;
-					if(importCash + importBalance >= parseInt(this.res.count_money)) {
-						uni.navigateTo({
-							url: '/pages/components/order/order?status=1'
-						})
-					}
-					
-					// 调起微信支付
-					else {
-						let tmp = res;
-						let token = uni.getStorageSync('token')[0];
-						if(token == '') {
-							uni.showToast({
-								title: '请先登录',
-								icon: 'none'
-							});
-							setTimeout(() => {
-								uni.navigateTo({
-									url: '/pages/components/login/login'
-								})
-							},500)
+				if(this.shopId == '') {
+					uni.showToast({
+						title: '暂无门店自提地址',
+						icon: 'none'
+					})
+					return
+				}
+				else {
+					uni.showToast({
+						title: '订单提交中',
+						icon: 'loading'
+					})
+					request({
+						url: 'index.php?s=/wap/order/ordercreate',
+						method: 'post',
+						data: {
+							goods_sku_list: this.res.goods_sku_list,
+							leavemessage: '',
+							use_coupon: 0,
+							integral: 0,
+							account_balance:this.balance ? this.balance : 0,
+							pay_type: 0,
+							buyer_invoice: '',
+							pick_up_id: this.shopId,
+							cashback_price: this.res.cashback_price,
+							n_money: this.cash ? this.cash : 0 ,
 						}
+					}).then(res => {
+						uni.hideToast();
+						// 如果输入的余额 + 现金券 > 商品总额，不调起微信支付
+						let importCash = parseInt(this.cash) ? parseInt(this.cash) : 0;
+						let importBalance = parseInt(this.balance) ? parseInt(this.balance) : 0;
+						if(importCash + importBalance >= parseInt(this.res.count_money)) {
+							uni.navigateTo({
+								url: '/pages/components/order/order?status=1'
+							})
+						}
+						// 调起微信支付
 						else {
-								let redirectUrl = encodeURIComponent("https://admin.dxsc.vip/index.php?s=/wap/pay/ApiwchatPay&no="+tmp.data.code_no+"&token="+token);
-								let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7cffa961be69b86e&redirect_uri='+redirectUrl+'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
-								window.location.href = url;
+							let tmp = res;
+							let token = uni.getStorageSync('token')[0];
+							if(token == '') {
+								uni.showToast({
+									title: '请先登录',
+									icon: 'none'
+								});
+								setTimeout(() => {
+									uni.navigateTo({
+										url: '/pages/components/login/login'
+									})
+								},500)
+							}
+							else {
+									let redirectUrl = encodeURIComponent("https://admin.dxsc.vip/index.php?s=/wap/pay/ApiwchatPay&no="+tmp.data.code_no+"&token="+token);
+									let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7cffa961be69b86e&redirect_uri='+redirectUrl+'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+									window.location.href = url;
+							}
 						}
-						
-						
-						
-						
-					}
+					})
+				}
+				
 
-				})
 			},
 			// 监听用户输入的密码
 			getUserPassword(event) {

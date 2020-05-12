@@ -2,7 +2,7 @@
 	<view>
 		<!-- banner -->
 		<view class="banner">
-			<image src="/static/images/video.jpg" mode=""></image>
+			<image :src="$src+'/images/video.jpg'" mode=""></image>
 		</view>
 		<!-- 折扣专区 -->
 		<view class="discount-box">
@@ -34,7 +34,8 @@
 	export default {
 		data() {
 			return {
-				goodList: []
+				goodList: [],
+				$src: this.$src
 			};
 		},
 		methods:{

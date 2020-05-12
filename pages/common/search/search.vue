@@ -3,7 +3,7 @@
 		<view class="classify-search">
 			<view class="search">
 				<view class="search-input">
-					<image src="https://www.dxsc.vip/images/search.png"></image>
+					<image :src="$src+'/images/search.png'"></image>
 					<input type="text"  placeholder="输入您要搜索的宝贝.." placeholder-class="placeholder" @input="handleSearch"/>
 				</view>
 				<view class="search-img">
@@ -24,6 +24,7 @@
 		},
 		data() {
 			return {
+				$src: this.$src
 			};
 		},
 		methods:{

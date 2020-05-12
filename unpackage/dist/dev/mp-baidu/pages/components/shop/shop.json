@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "店家详情",
+  "component": true,
+  "usingComponents": {
+    "easy-loadimage": "/components/easy-loadimage/easy-loadimage",
+    "loading": "/pages/common/loading/loading"
+  }
+}

@@ -23,14 +23,14 @@
 					<text class="line line-l"></text>
 				</view>
 			</block>
-			<block v-if="refund_status!=5">
+			<block v-if="refund_status!=6">
 				<view class="step step3">
 					<view class="name">退款完成</view>
 					<text class="line line-r"></text>
 					<text class="number">3</text>
 				</view>
 			</block>
-			<block v-if="refund_status==5">
+			<block v-if="refund_status==6">
 				<view class="step step3 current">
 					<view class="name">退款完成</view>
 					<text class="line line-r"></text>
@@ -98,10 +98,22 @@
 			<view class="none-goods">
 				<view class="icon-tip-circle">!</view>
 				<view class="text">
+					<view class="h2">商家已审核，等待平台退款</view>
+					<view class="ul">
+						<view class="time">商家审核时间:{{detail.refund_date}}</view>
+						<view class="li">退款金额： {{detail.refund_real_money}}元</view>
+					</view>
+				</view>
+			</view>
+		</block>
+		<block v-if="refund_status==6">
+			<view class="none-goods">
+				<view class="icon-tip-circle">!</view>
+				<view class="text">
 					<view class="h2">退款成功</view>
 					<view class="ul">
-						<vew class="time">退款成功时间:2020-04-24 17:19:32</vew>
-						<view class="li">退款金额： 0.00元</view>
+						<view class="time">退款成功时间:{{detail.refund_date}}</view>
+						<view class="li">退款金额： {{detail.refund_real_money}}元</view>
 					</view>
 				</view>
 			</view>

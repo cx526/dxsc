@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "商品详情",
+  "component": true,
+  "usingComponents": {
+    "uni-badge": "/components/uni-badge/uni-badge",
+    "loading": "/pages/common/loading/loading"
+  }
+}

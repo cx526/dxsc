@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "优惠买单",
-  "usingComponents": {}
+  "usingComponents": {
+    "loading": "/pages/common/loading/loading"
+  }
 }

@@ -14,7 +14,7 @@
 					@click="goGroup(item.list[0].id,item.name)">
 						<view class="group-name">
 							<text>{{item.name}}</text>
-							<image src="/static/images/icon-right.png" mode=""></image>
+							<image :src="$src+'/images/icon-right.png'" mode=""></image>
 						</view>
 						<view class="group-main">
 							<view class="main" v-for="(list,listIndex) in item.list" :key="listIndex">

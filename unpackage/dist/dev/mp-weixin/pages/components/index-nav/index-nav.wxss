@@ -37,7 +37,7 @@
 }
 .nav-box .location {
     font-size: 32rpx;
-    color: #AAAAAA;
+    color: #141104;
     margin-right: 42rpx;
 }
 .nav-box .search {
@@ -47,14 +47,16 @@
     position: relative;
     height: 60rpx;
     box-sizing: border-box;
+    background: #fff;
+    border-radius: 40rpx;
 }
 .nav-box .search input {
       width: 100%;
-      height: 100%;
+      height: 60rpx;
       box-sizing: border-box;
-      border: 1px solid #B5B5B5;
       border-radius: 8rpx;
       padding-left: 78rpx;
+      line-height: 60rpx;
 }
 .nav-box .search image {
       position: absolute;
@@ -62,8 +64,8 @@
       top: 50%;
       -webkit-transform: translateY(-50%);
               transform: translateY(-50%);
-      width: 40rpx;
-      height: 40rpx;
+      width: 30rpx;
+      height: 30rpx;
 }
 .nav-box .message {
     box-sizing: border-box;
@@ -87,14 +89,6 @@
       margin-left: 10rpx;
       width: 55rpx;
       height: 55rpx;
-}
-.nav-box .message .line {
-      height: 126rpx;
-      width: 2rpx;
-      background-color: #E5E5E5;
-      position: absolute;
-      left: 50%;
-      top: -38rpx;
 }
 .placeholder {
   font-size: 30rpx;

@@ -21,7 +21,7 @@
 			<view class="manage">
 				<view class="manage-title">
 					<text>经营数据</text>
-					<image src="/static/images/icon-right.png" mode=""></image>
+					<image :src="'$src+/images/icon-right.png'" mode=""></image>
 				</view>
 				<view class="manage-list">
 					<view class="manage-item"
@@ -37,18 +37,18 @@
 			<view class="person">
 				<view class="person-item" @click="goStaff">
 					<text>我的员工</text>
-					<image src="/static/images/icon-right.png" mode=""></image>
+					<image :src="'$src+/images/icon-right.png'" mode=""></image>
 				</view>
 				<view class="person-item" @click="bindStaff">
 					<text>绑定新员工</text>
-					<image src="/static/images/icon-right.png" mode=""></image>
+					<image :src="'$src+/images/icon-right.png'" mode=""></image>
 				</view>
-				<view class="person-item"
+				<!-- <view class="person-item"
 				v-for="(item,index) in personList" :key="index"
 				@click="goStaff">
 					<text>{{item.name}}</text>
-					<image src="/static/images/icon-right.png" mode=""></image>
-				</view>
+					<image :src="/static/images/icon-right.png'" mode=""></image>
+				</view> -->
 			</view>
 		</view>
 	</view>
@@ -93,6 +93,7 @@
 						name: '普通会员'
 					}
 				],
+				$src: this.$src
 			};
 		},
 		onLoad(){

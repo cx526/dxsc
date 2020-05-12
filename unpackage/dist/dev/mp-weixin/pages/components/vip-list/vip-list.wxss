@@ -1,0 +1,177 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+page {
+  background: #F2F2F2;
+}
+.banner {
+  height: 300rpx;
+}
+.banner image {
+    height: 100%;
+    width: 100%;
+}
+.scrollX {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  width: 100%;
+  font-size: 26rpx;
+  color: #333;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  background: #fff;
+  margin-bottom: 20rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.scrollX text {
+    width: 16.66%;
+    display: inline-block;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+            flex: 1;
+    text-align: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+}
+.notice {
+  box-sizing: border-box;
+  padding: 20rpx 30rpx;
+  line-height: 30rpx;
+}
+.notice text:nth-child(1) {
+    font-size: 32rpx;
+    font-weight: 700;
+    box-sizing: border-box;
+    padding-right: 10rpx;
+}
+.notice text:nth-child(2) {
+    font-size: 28rpx;
+    display: inline-block;
+    padding-left: 10rpx;
+    color: #333;
+    border-left: 1px solid #000;
+}
+.product-box {
+  box-sizing: border-box;
+  padding: 0 30rpx;
+}
+.product-box .product {
+    box-sizing: border-box;
+    border-radius: 12rpx;
+    background: #fff;
+    padding: 24rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    margin-bottom: 18rpx;
+}
+.product-box .product .product-item {
+      box-sizing: border-box;
+      width: 220rpx;
+      height: 220rpx;
+      margin-right: 24rpx;
+      -webkit-flex-shrink: 0;
+              flex-shrink: 0;
+      position: relative;
+}
+.product-box .product .product-item image {
+        width: 100%;
+        height: 100%;
+}
+.product-box .product .product-main {
+      box-sizing: border-box;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+              flex-direction: column;
+      font-size: 28rpx;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+              flex: 1;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+              justify-content: center;
+}
+.product-box .product .product-main .product-title {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+}
+.product-box .product .product-main .product-sale {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+                flex: 1;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+                justify-content: space-between;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+                align-items: center;
+        margin-top: 24rpx;
+}
+.product-box .product .product-main .product-sale .product-price {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+                  flex-direction: column;
+}
+.product-box .product .product-main .product-sale .product-btn button {
+          font-size: 26rpx;
+}
+.active {
+  background: #FB2056;
+  color: #fff;
+  display: inline-block;
+  padding: 4rpx 0;
+  border-radius: 24rpx;
+}
+.none {
+  text-align: center;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  padding: 30rpx;
+  color: #666;
+}
+

@@ -92,4 +92,24 @@ page {
   left: 0;
   width: 100%;
 }
+.pay-box {
+  box-sizing: border-box;
+}
+.pay-box .pay-item {
+    box-sizing: border-box;
+    margin-top: 24rpx;
+    line-height: 70rpx;
+    background: #fff;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    font-size: 28rpx;
+    padding: 0 30rpx;
+}
 

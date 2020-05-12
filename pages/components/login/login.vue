@@ -2,7 +2,7 @@
 	<view>
 		<view class="register" :style="{height: clientHeight + 'px'}">
 			<view class="logo">
-				<image src="/static/images/user-logo.png" mode=""></image>
+				<image :src="$src+'/images/user-logo.png'" mode=""></image>
 			</view>
 			<view class="choose">
 				<view></view>
@@ -11,13 +11,13 @@
 			</view>
 			<view class="form-list">
 				<view class="form-item">
-					<image src="/static/images/arrow-user.png" mode=""></image>
+					<image :src="$src+'/images/arrow-user.png'" mode=""></image>
 					<input type="number" value="" placeholder="请输入手机号"
 					 placeholder-class="input-placeholder" v-model="username" 
 					 @blur="user"/>
 				</view>
 				<view class="form-item">
-					<image src="/static/images/arrow-password.png" mode=""></image>
+					<image :src="$src+'/images/arrow-password.png'" mode=""></image>
 					<input type="password" value="" placeholder="请输入密码" 
 					placeholder-class="input-placeholder" v-model="password"
 					@blur="phone"/>
@@ -27,9 +27,7 @@
 					<text @click="QRlogin">手机验证码登录</text>
 				</view>
 			</view>
-			<!-- <view>
-				{{username}} {{password}}
-			</view> -->
+			<!-- #ifdef H5 -->
 			<view class="btn" v-if="tabbar">
 				<view class="login">
 					<button @click="login()" style="background: #E64340;color: #fff;">马上登录</button>
@@ -38,6 +36,27 @@
 					<button @click="wechatLogin()" style="background: #04BE02;">微信登录</button>
 				</view>
 			</view>
+			<!-- #endif -->
+			<!-- #ifndef H5 || APP-PLUS -->
+			<view class="btn" v-if="tabbar">
+				<view class="login">
+					<button @click="login()" style="background: #E64340;color: #fff;">马上登录</button>
+				</view>
+				<view class="register">
+					<button style="background: #04BE02;">微信登录</button>
+				</view>
+			</view>
+			<!-- #endif -->
+			<!-- #ifdef APP-PLUS -->
+			<view class="btn">
+				<view class="login">
+					<button @click="login()" style="background: #E64340;color: #fff;">马上登录</button>
+				</view>
+				<view class="register">
+					<button style="background: #04BE02;">微信登录</button>
+				</view>
+			</view>
+			<!-- #endif -->
 		</view>
 	</view>
 </template>
@@ -52,7 +71,8 @@
 				uid:0,
 				// 存储第一次屏幕的可视高度
 				clientHeight: '',
-				tabbar: true
+				tabbar: true,
+				$src: this.$src
 			};
 		},
 		onLoad(ob){

@@ -31,31 +31,34 @@
 .discount-box .discount {
     box-sizing: border-box;
 }
-.discount-box .discount .topic {
-      width: 100%;
-      height: 192rpx;
-}
 .discount-box .discount view {
       overflow: hidden;
       display: block;
       box-sizing: border-box;
       list-style: none;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+              justify-content: space-between;
+      -webkit-flex-wrap: wrap;
+              flex-wrap: wrap;
 }
 .discount-box .discount view view {
-        float: left;
         box-sizing: border-box;
         margin-bottom: 10rpx;
-        width: calc(50% - 5rpx);
+        width: 49%;
 }
 .discount-box .discount view view image {
           display: block;
           width: 100%;
           height: 192rpx;
 }
-.discount-box .discount view view:nth-child(2n-1) {
-        margin-right: 5rpx;
+.discount-box .discount view view:first-child {
+        width: 100%;
 }
-.discount-box .discount view view:nth-child(2n) {
-        margin-left: 5rpx;
+.discount-box .discount view view:first-child image {
+          width: 100%;
 }
 

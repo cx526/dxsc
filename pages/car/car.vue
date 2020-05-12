@@ -4,7 +4,7 @@
 			<view class="list-title">
 				<view style="flex:1"></view>
 				<text @click="getLocartion()">{{locationName}}</text>
-				<image src="/static/images/location.png"></image>
+				<image :src='$src + "/images/location.png"'></image>
 			</view>
 			<view class="list-empty" v-if="list.length == 0">
 				您所在的位置暂无爆品哦
@@ -49,7 +49,7 @@
 						</view>
 					</view>
 				</block>
-				<view class="none" v-if="!loadMore">已加载全部</view>
+				<view class="none" v-if="!loadMore && list.length != 0">已加载全部</view>
 			</view>
 		</view>
 	</view>
@@ -61,7 +61,9 @@
 		getSwiper,
 		request
 	} from '../request.js'
+	//#ifdef H5
 	import wechat from '../../common/wechat.js'
+	//#endif
 	import Loading from '../common/loading/loading.vue'
 	export default {
 		data() {
@@ -74,6 +76,7 @@
 				loading: false,
 				page: 1,
 				loadMore: true,
+				$src: this.$src
 			};
 		},
 		components: {
@@ -164,6 +167,7 @@
 				let position = that.getlocationpoint();
 				uni.hideLoading();
 			},
+			// 获取城市名
 			getLocationName() {
 				let that = this;
 				request({
@@ -181,6 +185,7 @@
 						})
 					});
 			},
+			// 获取商品
 			getGoodsList() {
 				let that = this;
 				uni.showLoading({
@@ -198,6 +203,7 @@
 					.then(res => {
 						uni.hideLoading();
 						that.flag = true;
+						this.loading = true
 						if(res.data.list.length == 0) {
 							that.loadMore = false;
 							uni.showToast({

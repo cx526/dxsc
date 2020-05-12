@@ -2,7 +2,7 @@
 	<view v-if="loading">
 		<view class="user-info">
 			<image v-if="headJpg" :src="headJpg" mode=""></image>
-			<image v-else src="/static/images/user-default.jpeg" mode=""></image>
+			<image v-else :src="$src+'/images/shop-logo.png'" mode=""></image>
 			<text v-if="shopName">{{shopName}}</text>
 			<text v-else>商家</text>
 		</view>
@@ -37,7 +37,8 @@
 				shopInfo:[],
 				headJpg:"",
 				shopName:"",
-				loading: false
+				loading: false,
+				$src: this.$src
 			};
 		},
 		components: {
@@ -70,7 +71,7 @@
 				request({
 					url:"index.php?s=/wap/order/offlineOrderSetSession",
 					data:{
-						shop_id:27,
+						shop_id:this.shop_id,
 						amount:this.amount,
 						discountamount:this.discountamount,
 					}
@@ -123,10 +124,7 @@
 					this.loading = true;
 					if(res.data !=""){
 						this.shopInfo = res.data;
-						if(res.data.shop_avatar!=""){
-							this.headJpg = this.$api+res.data.shop_avatar;
-						}
-						console.log(res);
+						this.headJpg = this.$api+res.data.shop_logo;
 						this.shopName = res.data.shop_name
 					}
 				})

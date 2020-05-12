@@ -6,7 +6,9 @@
 
 <script>
 	import {request} from "../../request.js";
+	//#ifdef H5
 	import wechat from '../../../common/wechat.js';
+	//#endif
 	export default {
 		data() {
 			return {

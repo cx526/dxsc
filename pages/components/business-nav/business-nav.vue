@@ -1,10 +1,10 @@
 <template>
 	<view style="box-sizing: border-box;padding-bottom: 30rpx;">
-		<image src="/static/images/business-01.png" class="top"></image>
-		<image src="/static/images/business-02.png" class="service"></image>
-		<image src="/static/images/business-03.png" class="flow"></image>
-		<image src="/static/images/business-04.png" class="service icome"></image>
-		<image src="/static/images/business-06.png" class="service shop"></image>
+		<image :src="$src+'/images/business-01.png'" class="top"></image>
+		<image :src="$src+'/images/business-02.png'" class="service"></image>
+		<image :src="$src+'/images/business-03.png'" class="flow"></image>
+		<image :src="$src+'/images/business-04.png'" class="service icome"></image>
+		<image :src="$src+'/images/business-06.png'" class="service shop"></image>
 		<button class="btn" @click="goBusiness">立即开店</button>
 	</view>
 </template>
@@ -13,7 +13,7 @@
 	export default {
 		data() {
 			return {
-				
+				$src: this.$src
 			};
 		},
 		methods:{

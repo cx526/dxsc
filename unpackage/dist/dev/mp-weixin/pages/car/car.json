@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "店下爆品",
-  "usingComponents": {}
+  "usingComponents": {
+    "loading": "/pages/common/loading/loading"
+  }
 }

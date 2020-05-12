@@ -11,12 +11,12 @@
 				</block>
 			</scroll-view>
 			<view class="menu" @click="goClassify">
-				<image src="/static/images/icon-menu.png" mode=""></image>
+				<image :src="$src+'/images/icon-menu.png'" mode=""></image>
 			</view>
 		</view>
 		<!-- banner图 -->
 		<view class="banner">
-			<image src="../../../static/images/online-goods.png" mode=""></image>
+			<image :src="$src+'/images/online-goods.png'" mode=""></image>
 		</view>
 		
 		<!-- 推荐列表 -->
@@ -28,17 +28,26 @@
 			<view class="list" v-if="onLineGoods && onLineGoods.length > 0">
 				<block v-for="(goods,index) in onLineGoods" :key="index">
 					<view class="list-item" @click="handleDetail(goods.goods_id)">
-						<image :src="goods.pic_cover_mid" mode=""></image>
+						<!-- #ifndef H5 -->
+						<image :src="goods.pic_cover_mid" mode="" class="image"></image>
+						<!-- #endif -->
+						<!-- #ifdef H5 -->
+						<easy-loadimage
+							:scroll-top="scrollTop" 
+							:image-src="goods.pic_cover_mid"
+							 class="image">
+						</easy-loadimage>
+						<!-- #endif -->
 						<view class="main">
 							<view class="list-title">{{goods.goods_name}}</view>
 							<view class="list-price">
 								<view class="new">
-									<text>￥{{goods.market_price}}</text>
+									<text>￥{{goods.price}}</text>
 									<text class="member">会员专享价</text>
 								</view>
 								<view class="old">
 									<text>市场参考价：</text>
-									<text>￥{{goods.price}}</text>
+									<text>￥{{goods.market_price}}</text>
 								</view>
 							</view>
 						</view>
@@ -54,6 +63,9 @@
 
 <script>
 	import { request } from '../../request.js'
+	// #ifdef H5
+	import easyLoadimage from '../../../components/easy-loadimage/easy-loadimage.vue'
+	// #endif
 	export default {
 		data() {
 			return {
@@ -67,12 +79,22 @@
 				// 商品列表
 				onLineGoods: [],
 				page: 1,
-				flag: false
+				flag: false,
+				$src: this.$src,
+				scrollTop: 0
 			};
 		},
+		// #ifdef H5
+		components: {
+			easyLoadimage
+		},
+		// #endif
 		onLoad() {
 			// 左侧分类请求数据
 			this.getNav()
+		},
+		onPageScroll({scrollTop}) {
+			this.scrollTop = scrollTop
 		},
 		onReachBottom() {
 			this.handleBottom()
@@ -251,7 +273,7 @@
 			.list-item {
 				box-sizing: border-box;
 				width: 49%;
-				image {
+				.image {
 					width: 100%;
 					height: 330rpx;
 				}

@@ -34,7 +34,7 @@
 				<view class="appraise">
 					<textarea value="" :data-index="index" @input="changeContent" placeholder="宝贝不能满足您的期待吗？简单说说它的不足吧.." placeholder-style="color:#B2B2B2;font-size: 15px;"/>
 					<view class="show-photo" @click="uploadImage(index)">
-						<image src="/static/images/photo.png" mode=""></image>
+						<image :src="$src +'/images/photo.png'" mode=""></image>
 						<view>
 							<text>添加图片</text>
 						</view>
@@ -74,6 +74,7 @@
 				],
 				order_id:'',
 				order_no:'',
+				$src: this.$src
 			};
 		},
 		onLoad(options){

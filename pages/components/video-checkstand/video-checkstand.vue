@@ -27,14 +27,14 @@
 			<view class="title">选择支付方式</view>
 			<view class="item">
 				<view>
-					<image src="/static/images/payment.png" mode=""></image>
+					<image :src="$src+'/images/payment.png'" mode=""></image>
 					<text>余额支付</text>
 				</view>
 				<radio color="#FED940" style="transform: scale(0.7);" @click="handleBalance" :checked="balanceWay"></radio>
 			</view>
 			<view class="item">
 				<view>
-					<image src="/static/images/wx-pay.png" mode=""></image>
+					<image :src="$src+'/images/wx-pay.png'" mode=""></image>
 					<text>微信支付</text>
 				</view>
 				<radio color="#FED940" style="transform: scale(0.7);" :checked="payWay" @click="handlePayWay"></radio>
@@ -71,7 +71,8 @@
 				balanceWay: false,
 				res: {}, //储存用户的现金券和余额
 				add: '', //用户需要支付的金额
-				userPassword: '' //用户的支付密码
+				userPassword: '' ,//用户的支付密码
+				$src: this.$src
 			}
 		},
 		onLoad(options) {

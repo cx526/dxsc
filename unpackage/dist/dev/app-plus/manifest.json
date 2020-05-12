@@ -18,6 +18,7 @@
     "url": ""
   },
   "permissions": {
+    "Share": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -42,7 +43,7 @@
     "statusbar": {
       "immersed": "supportedDevice",
       "style": "dark",
-      "background": "#F8F8F8"
+      "background": "#FED940"
     },
     "usingComponents": true,
     "nvueCompiler": "weex",
@@ -75,6 +76,12 @@
       },
       "apple": {},
       "plugins": {
+        "share": {
+          "weixin": {
+            "appid": "wx383b80d4b9db31f1",
+            "UniversalLinks": ""
+          }
+        },
         "audio": {
           "mp3": {
             "description": "Android平台录音支持MP3格式文件"
@@ -97,30 +104,36 @@
     },
     "tabBar": {
       "color": "#676C74",
-      "selectedColor": "#C74242",
+      "selectedColor": "#333",
       "list": [
         {
           "pagePath": "pages/index/index",
-          "iconPath": "/static/images/index.png",
-          "selectedIconPath": "/static/images/index-active.png",
+          "iconPath": "/static/images/index1.png",
+          "selectedIconPath": "/static/images/index1-active.png",
           "text": "首页"
         },
         {
           "pagePath": "pages/car/car",
-          "iconPath": "/static/images/downline.png",
-          "selectedIconPath": "/static/images/downline-active.png",
+          "iconPath": "/static/images/car2.png",
+          "selectedIconPath": "/static/images/car2-active.png",
           "text": "店下爆品"
         },
         {
           "pagePath": "pages/classify/classify",
-          "iconPath": "/static/images/classify.png",
-          "selectedIconPath": "/static/images/classify-active.png",
+          "iconPath": "/static/images/classify1.png",
+          "selectedIconPath": "/static/images/classify1-active.png",
           "text": "分类"
         },
         {
+          "pagePath": "pages/tv/tv",
+          "iconPath": "/static/images/TV.png",
+          "selectedIconPath": "/static/images/TV-active.png",
+          "text": "直播"
+        },
+        {
           "pagePath": "pages/mine/mine",
-          "iconPath": "/static/images/my.png",
-          "selectedIconPath": "/static/images/my-active.png",
+          "iconPath": "/static/images/mine1.png",
+          "selectedIconPath": "/static/images/mine1-active.png",
           "text": "个人中心"
         }
       ],

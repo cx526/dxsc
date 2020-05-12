@@ -72,9 +72,9 @@
 			//商品详情
 			openDetail(goods_id){
 				console.log(goods_id)
-				// uni.navigateTo({
-				// 	url:"/pages/common/goods-detail/goods-detail?id="+goods_id
-				// });
+				uni.navigateTo({
+					url:"/pages/common/goods-detail/goods-detail?id="+goods_id
+				});
 			},
 			//获取列表
 			getList(){

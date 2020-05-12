@@ -3,10 +3,10 @@
 		
 		<view class="shop-list" v-if="planList && planList.length > 0">
 			<block v-for="(item,index) in planList" :key="index">
-			<view class="shop-item" hover-class="clickActive" @click="checkPlan(index)">
-				<view class="shop-img">
+			<view class="shop-item" hover-class="clickActive" @click="checkPlan(item.id)">
+				<!-- <view class="shop-img">
 					<image src="/static/images/shop-logo.png" mode=""></image>
-				</view>
+				</view> -->
 				<view class="shop-main">
 					<view class="title">
 						<text>提现{{item.cash}}元</text>
@@ -81,9 +81,10 @@
 				return yy +'-'+ mm +'-'+ dd +' '+ h +':'+ m +':'+ s
 			},
 			// 跳转到提现详情
-			checkPlan() {
+			checkPlan(id) {
 				uni.navigateTo({
-					url:"/pages/components/withdraw-plan/withdraw-plan"
+					url:"/pages/components/withdraw-plan/withdraw-plan?id="+id
+					
 				})
 			},
 		}

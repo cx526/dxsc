@@ -7,7 +7,6 @@
 						<swiper-item v-for="(item,index) in imgUrl" :key="index" style="height: 600rpx;">
 							<view style="height: 100%;" >
 								<image :src="item" style="height: 600rpx" v-if="item != 'https://admin.dxsc.vip/'"></image>
-							
 							</view>
 						</swiper-item>
 					</block>
@@ -46,17 +45,24 @@
 				<view class="product" v-if="goods && goods.length > 0">
 					<block v-for="(v,index) in goods" :key="index">
 						<view class="product-item" @click="goodsinfo(v.goods_id)">
-							
 							<view class="product-img" >
-								<image :src="baseURL + v.img" mode=""></image>
-								
+								<!-- #ifndef H5 -->
+								<image :src="baseURL + v.img" mode="" class="image"></image>
+								<!-- #endif -->
+								<!-- #ifdef H5 -->
+								<easy-loadimage
+									:scroll-top="scrollTop" 
+									:image-src="baseURL + v.img"
+									 class="image">
+								</easy-loadimage>
+								<!-- #endif -->
 							</view>
 							<view class="product-context" style="text-align: left;display: flex;flex-direction: column;">
 								<text style="display: -webkit-box;-webkit-line-clamp:2;-webkit-box-orient: vertical;overflow: hidden;margin: 12rpx 0;">{{v.goods_name}}</text>
 								<view>
-									<text style="color: #C3000B;font-size: 26rpx;margin-right: 10rpx;">平台价：{{v.price}}</text>
+									<text style="color: #C3000B;font-size: 26rpx;margin-right: 10rpx;">{{v.price}}</text>
 									<text style="color: #AAAAAA;font-size: 24rpx;text-decoration: line-through;">
-										市场价：{{v.market_price}}
+										{{v.market_price}}
 									</text>
 								</view>
 								
@@ -86,6 +92,9 @@
 <script>
 	import { request,getToken,Token } from '../../request.js'
 	import Loading from '../../common/loading/loading.vue'
+	// #ifdef H5
+	import easyLoadimage from '../../../components/easy-loadimage/easy-loadimage.vue'
+	// #endif
 	export default {
 		data() {
 			return {
@@ -107,21 +116,29 @@
 				latitude:'',
 				longitude: '',
 				shopImg: true,
-				swiperShow: true
+				swiperShow: true,
+				scrollTop: 0
 			};
 		},
 		components: {
-			Loading
+			Loading,
+			// #ifdef H5
+			easyLoadimage
+			// #endif
 		},
 		onShow() {
 			this.getUserInfo();
-			
 		},
 		onLoad(options) {
 			this.shop_id = options.id;
 			this.getUserInfo();
 			this.checkLogin()
 		},
+		// #ifdef H5
+		onPageScroll({scrollTop}) {
+			this.scrollTop = scrollTop
+		},
+		// #endif
 		mounted() {
 			// 获取要预览图片的路径
 			if(this.shopImg) {
@@ -187,7 +204,7 @@
 						console.log(res);
 						that.flag = true;
 						that.shop_name = res.data.shop_info.shop_name;
-						that.shop_address = res.data.shop_info.shop_address;
+						that.shop_address = res.data.shop_info.live_store_address;
 						that.shop_phone = res.data.shop_info.shop_phone;
 						that.latitude = res.data.shop_info.latitude;
 						that.longitude = res.data.shop_info.longitude;
@@ -335,7 +352,7 @@
 				.product-img {
 					width: 100%;
 					height: 300rpx;
-					image {
+					.image {
 						width: 100%;
 						height: 100%;
 					}

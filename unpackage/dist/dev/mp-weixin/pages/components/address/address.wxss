@@ -24,19 +24,19 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-page.data-v-08d77794 {
+page.data-v-1a6f4af5 {
   background: #EFEFF4;
 }
-.address-list.data-v-08d77794 {
+.address-list.data-v-1a6f4af5 {
   box-sizing: border-box;
 }
-.address-list .address-item.data-v-08d77794 {
+.address-list .address-item.data-v-1a6f4af5 {
     box-sizing: border-box;
     margin-top: 20rpx;
     padding: 30rpx;
     background: #fff;
 }
-.address-list .address-item .userInfo.data-v-08d77794 {
+.address-list .address-item .userInfo.data-v-1a6f4af5 {
       box-sizing: border-box;
       display: -webkit-box;
       display: -webkit-flex;
@@ -46,15 +46,15 @@ page.data-v-08d77794 {
               justify-content: space-between;
       margin-bottom: 24rpx;
 }
-.address-list .address-item .userInfo text.data-v-08d77794:nth-child(2) {
+.address-list .address-item .userInfo text.data-v-1a6f4af5:nth-child(2) {
         color: #444;
 }
-.address-list .address-item .address.data-v-08d77794 {
+.address-list .address-item .address.data-v-1a6f4af5 {
       font-size: 26rpx;
       color: #909090;
       margin-bottom: 24rpx;
 }
-.address-list .address-item .edit.data-v-08d77794 {
+.address-list .address-item .edit.data-v-1a6f4af5 {
       box-sizing: border-box;
       display: -webkit-box;
       display: -webkit-flex;
@@ -63,17 +63,17 @@ page.data-v-08d77794 {
       -webkit-justify-content: space-between;
               justify-content: space-between;
 }
-.address-list .address-item .edit .edit-left.data-v-08d77794 {
+.address-list .address-item .edit .edit-left.data-v-1a6f4af5 {
         font-size: 24rpx;
         color: #AAAAAA;
 }
-.address-list .address-item .edit .edit-right.data-v-08d77794 {
+.address-list .address-item .edit .edit-right.data-v-1a6f4af5 {
         box-sizing: border-box;
         display: -webkit-box;
         display: -webkit-flex;
         display: flex;
 }
-.address-list .address-item .edit .edit-right text.data-v-08d77794 {
+.address-list .address-item .edit .edit-right text.data-v-1a6f4af5 {
           box-sizing: border-box;
           width: 80rpx;
           height: 40rpx;
@@ -84,16 +84,16 @@ page.data-v-08d77794 {
           display: inline-block;
           text-align: center;
 }
-.address-list .address-item .edit .edit-right text.data-v-08d77794:nth-child(1) {
+.address-list .address-item .edit .edit-right text.data-v-1a6f4af5:nth-child(1) {
           margin-right: 10rpx;
 }
-.add-newAddress.data-v-08d77794 {
+.add-newAddress.data-v-1a6f4af5 {
   box-sizing: border-box;
   padding: 40rpx 30rpx 30rpx 30rpx;
   color: #fff;
   font-size: 30rpx;
 }
-.add-newAddress button.data-v-08d77794 {
+.add-newAddress button.data-v-1a6f4af5 {
     width: 100%;
     height: 90rpx;
 }

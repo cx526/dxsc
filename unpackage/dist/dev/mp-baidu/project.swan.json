@@ -1,0 +1,28 @@
+{
+    "appInfo": {},
+    "appid": "14403636",
+    "appkey": "",
+    "condition": {},
+    "editor": {
+        "curPath": "",
+        "expands": [],
+        "markdownUploadTimeMap": {},
+        "paths": [],
+        "recentlyFiles": []
+    },
+    "host": "baiduboxapp",
+    "libVersion": "",
+    "preview": {
+        "packageId": 501106
+    },
+    "projectname": "store",
+    "setting": {
+        "urlCheck": false
+    },
+    "swan": {
+        "baiduboxapp": {
+            "extensionJsVersion": "1.8.5",
+            "swanJsVersion": "3.130.13"
+        }
+    }
+}

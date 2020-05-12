@@ -6,15 +6,15 @@
 			</view>
 			<!-- 点击跳转到search-page搜索页面 -->
 			<view class="search" @click="handleClick">
-				<image src="/static/images/search.png"></image>
+				<image :src="$src+'/images/search.png'"></image>
 				<input disabled placeholder="输入您要搜索的宝贝..." placeholder-class="placeholder"/>
 			</view>
 			<view class="message">
-				<image src="/static/images/cart-active.png" @click="goCart()" v-if="$store.state.goodsLength"></image>
-				<image src="/static/images/cart.png" @click="goCart()" v-else style="width: 60rpx;height: 56rpx;"></image>
+				<image :src="$src+'/images/cart-active.png'" @click="goCart()" v-if="$store.state.goodsLength"></image>
+				<image :src="$src+'/images/cart.png'" @click="goCart()" v-else style="width: 60rpx;height: 56rpx;"></image>
 				<div class="line"></div>
-				<!-- <image src="/static/images/message.png" @click="goLogistics()" style="widtht: 60rpx;height: 58rpx"></image> -->
-				<image src="/static/images/message.png" @click="goLogistics()" style="width: 60rpx;height: 52rpx;"></image>
+				<!-- <image src="$src+'/images/message.png" @click="goLogistics()" style="widtht: 60rpx;height: 58rpx"></image> -->
+				<image :src="$src+'/images/message.png'" @click="goLogistics()" style="width: 60rpx;height: 52rpx;"></image>
 			</view>
 		</view>
 	</view>
@@ -30,7 +30,7 @@
 		},
 		data() {
 			return {
-				
+				$src: this.$src
 			};
 		},
 		methods:{

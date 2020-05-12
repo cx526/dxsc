@@ -26,7 +26,6 @@
 /* 文章场景相关 */
 .swiper-box {
   box-sizing: border-box;
-  padding: 21rpx 21rpx 0 21rpx;
 }
 .swiper-box swiper {
     box-sizing: border-box;

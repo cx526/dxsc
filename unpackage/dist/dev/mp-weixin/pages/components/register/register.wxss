@@ -95,37 +95,18 @@
         color: #fff;
 }
 .register .btn {
-    position: absolute;
-    bottom: 110rpx;
-    left: 0;
     width: 100%;
     box-sizing: border-box;
+    position: absolute;
+    bottom: 110rpx;
 }
-.register .btn .login, .register .btn .register {
-      box-sizing: border-box;
-      height: 90rpx;
-}
-.register .btn .login button, .register .btn .register button {
-        width: 60%;
-        height: 100%;
-        text-align: center;
-        font-size: 32rpx;
-        color: #C8C7CC;
-        border-radius: 60rpx;
-}
-.register .btn .login {
-      margin-bottom: 24rpx;
-}
-.register .btn .login button {
-        box-sizing: border-box;
-        border: 1px solid #fff;
-}
-.register .btn .login button:after {
-        border: none;
-}
-.register .btn .register button {
-      background: #E64340;
+.register .btn button {
+      width: 60%;
+      text-align: center;
+      font-size: 32rpx;
       color: #fff;
+      border-radius: 60rpx;
+      background: #E64340;
 }
 .placeholder {
   font-size: 28rpx;

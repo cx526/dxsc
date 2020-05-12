@@ -26,7 +26,7 @@
 /* 文章场景相关 */
 .recommend-box {
   box-sizing: border-box;
-  background: #F5F5F5;
+  background: #fff;
   padding: 0 26rpx;
 }
 .recommend-box .recommend {
@@ -46,7 +46,7 @@
         width: 165rpx;
         height: 165rpx;
 }
-.recommend-box .recommend .recommend-item .recommend-left image {
+.recommend-box .recommend .recommend-item .recommend-left .image {
           width: 100%;
           height: 100%;
 }
@@ -81,9 +81,8 @@
             color: #F19C49;
 }
 .recommend-box .recommend .recommend-item .recommend-right .address {
-          font-size: 28rpx;
-          margin-top: 16rpx;
-          color: #ccc;
+          font-size: 26rpx;
+          color: #797979;
 }
 .recommend-box .recommend .recommend-item .recommend-right .rate {
           box-sizing: border-box;
@@ -111,6 +110,16 @@
 }
 .recommend-box .recommend .recommend-item .recommend-right .rate .rate-left .score {
               box-sizing: border-box;
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: flex;
+              -webkit-box-pack: justify;
+              -webkit-justify-content: space-between;
+                      justify-content: space-between;
+              -webkit-box-align: center;
+              -webkit-align-items: center;
+                      align-items: center;
+              width: 100%;
 }
 .recommend-box .recommend .recommend-item .recommend-right .rate .rate-left .score image {
                 width: 25rpx;

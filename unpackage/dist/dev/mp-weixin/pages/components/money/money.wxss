@@ -30,11 +30,11 @@
   height: 250rpx;
 }
 .person-money .money {
-    background: #AD332D;
+    background: #FED940;
     height: 100%;
     border-radius: 12rpx;
     font-size: 28rpx;
-    color: #fff;
+    color: #333;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
@@ -59,6 +59,9 @@
         background: #fff;
         -webkit-transform: translateY(-50%);
                 transform: translateY(-50%);
+}
+.person-money .money .item .count {
+        font-size: 30rpx;
 }
 .list-box {
   box-sizing: border-box;

@@ -32,41 +32,62 @@
     overflow: hidden;
     display: block;
     box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
 }
 .news-box view .news-item {
       box-sizing: border-box;
-      width: 50%;
-      float: left;
+      width: 49%;
+      position: relative;
 }
-.news-box view .news-item image {
+.news-box view .news-item .image {
         width: 100%;
         height: 300rpx;
         display: block;
 }
 .news-box view .news-item .news-text {
         box-sizing: border-box;
-        padding: 20rpx;
+        padding: 20rpx 16rpx;
+        width: 100%;
 }
 .news-box view .news-item .news-text .news-title {
-          font-size: 26rpx;
+          font-size: 30rpx;
           color: #444444;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          white-space: nowrap;
+}
+.news-box view .news-item .news-text .news-title text {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
 }
 .news-box view .news-item .news-text .news-price {
           box-sizing: border-box;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+                  flex-direction: column;
+          -webkit-box-pack: justify;
+          -webkit-justify-content: space-between;
+                  justify-content: space-between;
 }
 .news-box view .news-item .news-text .news-price .now {
-            font-size: 26rpx;
-            color: #000;
+            font-size: 28rpx;
+            color: #FC3D3C;
             font-weight: 700;
             margin-right: 10rpx;
 }
 .news-box view .news-item .news-text .news-price .old {
-            font-size: 20rpx;
-            color: #D2D2D2;
             text-decoration: line-through;
+            color: #AAAAAA;
+            font-size: 24rpx;
 }
 .news-box.distanceActive {
   margin-top: 16rpx;

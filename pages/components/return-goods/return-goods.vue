@@ -8,7 +8,7 @@
 					<!-- 商品 -->
 					<view class="product" @click="orderDetail()">
 						<view class="product-img">
-							<image src="/static/images/goods-detail.png" mode=""></image>
+							<image :src="$src+'/images/goods-detail.png'" mode=""></image>
 						</view>
 						<view class="product-title">
 							<view class="title">
@@ -34,7 +34,7 @@
 				<view class="appraise">
 					<textarea value="" placeholder="宝贝不能满足您的期待吗？简单说说它的不足吧.." placeholder-style="color:#B2B2B2;font-size: 15px;"/>
 					<view class="show-photo">
-						<image src="/static/images/photo.png" mode=""></image>
+						<image :src="$src+'/images/photo.png'" mode=""></image>
 						<view>
 							<text>添加图片</text>
 						</view>
@@ -61,7 +61,7 @@
 					<!-- 商品 -->
 					<view class="product" @click="orderDetail()">
 						<view class="product-img">
-							<image src="/static/images/goods-detail.png" mode=""></image>
+							<image :src="$src+'/images/goods-detail.png'" mode=""></image>
 						</view>
 						<view class="product-title">
 							<view class="title">
@@ -97,7 +97,7 @@
 					<!-- 商品 -->
 					<view class="product" @click="orderDetail()">
 						<view class="product-img">
-							<image src="/static/images/goods-detail.png" mode=""></image>
+							<image :src="$src+'/images/goods-detail.png'" mode=""></image>
 						</view>
 						<view class="product-title">
 							<view class="title">
@@ -158,7 +158,8 @@
 	export default {
 		data() {
 			return {
-				isShow: false
+				isShow: false,
+				$src: this.$src
 			};
 		},
 		methods: {

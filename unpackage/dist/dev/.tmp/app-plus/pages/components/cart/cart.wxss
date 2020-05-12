@@ -49,6 +49,12 @@ page {
 .check-title .check .radio {
       font-size: 24rpx;
       color: #CCC;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+              align-items: center;
 }
 .check-title .check .edit {
       color: #A4A4A4;
@@ -97,6 +103,11 @@ page {
 .goods-box .goods .product .product-title .title {
           font-size: 30rpx;
           color: #444444;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
 }
 .goods-box .goods .product .product-title .params {
           font-size: 24rpx;

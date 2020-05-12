@@ -5,7 +5,7 @@
 			<block v-for="n in 3" :key="n">
 				<swiper-item>	
 					<view class="swiper-item">
-						<image src="/static/images/dianxia.png" mode=""></image>
+						<image :src="$src+'/images/dianxia.png'" mode=""></image>
 					</view>
 				</swiper-item>
 			</block>
@@ -84,7 +84,8 @@
 				longitude: '',
 				// 储存商品数据
 				goodsList: [],
-				flag: true
+				flag: true,
+				$src: this.$src
 			};
 		},
 		onLoad() {

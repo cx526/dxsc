@@ -4,8 +4,24 @@
 			<block v-for="(item,index) in recommendList" :key="index">
 				<view class="recommend-item" @click="goShop(item.shop_id)">
 					<view class="recommend-left">
-						<image v-if="item.shop_logo==''" src="/static/images/logo_03.png"></image>
-						<image v-if="item.shop_logo!=''" :src="baseURL + item.shop_logo"></image>
+						<image v-if="item.shop_logo==''" 
+						:src="$src+'/images/none-logo.jpg'"
+						class="image">
+						</image>
+						<!-- #ifndef H5 -->
+						<image v-if="item.shop_logo !=''"
+						:src="baseURL + item.shop_logo"
+						class="image">
+						</image>
+						<!-- #endif -->
+						<!-- #ifdef H5 -->
+						<easy-loadimage 
+						:scroll-top="scrollTop" 
+						:image-src="baseURL + item.shop_logo"
+						 v-if="item.shop_logo !=''" 
+						 class="image">
+					 </easy-loadimage>
+					 <!-- #endif -->
 					</view>
 					<view class="recommend-right">
 						<!-- 商店名称 -->
@@ -18,12 +34,12 @@
 								<view class="score">
 									<view >
 										<block v-if="item.shop_deliverycredit">
-											<image src="/static/images/start-active.png"
+											<image :src="$src+'/images/start-active.png'"
 											v-for="(all,allIndex) in item.all" :key="allIndex">
 											</image>
-											<image src="/static/images/start-half.png"
+											<image :src="$src+'/images/start-half.png'"
 											v-for="(half,halfIndex) in item.half" :key="halfIndex"></image>
-											<image src="/static/images/start.png"
+											<image :src="$src+'/images/start.png'"
 											v-for="(none,noneIndex) in item.none" :key="noneIndex"></image>
 										</block>
 										<text v-else style="font-size: 26rpx;">暂无评分</text>
@@ -43,37 +59,43 @@
 							<view style="font-size: 26rpx;color: #797979;margin-right: 16rpx;">
 								<text>经营范围</text>
 							</view>
-							<image src="/static/images/renqi.png" mode="" style="width: 60rpx;height: 26rpx;"></image>
+							<image :src="$src+'/images/renqi.png'" mode="" style="width: 60rpx;height: 26rpx;"></image>
 						</view>
 						<view class="address" style="margin-right: 20rpx;">
 							<text v-if="item.live_store_address">{{item.live_store_address}}</text>
 							<text v-else>暂无该店铺相关地址信息</text>
 						</view>
-						<!-- <view style="display: flex;align-items: center;">
-							<image src="/static/images/pinglun.png" mode="" style="width: 22rpx;height: 26rpx;"></image>
-							<text style="font-size: 22rpx;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;margin-left: 20rpx;color: #C8C8C8;">店里的服务员很热情，虾片都是送的，可以免费加饭</text>
-						</view> -->
-			
 					</view>
 				</view>
 			</block>
-			
 		</view>
-		<view v-else style="box-sizing: border-box;padding: 30rpx;font-size: 26rpx;text-align: center;">附件暂无商铺</view>
+		<view v-else style="box-sizing: border-box;padding: 30rpx;font-size: 26rpx;text-align: center;">附近暂无商铺</view>
 	</view>
 </template>
 
 <script>
+	// #ifdef H5
+	import easyLoadimage from '../../../components/easy-loadimage/easy-loadimage.vue'
+	// #endif
 	export default {
 		props: {
 			recommendList: {
 				type: Array
+			},
+			scrollTop: {
+				type: Number
 			}
 		},
+		// #ifdef H5
+		components: {
+			easyLoadimage
+		},
+		// #endif
 		data() {
 			return {
 				baseURL:this.$api,
-				score: ''
+				score: '',
+				$src: this.$src
 			};
 		},
 		methods:{
@@ -109,7 +131,7 @@
 					float: left;
 					width: 165rpx;
 					height: 165rpx;
-					image {
+					.image {
 						width: 100%;
 						height: 100%;
 					}

@@ -1,0 +1,38 @@
+
+.set-box{
+	width:90%;
+	overflow: hidden;
+	padding:20rpx 5%;
+	color:30rpx;
+}
+.set-line{
+	overflow: hidden;
+	width:100%;
+	line-height:60rpx;
+	margin-bottom: 10rpx;
+}
+.set-label{
+	float: left;
+	width:38%;
+	margin-right: 2%;
+	text-align: left;
+}
+.set-input{
+	float: left;
+	width:53%;
+	text-align: left;
+}
+.set-input input{
+		padding:0 10rpx;
+		border: 2rpx solid #888;
+		color:30rpx;
+		line-height:60rpx;
+		height: 60rpx;
+		width:90%;
+}
+.btn {
+	box-sizing: border-box;
+	padding: 30rpx;
+}
+
+

@@ -57,7 +57,7 @@
 					<text>{{express_name}}：{{express_code}}</text>
 					<view @click="orderLogistics(order.order_id)">
 						<text>查物流</text>
-						<image src="/static/images/icon-right.png" mode=""></image>
+						<image :src="$src+'/images/icon-right.png'" mode=""></image>
 					</view>
 				</view>
 				<view class="user-info">
@@ -148,6 +148,7 @@
 				express_count:'',
 				express_code:'',
 				is_show_express_code:0,
+				$src: this.$src
 			};
 		},
 		onLoad(options){

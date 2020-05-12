@@ -4,7 +4,12 @@
 			<view>
 				<block v-for="(item,index) in discountList" :key="index">
 					<view @click="goDownLine(item,index)">
-						<image :src="item.adv_image"></image>
+					<!-- #ifndef H5 -->
+					<image :src="item.adv_image" class="image"></image>
+					<!-- #endif -->
+					<!-- #ifdef H5 -->
+					<easy-loadimage :scroll-top="scrollTop" :image-src="item.adv_image" class="image"></easy-loadimage>
+					<!-- #endif -->
 					</view>
 				</block>
 			</view>
@@ -14,17 +19,32 @@
 
 <script>
 	import { mapState,mapMutations } from 'vuex'
+	// #ifdef H5
+	import easyLoadimage from '../../../components/easy-loadimage/easy-loadimage.vue'
+	// #endif
 	export default {
 		props: {
-			discountList: Array
+			discountList: Array,
+			scrollTop: Number
 		},
+		// #ifdef H5
+		components: {
+			easyLoadimage
+		},
+		// #endif
 		data() {
 			return {
 				
 			}
 		},
 		onLoad() {
-			this.changeDiscount()
+			this.changeDiscount();
+		},
+
+		onPageScroll({scrollTop}) {
+			console.log(scrollTop)
+			// 传入scrollTop值并触发所有easy-loadimage组件下的滚动监听事件
+			// this.scrollTop = scrollTop;
 		},
 		computed:{
 			...mapState({
@@ -65,7 +85,7 @@
 					box-sizing: border-box;
 					margin-bottom: 10rpx;
 					width: 49%;
-					image {
+					.image {
 						display: block;
 						width: 100%;
 						height: 192rpx;
@@ -73,7 +93,7 @@
 				}
 				view:first-child {
 					width: 100%;
-					image {
+					.image {
 						width: 100%;
 					}
 				}

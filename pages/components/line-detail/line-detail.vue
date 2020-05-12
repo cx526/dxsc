@@ -33,7 +33,7 @@
 				<text>规格</text>
 				<view class="choose-params">
 					<text>标准</text>
-					<image src="/static/images/icon-right.png"></image>
+					<image :src="$src+'/images/icon-right.png'"></image>
 				</view>
 			</view>
 			<!-- 分割线 -->
@@ -41,7 +41,7 @@
 			<!-- 店铺名 -->
 			<view class="shop-box" @click="shop">
 				<view class="shop">
-					<image src="/static/images/logo_03.png" mode=""></image>
+					<image :src="$src+'/images/logo_03.png'" mode=""></image>
 					<view class="shop-title">
 						<view><text>牛蛙店</text></view>
 					</view>
@@ -111,11 +111,11 @@
 				<view class="footer">
 					<view class="collect">
 						<view>
-							<image src="/static/images/service.png" mode=""></image>
+							<image :src="$src+'/images/service.png'" mode=""></image>
 							<view><text>客服</text></view>
 						</view>
 						<view>
-							<image src="/static/images/collect.png" mode="" style="width: 50rpx;"></image>
+							<image :src="$src+'/images/collect.png'" mode="" style="width: 50rpx;"></image>
 							<!-- <image v-if="is_favorate==1" src="/static/images/collect-active.png" mode="" style="width: 50rpx;"></image> -->
 							<view><text>收藏</text></view>
 						</view>
@@ -169,6 +169,7 @@
 						name: '有图评价99'
 					},
 				],
+				$src: this.$src
 			};
 		},
 		methods: {

@@ -54,7 +54,7 @@ page {
       border-right: 0;
 }
 .nav-box .nav .nav-item.active {
-      color: #B4302D;
+      color: #FED940;
 }
 .goods-box {
   box-sizing: border-box;
@@ -90,7 +90,6 @@ page {
       display: -webkit-box;
       display: -webkit-flex;
       display: flex;
-      border-bottom: 1px solid #E5E5E5;
 }
 .goods-box .goods .product .product-img {
         width: 140rpx;
@@ -128,14 +127,33 @@ page {
           color: #AAAAAA;
           text-align: right;
 }
+.goods-box .goods .product-status {
+      width: 96%;
+      padding: 10rpx 2%;
+      line-height: 60rpx;
+      font-size: 28rpx;
+      overflow: hidden;
+      border-bottom: 1px solid #E5E5E5;
+}
+.goods-box .goods .product-status .status {
+        color: #999;
+        min-width: 100rpx;
+        text-align: center;
+        float: left;
+}
+.goods-box .goods .product-status .btn {
+        padding: 0 20rpx;
+        border: 1px solid #ccc;
+        color: #333;
+        float: right;
+}
 .goods-box .goods .total {
       box-sizing: border-box;
       padding: 0 30rpx;
       font-size: 24rpx;
-      height: 136rpx;
       border-bottom: 1px solid #E5E5E5;
       padding-bottom: 18rpx;
-      padding-top: 20rpx;
+      padding-top: 18rpx;
       text-align: right;
 }
 .goods-box .goods .total view:nth-child(2) {

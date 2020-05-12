@@ -1,0 +1,1 @@
+<view><image class="top" src="{{$src+'/images/member-01.png'}}"></image><image class="main" src="{{$src+'/images/member-02.png'}}"></image><image class="bottom" src="{{$src+'/images/member-03.png'}}"></image><button data-event-opts="{{[['tap',[['pay',['$event']]]]]}}" class="btn" bindtap="__e">成为会员</button></view>

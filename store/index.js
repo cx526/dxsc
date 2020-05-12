@@ -15,6 +15,8 @@ const store = new Vuex.Store({
 		discount: 0,
 		// 储存推广uid
 		uid: '',
+		// 储存应付的金额
+		price: ''
 	},
 	mutations: {
 		// 搜索历史
@@ -49,6 +51,12 @@ const store = new Vuex.Store({
 		changeDiscount(state,payload) {
 			state.discount = payload.index;
 		},
+		// 改变价格
+		changePrice(state,payload) {
+			console.log(payload);
+			state.price = payload.price;
+			console.log(state.price);
+		}
 		
 	},
 	getters:{

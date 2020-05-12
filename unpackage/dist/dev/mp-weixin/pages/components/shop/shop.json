@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "店家详情",
-  "usingComponents": {}
+  "usingComponents": {
+    "loading": "/pages/common/loading/loading"
+  }
 }

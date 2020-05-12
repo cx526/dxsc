@@ -36,41 +36,81 @@
     "pages/components/shop/shop",
     "pages/components/product-down/product-down",
     "pages/components/refer-member/refer-member",
-    "pages/components/checkstand/checkstand"
+    "pages/components/checkstand/checkstand",
+    "pages/components/coupon/coupon",
+    "pages/components/payMoney/payMoney",
+    "pages/components/withdraw/withdraw",
+    "pages/components/bank/bank",
+    "pages/components/wechatpay/wechatpay",
+    "pages/components/setPayPassword/setPayPassword",
+    "pages/mine/invite",
+    "pages/mine/staff",
+    "pages/components/wechatpay/applypay",
+    "pages/components/preson-status/preson-status",
+    "pages/components/my-staff/my-staff",
+    "pages/components/staff-info/staff-info",
+    "pages/components/vip-list/vip-list",
+    "pages/components/more-list/more-list",
+    "pages/components/watching-tv/watching-tv",
+    "pages/components/drinking/drinking",
+    "pages/components/staff-info/staff-set",
+    "pages/components/bankcard/bankcard",
+    "pages/components/withdraw-plan/withdraw-plan",
+    "pages/components/video-pay/video-pay",
+    "pages/components/online-goods/online-goods",
+    "pages/components/video-checkstand/video-checkstand",
+    "pages/components/group/group",
+    "pages/tv/tv",
+    "pages/components/my-group/my-group",
+    "pages/components/refund/refund",
+    "pages/components/payUp/payUp",
+    "pages/components/member/member",
+    "pages/components/business-nav/business-nav",
+    "pages/components/withdraw-list/withdraw-list",
+    "pages/components/business-manage/business-manage",
+    "pages/components/business-manage/shop-setting/shop-setting",
+    "pages/components/business-manage/business-deal/business-deal",
+    "pages/components/business-manage/business-finance/business-finance"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
+    "navigationBarTitleText": "店下商城",
+    "navigationBarBackgroundColor": "#FED940",
     "backgroundColor": "#F8F8F8",
     "onReachBottomDistance": 10
   },
   "tabBar": {
     "color": "#676C74",
-    "selectedColor": "#C74242",
+    "selectedColor": "#333",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "/static/images/index.png",
-        "selectedIconPath": "/static/images/index-active.png",
+        "iconPath": "/static/images/index1.png",
+        "selectedIconPath": "/static/images/index1-active.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/car/car",
-        "iconPath": "/static/images/downline.png",
-        "selectedIconPath": "/static/images/downline-active.png",
+        "iconPath": "/static/images/car2.png",
+        "selectedIconPath": "/static/images/car2-active.png",
         "text": "店下爆品"
       },
       {
         "pagePath": "pages/classify/classify",
-        "iconPath": "/static/images/classify.png",
-        "selectedIconPath": "/static/images/classify-active.png",
+        "iconPath": "/static/images/classify1.png",
+        "selectedIconPath": "/static/images/classify1-active.png",
         "text": "分类"
       },
       {
+        "pagePath": "pages/tv/tv",
+        "iconPath": "/static/images/TV.png",
+        "selectedIconPath": "/static/images/TV-active.png",
+        "text": "直播"
+      },
+      {
         "pagePath": "pages/mine/mine",
-        "iconPath": "/static/images/my.png",
-        "selectedIconPath": "/static/images/my-active.png",
+        "iconPath": "/static/images/mine1.png",
+        "selectedIconPath": "/static/images/mine1-active.png",
         "text": "个人中心"
       }
     ]

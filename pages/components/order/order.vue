@@ -264,7 +264,9 @@
 				});
 			},
 			refundGoods(id){
-				
+				uni.navigateTo({
+					url:"/pages/components/refund/refund?id="+id
+				});
 			},
 		}
 	}

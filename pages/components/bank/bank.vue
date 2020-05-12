@@ -2,7 +2,7 @@
 	<view>
 		<view class="bank-box">
 			<view class="bank">
-				<block v-for="(item,index) in account_number_list" key="i">
+				<block v-for="(item,index) in account_number_list" :key="index">
 					<view class="bank-item">
 						<view class="card">
 							<text class="name">{{item.branch_bank_name}}</text>

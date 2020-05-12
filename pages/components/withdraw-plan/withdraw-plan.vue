@@ -2,12 +2,12 @@
 	<view style="background: #fff;">
 		<!-- 提现提示 -->
 		<view class="withdraw-plan">
-			<image src="/static/images/withdraw.png" mode=""></image>
-			<view class="bank"><text>零钱提现-到顺德农商银行(02020)</text></view>
-			<view class="money"><text>5050.00</text></view>
+			<image :src="$src+'/images/withdraw.png'" mode=""></image>
+			<view class="bank"><text>零钱提现-到{{bank_name}}({{account_number}})</text></view>
+			<view class="money"><text>{{cash}}</text></view>
 		</view>
 		<!-- 进度条 -->
-		<view class="notice-box">
+		<view class="notice-box" hidden>
 			<view class="notice">
 				<view class="notice-step" >
 					<view class="step">
@@ -33,19 +33,19 @@
 		<view class="plan">
 			<view class="plan-item">
 				<text>提现金额</text>
-				<text>￥5000.00</text>
+				<text>￥{{cash}}</text>
 			</view>
 			<view class="plan-item">
 				<text>申请时间</text>
-				<text>2020-4-21 10:00:00</text>
+				<text>{{ask_for_date}}</text>
 			</view>
 			<view class="plan-item">
 				<text>到账时间</text>
-				<text>2020-4-21 10:00:00</text>
+				<text>{{modify_date}}</text>
 			</view>
 			<view class="plan-item">
 				<text>提现银行</text>
-				<text>顺德农商银行</text>
+				<text>{{bank_name}}</text>
 			</view>
 		</view>
 		
@@ -54,11 +54,55 @@
 </template>
 
 <script>
+	import { request } from '../../request.js'
 	export default {
 		data() {
 			return {
-				
-			};
+				uid: '',
+				bank_name: '',
+				ask_for_date: '',
+				modify_date: '',
+				cash: '',
+				account_number: '',
+				$src: this.$src,
+				id: ''
+			}
+		},
+		onLoad(options) {
+			this.id = options.id;
+			console.log(options);
+			this.getInfo()
+			// uni.getStorage({
+			// 	key: 'uid',
+			// 	success: res => {
+			// 		console.log(res);
+			// 		this.uid = res.data;
+			// 		this.getInfo()
+			// 	}
+			// })
+		},
+		methods: {
+			// 获取提现列表
+			getInfo() {
+				let that = this;
+				request({
+					url: 'index.php?s=/wap/member/getMemberWithdrawInfo',
+					method: 'post',
+					data: {
+						id: this.id,
+					}
+				}).then(res => {
+					console.log(res);
+					that.bank_name = res.data.msg.bank_name;
+					that.ask_for_date = res.data.msg.ask_for_date;
+					that.modify_date = res.data.msg.modify_date;
+					that.cash = res.data.msg.cash;
+					that.account_number = res.data.msg.account_number;
+					that.status = res.data.msg.status;
+					console.log(res.data.msg)
+				})
+			},
+			
 		}
 	}
 </script>
@@ -163,3 +207,4 @@
 		}
 	}
 </style>
+

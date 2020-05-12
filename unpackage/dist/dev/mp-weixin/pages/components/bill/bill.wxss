@@ -96,8 +96,8 @@ picker-view {
                 align-items: center;
 }
 .data-time .data .method .icoming image {
-          width: 40rpx;
-          height: 40rpx;
+          width: 20rpx;
+          height: 20rpx;
 }
 .shop-list {
   box-sizing: border-box;

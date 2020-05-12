@@ -1,0 +1,14 @@
+
+.qrcode{
+	width:80%;
+	margin: 30rpx 10%;
+}
+.text{
+	width:80%;
+	margin:10rpx 10%;
+	font-size: 36rpx;
+	color:#888;
+	line-height: 60rpx;
+	text-align: center;
+}
+

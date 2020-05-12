@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="banner">
-			<image src="../../../static/images/discount.jpg" mode=""></image>
+			<image :src="$src+'/images/discount.jpg'" mode=""></image>
 		</view>
 		<view>
 			<scroll-view scroll-x="true" class="scrollX">
@@ -27,7 +27,7 @@
 					@click="handleDetail(item.goods_id)">
 						<view class="product-item">
 							<image :src="item.pic_cover_small"></image>
-							<image src="/static/images/overflow.png" style="position: absolute;left: 0;top: 0;width: 120rpx;height: 40rpx;"></image>
+							<image :src="$src+'/images/overflow.png'" style="position: absolute;left: 0;top: 0;width: 120rpx;height: 40rpx;"></image>
 						</view>
 						<view class="product-main">
 								<view class="product-title">
@@ -101,6 +101,7 @@
 				// 请求的页数(默认为1)
 				page: 1,
 				flag: true,
+				$src: this.$src
 			}
 		},
 		onLoad(options) {

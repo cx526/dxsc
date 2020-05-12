@@ -9,7 +9,12 @@
 			<view class="goods-list" >
 				<block v-for="(item,index) in vip_product" :key="index">
 					<view class="goods" @click="goDetail(index)">
-						<image :src="item.pic_cover_small"></image>
+						<!-- #ifndef H5 -->
+						<image :src="item.pic_cover_small" class="image"></image>
+						<!-- #endif -->
+						<!-- #ifdef H5 -->
+						<easy-loadimage :scroll-top="scrollTop" :image-src="item.pic_cover_small" class="image"></easy-loadimage>
+						<!-- #endif -->
 						<view class="goods-title">
 							<text>{{item.goods_name}}</text>
 						</view>
@@ -19,14 +24,9 @@
 								<text class="new-price">优惠价：{{item.price}}</text>
 							</view>
 							<view class="old-price">
-								<!-- <text class="new-unit"></text> -->
 								<text>市场价：{{item.market_price}}</text>
 							</view>
-							<!-- <view>
-								<text style="color: #B7B7B7;font-size: 18rpx;">已售{{item.sales}}</text>
-							</view> -->
 						</view>
-						<!-- <image src="/static/images/red-tuijian%20.png" style="position: absolute;left: 0;top: 0;width: 40rpx;height: 40rpx;"></image> -->
 					</view>
 				</block>
 			</view>
@@ -34,23 +34,32 @@
 	</view>
 	
 	<view class="vip-get" style="margin: 50rpx 0;">
-		<image src="/static/images/member.png" @click="goMoney" ></image>
+		<image :src="$src+'/images/member.png'" @click="goMoney" ></image>
 	</view>
 	
 </view>
 </template>
 
 <script>
+	//#ifdef H5
+	import easyLoadimage from '../../../components/easy-loadimage/easy-loadimage.vue'
+	//#endif
 	export default {
 		props: {
 			topic: String,
-			vip_product: Array
+			vip_product: Array,
+			scrollTop: Number
 		},
 		data() {
 			return {
-				
+				$src: this.$src
 			}
 		},
+		//#ifdef H5
+		components: {
+			easyLoadimage
+		},
+		//#endif
 		methods: {
 			goDetail(index) {
 				let id = this.vip_product[index].goods_id
@@ -93,7 +102,7 @@
 					box-sizing: border-box;
 					width: 210rpx;
 					position: relative;
-					image {
+					.image {
 						display: block;
 						width: 100%;
 						height: 208rpx;
@@ -152,7 +161,7 @@
 		font-weight: normal !important;
 		color: #727272 !important;
 	}
-	scroll-view [style*="overflow"]::-webkit-scrollbar {  
-	  display: none;  
-	}
+	// scroll-view [style*="overflow"]::-webkit-scrollbar {  
+	//   display: none;  
+	// }
 </style>

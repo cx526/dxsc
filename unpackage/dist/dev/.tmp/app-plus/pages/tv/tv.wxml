@@ -1,0 +1,1 @@
+<view class="bg" style="{{'height:'+(clientHeight+'px')+';'}}"><image src="/static/images/TV-main.png" mode></image></view>

@@ -8,8 +8,9 @@
 			</view>
 			<block v-for="(item,n) in list" :key="n">
 				<view class="group-title spcial" style="color: #444444;">
-					<text class="number hidden">{{n}}</text>
-					<text class="name hidden">{{item.user_name}}</text>
+					<text class="number hidden">{{n+1}}</text>
+					<text class="name hidden" v-if="item.contacts_name">{{item.contacts_name}}</text>
+					<text class="name hidden" v-else>{{item.user_name}}</text>
 					<text class="message hidden">{{item.user_tel}}</text>
 					<!-- <image src="/static/images/icon-right.png" mode=""></image> -->
 				</view>

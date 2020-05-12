@@ -2,12 +2,12 @@
 	<view>
 		<view class="register">
 			<view class="logo">
-				<image src="/static/images/user-logo.png" mode=""></image>
+				<image :src="$src+'/images/user-logo.png'" mode=""></image>
 			</view>
 			<view class="form-list">
 
 				<view class="form-item">
-					<!-- <image src="/static/images/arrow-phone.png" mode=""></image> -->
+					<!-- <image :src="$src+'/images/arrow-phone.p'ng" mode=""></image> -->
 					<input 
 					type="text" value="" 
 					placeholder="请输入手机号" 
@@ -59,7 +59,8 @@
 				down: false,
 				again: false,
 				// 倒计时秒数
-				count: 60
+				count: 60,
+				$src: this.$src
 			};
 		},
 		methods: {

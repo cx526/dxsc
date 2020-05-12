@@ -271,12 +271,6 @@
 						"style" : {
 									"navigationBarTitleText":"员工管理"
 						}
-				},
-				{
-						"path" : "pages/components/wechatpay/applypay",
-						"style" : {
-									"navigationBarTitleText":"付款"
-						}
 				}
         ,{
             "path" : "pages/components/preson-status/preson-status",
@@ -402,6 +396,30 @@
 							"navigationBarTitleText":"提现列表"
 						}
         }
+        ,{
+            "path" : "pages/components/business-manage/business-manage",
+            "style" : {
+							"navigationBarTitleText":"商家管理"
+						}
+        }
+        ,{
+            "path" : "pages/components/business-manage/shop-setting/shop-setting",
+            "style" : {
+							"navigationBarTitleText":"店铺设置"
+						}
+        } 
+				,{
+            "path" : "pages/components/business-manage/business-deal/business-deal",
+            "style" : {
+							"navigationBarTitleText":"数据中心"
+						}
+        }
+				,{
+				    "path" : "pages/components/business-manage/business-finance/business-finance",
+				    "style" : {
+							"navigationBarTitleText":"财务管理"
+						}
+				}
     ],
 	"tabBar": {
 			"color":"#676C74",

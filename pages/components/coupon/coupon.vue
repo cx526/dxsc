@@ -7,7 +7,7 @@
 					<image :src="$api + userInfo.user_headimg"></image>
 				</view>
 				<view v-else>
-					<image src="/static/images/shop-logo.png" mode=""></image>
+					<image :src="$src+'/images/shop-logo.png'" mode=""></image>
 				</view>
 				<text v-if="userInfo">{{userInfo.nick_name}}</text>
 				<text v-else @click="goLogin()">请先登录</text>
@@ -22,7 +22,7 @@
 		</view>
 		<!-- banner图 -->
 		<view class="banner">
-			<image src="/static/images/discount-01.png" mode=""></image>
+			<image :src="$src+'/images/discount-01.png'" mode=""></image>
 		</view>
 		<!-- 产品推荐 -->
 		<view class="product-box">
@@ -43,11 +43,11 @@
 							<view class="price">
 								<view>
 									<text style="color: #FE1E1C;">￥{{item.price}}</text>
-									<text style="font-size: 22rpx;color: #DCDCDC;text-decoration: line-through;margin-left: 8rpx;">￥399</text>
+									<text style="font-size: 22rpx;color: #DCDCDC;text-decoration: line-through;margin-left: 8rpx;">￥{{item.market_price}}</text>
 								</view>
 								<view style="background: #FE1E1C;padding: 0 20rpx;border-radius: 30rpx;">
 									<text style="color: #fff;font-size: 24rpx;">抢购</text>
-									<image src="/static/images/icon-right.png" mode="" style="width: 20rpx;height: 20rpx;"></image>
+									<image :src="$src+'/images/icon-right.png'" mode="" style="width: 20rpx;height: 20rpx;"></image>
 								</view>
 							</view>
 						</view>
@@ -73,7 +73,8 @@
 				page: 1,
 				flag: true,
 				$api: this.$api,
-				loading: false
+				loading: false,
+				$src: this.$src
 			};
 		},
 		components:{

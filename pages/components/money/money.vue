@@ -25,11 +25,11 @@
 			<block v-for="(item,index) in list" :key="index">
 				<view class="list-item" hover-class="click" @click="handleClick(index)">
 					<view style="display: flex;align-items: center;">
-						<image src="/static/images/qianbao.png" mode="" style="width: 50rpx;height: 50rpx;"></image>
+						<image :src="$src+'/images/qianbao.png'" mode="" style="width: 50rpx;height: 50rpx;"></image>
 						<text style="margin-left: 16rpx;">{{item.name}}</text>
 					</view>
 					<view>
-						<image src="/static/images/icon-right.png" mode="" style="position: relative;top: 8rpx;"></image>
+						<image :src="$src+'/images/icon-right.png'" mode="" style="position: relative;top: 8rpx;"></image>
 					</view>
 				</view>
 			</block>
@@ -66,7 +66,8 @@
 				],
 				// 储存用户个人余额
 				res:'',
-				user_balance: ''
+				user_balance: '',
+				$src: this.$src
 			}
 		},
 		onLoad() {

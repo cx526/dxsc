@@ -1,0 +1,2 @@
+setCssToHead(["@charset \x22UTF-8\x22;\n.",[1],"bg { background: url(https://www.dxsc.vip/images/TV-background.png) no-repeat; background-size: 100% 100%; box-sizing: border-box; }\n.",[1],"bg wx-image { height: 90%; position: absolute; left: 53%; top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }\n",],undefined,{path:"./pages/tv/tv.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/tv/tv.wxml') } }));

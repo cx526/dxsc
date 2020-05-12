@@ -38,7 +38,7 @@
 						未绑定银行卡,点击添加!
 					</view>
 					<view>
-						<image src="/static/images/icon-right.png"></image>
+						<image :src="$src+'/images/icon-right.png'"></image>
 					</view>
 				</view>
 			</view>
@@ -66,7 +66,7 @@
 				tixian_l:false,
 				hasBankAccount:false,//是否存在银行卡
 				tixian_type:0,//判断提现类型 0银行卡,1微信
-
+				$src: this.$src
 			};
 		},
 		onShow() {

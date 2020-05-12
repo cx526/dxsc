@@ -60,13 +60,14 @@
     display: flex;
     -webkit-flex-wrap: wrap;
             flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
 }
 .collect-box .collect .collect-item {
       padding-bottom: 24rpx;
       box-sizing: border-box;
       width: 50%;
-      border-right: 1px solid #E5E5E5;
-      border-bottom: 1px solid #E5E5E5;
       position: relative;
 }
 .collect-box .collect .collect-item .radio {
@@ -88,16 +89,17 @@
 .collect-box .collect .collect-item .title {
         font-size: 30rpx;
         box-sizing: border-box;
-        padding: 0 24rpx;
         color: #444444;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
 }
 .collect-box .collect .collect-item .price {
-        font-size: 30rpx;
+        font-size: 26rpx;
         box-sizing: border-box;
-        padding: 0 24rpx;
+        color: #FC3D3C;
+        font-weight: 700;
+        margin-right: 5px;
 }
 .collect-box .collect .collect-item .price text:nth-child(2) {
           font-size: 26rpx;

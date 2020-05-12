@@ -4,7 +4,7 @@
 		<view class="classify-search">
 			<view class="search">
 				<view class="search-input">
-					<image src="/static/images/search.png"></image>
+					<image :src="$src+'/images/search.png'"></image>
 					<input type="text"  placeholder="输入您要搜索的宝贝.." 
 					placeholder-class="placeholder" @input="handleSearch($event)"
 					/>
@@ -35,7 +35,7 @@
 					<block v-for="(item,index) in onLineGoods" :key="index">
 						<view class="online-item" @click="handleDetail(item.goods_id)">
 							<view class="online-show">
-								<image :src="item.pic_cover_micro"></image>
+								<image :src="item.pic_cover_micro" lazy-load></image>
 							</view>
 							<view class="online-des">
 								<view class="online-title">
@@ -103,7 +103,8 @@
 				// 搜索内容
 				searchText: '',
 				// 加载图
-				loading: false
+				loading: false,
+				$src: this.$src
 			};
 		},
 		components: {

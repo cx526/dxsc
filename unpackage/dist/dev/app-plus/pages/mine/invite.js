@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"qrcode{ width:80%; margin: ",[0,30]," 10%; }\n.",[1],"text{ width:80%; margin:",[0,10]," 10%; font-size: ",[0,36],"; color:#888; line-height: ",[0,60],"; text-align: center; }\n",],undefined,{path:"./pages/mine/invite.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/mine/invite.wxml') } }));

@@ -1,0 +1,1 @@
+<view><button type="warn" data-event-opts="{{[['tap',[['getWechatPay',['$event']]]]]}}" bindtap="__e">确认支付</button></view>

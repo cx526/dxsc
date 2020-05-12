@@ -2,12 +2,22 @@
 	<view>
 		<view class="choose-box" style="">
 			<block v-for="(item,index) in chooseList" :key="index">
+				<!-- #ifdef H5 || APP-PLUS -->
 				<view class="choose" @click="choose(index)">
 					<view class="item">
 						<image :src="item.src" :style="item.WH"></image>
 						<view class="context"><text>{{item.text}}</text></view>
 					</view>
 				</view>
+				<!-- #endif -->
+				<!-- #ifndef H5 || APP-PLUS -->
+				<view class="choose" @click="choose(index)" v-if="index < 7">
+					<view class="item">
+						<image :src="item.src" :style="item.WH"></image>
+						<view class="context"><text>{{item.text}}</text></view>
+					</view>
+				</view>
+				<!-- #endif -->
 			</block>
 		</view>
 	</view>
@@ -15,7 +25,9 @@
 </template>
 
 <script>
+	//#ifdef H5
 	import wechat from '../../../common/wechat.js'
+	//#endif 
 	import { mapMutations } from 'vuex'
 	export default {
 		props: {
@@ -33,11 +45,20 @@
 			choose(index) {
 				switch (index) {
 					case 0:
+					//#ifdef H5
 					uni.showToast({
 						title: '启动扫一扫中',
 						icon: 'loading'
 					});
 						wechat.sacn(() => {uni.hideToast()});
+					//#endif
+					//#ifndef H5
+					uni.scanCode({
+						success: () => {
+							console.log('扫码调取成功')
+						}
+					})
+					//#endif
 					break;
 					case 1:
 					uni.navigateTo({

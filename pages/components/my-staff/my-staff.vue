@@ -3,7 +3,7 @@
 		<!-- 搜索框 -->
 		<view class="search-box">
 			<view class="search">
-				<image src="/static/images/search.png" mode=""></image>
+				<image :src="$src+'/images/search.png'" mode=""></image>
 				<input type="text" placeholder="搜索我的员工" @confirm="search"/>
 			</view>
 		</view>
@@ -32,7 +32,7 @@
 				<text class="number hidden">{{index+1}}</text>
 				<text class="name hidden">{{item.nick_name}}</text>
 				<text class="message hidden">{{item.user_tel}}</text>
-				<image src="/static/images/icon-right.png" mode=""></image>
+				<image :src="$src+'/images/icon-right.png'" mode=""></image>
 			</view>
 			</block>
 		</view>
@@ -47,6 +47,7 @@
 				list:[],
 				count:0,
 				newadd:0,
+				$src: this.$src
 			};
 		},
 		onLoad(){

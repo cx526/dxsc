@@ -24,41 +24,47 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-page.data-v-5b62f3ae {
+page.data-v-2e390d8a {
   background: #f4f4f4;
 }
-.noLogin.data-v-5b62f3ae {
+.noLogin.data-v-2e390d8a {
   box-sizing: border-box;
 }
-.noLogin .logo.data-v-5b62f3ae {
+.noLogin .logo.data-v-2e390d8a {
     width: 220rpx;
     height: 170rpx;
     margin: 0 auto;
     padding-top: 80rpx;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+            flex: 1;
 }
-.noLogin .logo image.data-v-5b62f3ae {
+.noLogin .logo image.data-v-2e390d8a {
       width: 100%;
       height: 100%;
 }
-.noLogin .des.data-v-5b62f3ae {
+.noLogin .des.data-v-2e390d8a {
     font-size: 33rpx;
 }
-.noLogin .des view.data-v-5b62f3ae {
+.noLogin .des view.data-v-2e390d8a {
       text-align: center;
       color: #C8C7CC;
 }
-.noLogin .btn.data-v-5b62f3ae {
+.noLogin .btn.data-v-2e390d8a {
     position: absolute;
     bottom: 110rpx;
     left: 0;
     width: 100%;
     box-sizing: border-box;
 }
-.noLogin .btn .login.data-v-5b62f3ae, .noLogin .btn .register.data-v-5b62f3ae {
+.noLogin .btn .login.data-v-2e390d8a, .noLogin .btn .register.data-v-2e390d8a {
       box-sizing: border-box;
       height: 90rpx;
 }
-.noLogin .btn .login button.data-v-5b62f3ae, .noLogin .btn .register button.data-v-5b62f3ae {
+.noLogin .btn .login button.data-v-2e390d8a, .noLogin .btn .register button.data-v-2e390d8a {
         width: 60%;
         height: 100%;
         text-align: center;
@@ -66,51 +72,105 @@ page.data-v-5b62f3ae {
         color: #C8C7CC;
         border-radius: 60rpx;
 }
-.noLogin .btn .login.data-v-5b62f3ae {
+.noLogin .btn .login.data-v-2e390d8a {
       margin-bottom: 24rpx;
 }
-.noLogin .btn .login button.data-v-5b62f3ae {
+.noLogin .btn .login button.data-v-2e390d8a {
         box-sizing: border-box;
         border: 1px solid #fff;
 }
-.noLogin .btn .login button.data-v-5b62f3ae:after {
+.noLogin .btn .login button.data-v-2e390d8a:after {
         border: none;
 }
-.noLogin .btn .register button.data-v-5b62f3ae {
+.noLogin .btn .register button.data-v-2e390d8a {
       background: #F14B64;
       color: #fff;
 }
-.Login-box.data-v-5b62f3ae {
+.Login-box.data-v-2e390d8a {
   box-sizing: border-box;
 }
-.Login-box .user-logo.data-v-5b62f3ae {
-    box-sizing: border-box;
-    height: 320rpx;
-    background: #F8F8F8;
-    text-align: center;
-    padding-top: 12rpx;
+.Login-box .user-logo.data-v-2e390d8a {
+    background: url(https://www.dxsc.vip/images/order-header.png) no-repeat;
+    background-size: cover;
+    height: 240rpx;
 }
-.Login-box .user-logo .logo.data-v-5b62f3ae {
+.Login-box .user-logo .logo.data-v-2e390d8a {
       box-sizing: border-box;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      padding: 0 40rpx;
+      padding-top: 24rpx;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+              align-items: center;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+              justify-content: space-between;
 }
-.Login-box .user-logo .logo image.data-v-5b62f3ae {
-        border-radius: 50%;
-        width: 150rpx;
-        height: 150rpx;
+.Login-box .user-logo .logo .user-img.data-v-2e390d8a {
+        width: 100rpx;
+        height: 100rpx;
+        margin-right: 16rpx;
 }
-.Login-box .user-logo .logo text.data-v-5b62f3ae {
-        font-size: 36rpx;
-        color: #999;
-        display: block;
+.Login-box .user-logo .logo .user-img image.data-v-2e390d8a {
+          width: 100rpx;
+          height: 100rpx;
+          border-radius: 50%;
 }
-.Login-box .order-box.data-v-5b62f3ae {
+.Login-box .user-logo .logo .user-main.data-v-2e390d8a {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+                flex-direction: column;
+        color: #080409;
+        font-size: 26rpx;
+}
+.Login-box .user-logo .logo .money.data-v-2e390d8a {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+}
+.Login-box .user-logo .logo .money view.data-v-2e390d8a {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+                  flex-direction: column;
+          font-size: 24rpx;
+          -webkit-box-pack: center;
+          -webkit-justify-content: center;
+                  justify-content: center;
+          margin-right: 30rpx;
+          text-align: center;
+}
+.Login-box .user-logo .logo .money view.data-v-2e390d8a:last-child {
+          margin-right: 0;
+}
+.Login-box .user-logo .user-member.data-v-2e390d8a {
+      height: 90rpx;
+      width: 100%;
+      margin-top: 46rpx;
+      box-sizing: border-box;
+      padding: 0 30rpx;
+}
+.Login-box .user-logo .user-member image.data-v-2e390d8a {
+        width: 100%;
+        height: 100%;
+}
+.Login-box .order-box.data-v-2e390d8a {
     box-sizing: border-box;
     border-bottom: 1px solid #E7E7E7;
     line-height: 90rpx;
     padding: 0 30rpx;
     background: #fff;
 }
-.Login-box .order-box .order.data-v-5b62f3ae {
+.Login-box .order-box .order.data-v-2e390d8a {
       box-sizing: border-box;
       display: -webkit-box;
       display: -webkit-flex;
@@ -119,11 +179,11 @@ page.data-v-5b62f3ae {
       -webkit-align-items: center;
               align-items: center;
 }
-.Login-box .order-box .order image.data-v-5b62f3ae:nth-child(1) {
+.Login-box .order-box .order image.data-v-2e390d8a:nth-child(1) {
         width: 50rpx;
         height: 50rpx;
 }
-.Login-box .order-box .order text.data-v-5b62f3ae {
+.Login-box .order-box .order text.data-v-2e390d8a {
         -webkit-box-flex: 1;
         -webkit-flex: 1;
                 flex: 1;
@@ -131,14 +191,13 @@ page.data-v-5b62f3ae {
         padding-left: 12rpx;
         font-size: 30rpx;
 }
-.Login-box .order-box .order image.data-v-5b62f3ae:nth-child(3) {
+.Login-box .order-box .order image.data-v-2e390d8a:nth-child(3) {
         width: 40rpx;
         height: 40rpx;
 }
-.Login-box .order-list.data-v-5b62f3ae {
+.Login-box .order-list.data-v-2e390d8a {
     box-sizing: border-box;
     background: #fff;
-    height: 150rpx;
     box-sizing: border-box;
     display: -webkit-box;
     display: -webkit-flex;
@@ -147,22 +206,23 @@ page.data-v-5b62f3ae {
     -webkit-align-items: center;
             align-items: center;
 }
-.Login-box .order-list .order-item.data-v-5b62f3ae {
+.Login-box .order-list .order-item.data-v-2e390d8a {
       box-sizing: border-box;
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-              flex: 1;
+      margin-bottom: 40rpx;
       text-align: center;
+      width: 25%;
+      -webkit-flex-shrink: 0;
+              flex-shrink: 0;
 }
-.Login-box .order-list .order-item .order-img.data-v-5b62f3ae {
+.Login-box .order-list .order-item .order-img.data-v-2e390d8a {
         box-sizing: border-box;
         position: relative;
 }
-.Login-box .order-list .order-item .order-img image.data-v-5b62f3ae {
+.Login-box .order-list .order-item .order-img image.data-v-2e390d8a {
           width: 50rpx;
           height: 50rpx;
 }
-.Login-box .order-list .order-item .order-img .order-icon.data-v-5b62f3ae {
+.Login-box .order-list .order-item .order-img .order-icon.data-v-2e390d8a {
           position: absolute;
           left: 52%;
           top: -4rpx;
@@ -170,15 +230,15 @@ page.data-v-5b62f3ae {
           width: 32rpx;
           height: 32rpx;
           line-height: 32rpx;
-          background: #f00;
+          background: #FED940;
           color: #fff;
           font-size: 20rpx;
           border-radius: 50%;
 }
-.Login-box .order-list .order-item .order-text.data-v-5b62f3ae {
+.Login-box .order-list .order-item .order-text.data-v-2e390d8a {
         font-size: 26rpx;
 }
-.Login-box .line.data-v-5b62f3ae {
+.Login-box .line.data-v-2e390d8a {
     box-sizing: border-box;
     height: 18rpx;
     background: #EFEFF4;

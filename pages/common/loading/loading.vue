@@ -1,11 +1,18 @@
 <template>
 	<view>
 		<!-- <image src="/static/images/loading01.jpg" class="loading"></image> -->
-		<image src="/static/images/loading.gif" class="loading"></image>
+		<image :src="$src+'/images/loading.gif'" class="loading"></image>
 	</view>
 </template>
 
 <script>
+	export default {
+		data() {
+			return {
+				$src: this.$src
+			}
+		}
+	}
 </script>
 
 <style>

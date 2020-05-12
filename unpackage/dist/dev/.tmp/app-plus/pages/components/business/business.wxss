@@ -94,19 +94,26 @@
 }
 .deal-box {
   box-sizing: border-box;
+  padding-bottom: 196rpx;
+  color: #444 !important;
 }
 .deal-box .deal-title {
     line-height: 70rpx;
     font-size: 30rpx;
     text-align: center;
     border-bottom: 1px solid #E0E0E0;
+    color: #444 !important;
 }
 .deal-box .deal-context {
     box-sizing: border-box;
     padding: 20rpx;
-    color: #E0E0E0;
+    color: #444 !important;
     font-size: 28rpx;
-    text-align: center;
+    text-align: left;
+    overflow-y: scroll;
+}
+.deal-box .deal-context view {
+      text-align: left;
 }
 .deal-box .deal-agree {
     font-size: 18rpx;
@@ -275,12 +282,21 @@
   font-size: 28rpx;
 }
 .bActive {
-  border-color: #B4302D !important;
+  border-color: #FED940 !important;
 }
 .lActive {
-  background: #B4302D !important;
+  background: #FED940 !important;
 }
 .bgActive {
-  background: #B4302D !important;
+  background: #FED940 !important;
+}
+.topText {
+  margin-top: 24rpx;
+}
+.fontWeight {
+  font-weight: 700;
+}
+scroll-view text {
+  color: #444;
 }
 

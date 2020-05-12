@@ -6,7 +6,7 @@
 				<text>充值方式</text>
 				<view>
 					<text>微信支付</text>
-					<image src="/static/images/icon-right.png" mode=""></image>
+					<image :src="$src+'/images/icon-right.png'" mode=""></image>
 				</view>
 			</view>
 		</view>
@@ -63,6 +63,7 @@
 						face: 600
 					},
 				],
+				$src: this.$src
 			};
 		},
 
@@ -74,6 +75,10 @@
 			},
 			// 充值
 			chongzhi(){
+				uni.setStorage({
+					key: 'price',
+					data: this.currentFace
+				});
 				request({
 					url:"index.php?s=/wap/member/userRechage",
 					data:{money:this.currentFace},

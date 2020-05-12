@@ -1,15 +1,19 @@
 <template>
 	<view class="bg" :style="{height: clientHeight + 'px'}">
-		<image src="/static/images/TV-main.png" mode=""></image>
+		<image :src="$src+'/images/TV-main.png'" mode=""></image>
+		<!-- <button type="default" @click="goPay">支付</button> -->
 	</view>
+	
 	
 </template>
 
 <script>
+	import { mapMutations } from 'vuex'
 	export default {
 		data() {
 			return {
-				clientHeight: ''
+				clientHeight: '',
+				$src: this.$src
 			};
 		},
 		onLoad() {
@@ -19,6 +23,15 @@
 					this.clientHeight = res.windowHeight;
 				}
 			})
+		},
+		methods: {
+			...mapMutations(["changePrice"]),
+			goPay() {
+				this.changePrice({price: 30});
+				uni.navigateTo({
+					url: '../components/wechatpay/wechatpay'
+				})
+			}
 		}
 	}
 </script>

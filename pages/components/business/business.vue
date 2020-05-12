@@ -606,7 +606,7 @@
 							<image v-if="frontImg" 
 							style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;z-index: 99;" :src="$api + frontImg"></image>
 							<view class="photo-img">
-								<image src="/static/images/increment.png"></image>
+								<image :src="$src+'/images/increment.png'"></image>
 							</view>
 							<view class="photo-context">
 								<text>身份证正面照片</text>
@@ -616,7 +616,7 @@
 							<image v-if="backImg"
 							style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;z-index: 99;" :src="$api + backImg"></image>
 							<view class="photo-img">
-								<image src="/static/images/increment.png"></image>
+								<image :src="$src+'/images/increment.png'"></image>
 							</view>
 							<view class="photo-context">
 								<text>身份证反面照片</text>
@@ -626,7 +626,7 @@
 							<image v-if="shareImg"
 							style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;z-index: 99;" :src="$api + shareImg"></image>
 							<view class="photo-img">
-								<image src="/static/images/increment.png"></image>
+								<image :src="$src+'/images/increment.png'"></image>
 							</view>
 							<view class="photo-context">
 								<text>手持身份证照片</text>
@@ -765,15 +765,6 @@
 						/>
 					</view>
 				</view>
-				<!-- <view class="company-item">
-					<view class="item-left">
-						<text>电子邮箱</text>
-					</view>
-					<view class="item-right" style="text-align: right;">
-						<input type="text" name="email" v-model="email"
-						placeholder="请输入您的电子邮箱" placeholder-style="font-size:30rpx;color: #BDBDBD;"/>
-					</view>
-				</view> -->
 				<view class="cutLine"></view>
 				<view class="company-item">
 					<view class="item-left">
@@ -808,7 +799,7 @@
 						<image v-if="businessImg"
 						style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;z-index: 99;" :src="$api + businessImg"></image>
 									<view class="photo-img">
-										<image src="/static/images/increment.png"></image>
+										<image :src="$src+'/images/increment.png'"></image>
 									</view>
 									<view class="photo-context">
 										<text>图片清晰，文字可辨</text>
@@ -1035,6 +1026,7 @@
 				gradeIndex: 0,
 				shop_type_id: '',
 				shop_type_name:'',
+				$src: this.$src
 			};
 		},
 		onLoad() {
@@ -1106,20 +1098,6 @@
 					})
 					return
 				}
-				// if(!this.shop_grade_name) {
-				// 	uni.showToast({
-				// 		title: '请填写店铺等级',
-				// 		icon: 'none'
-				// 	})
-				// 	return
-				// }
-				// if(!this.shop_type_name) {
-				// 	uni.showToast({
-				// 		title: '请填写店铺类型',
-				// 		icon: 'none'
-				// 	})
-				// 	return
-				// }
 				// 提交参数
 				var company_name=this.corporate;
 				var company_address_detail=this.address;
@@ -1271,6 +1249,10 @@
 			},
 			// 付款
 			pay() {
+				uni.setStorage({
+					key: 'price',
+					data: 600
+				})
 				uni.getStorage({
 					key: 'token',
 					fail: res => {

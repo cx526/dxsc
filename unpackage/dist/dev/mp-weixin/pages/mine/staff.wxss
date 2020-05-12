@@ -1,0 +1,110 @@
+
+.toolbar{
+	width:100%;
+	padding:0 2%;
+	line-height: 80rpx;
+	border-bottom: 1rpx #eee solid;
+	overflow: hidden;
+}
+.toolbar-left{
+	color:#888;
+	font-size: 30rpx;
+	float:left;
+}
+.toolbar-right-btn{
+	font-size: 30rpx;
+	float: right;
+	padding:0 30rpx;
+	background-color: rgba(254,217,64,1);
+	color:#fff;
+}
+.list{
+	width:100%;
+	overflow: hidden;
+}
+.list-item{
+	width:100%;
+	padding:15rpx 2%;
+	overflow: hidden;
+	border-bottom: 1rpx #eee solid;
+}
+.list-item-left{
+	float: left;
+	width:21%;
+	border-right: 1rpx #eee solid;
+	padding:0 1%;
+	overflow: hidden;
+	font-size: 30rpx;
+	color:#888;
+}
+.list-item-left-avatar{
+	border-radius: 5rpx;
+	display: block;
+	width:100rpx;
+	height: 100rpx;
+	margin: 10rpx auto;
+}
+.list-item-left-name{
+	line-height: 60rpx;
+	text-align: center;
+}
+.list-item-right{
+	float: left;
+	width:71%;
+	padding:0 2%;
+	overflow: hidden;
+	font-size: 30rpx;
+	line-height: 50rpx;
+	color:#888;
+}
+.list-item-right-item{
+	float: left;
+	width:100%;
+	text-align: left;
+}
+.list-item-right-item text{
+	color:#F76260;
+}
+.list-item-right-item input{
+	vertical-align: middle;
+	font-size: 30rpx;
+	display: inline-block;
+	line-height: 50rpx;
+	color:#F76260;
+}
+.list-item-right-block{
+	width:96%;
+	padding:0 2%;
+	overflow: hidden;
+}
+.list-item-right-btn{
+	margin-top: 10rpx;
+	display: inline-block;
+	height: 50rpx;
+	line-height: 50rpx;
+	border-radius: 5rpx;
+	padding:0 30rpx;
+	background-color: #10AEFF;
+	color:#fff;
+}
+.list-item-right-item .label{
+	width:48%;
+	padding-right: 2%;
+	float: left;
+	text-align: left;
+	line-height: 50rpx;
+	color:#888;
+}
+.list-item-right-item .input{
+	width:45%;
+	padding:0 2%;
+	border: 1px solid #eee;
+	float: left;
+	text-align: left;
+	line-height: 50rpx;
+	color:#F76260;
+}
+.save-btn{
+	background-color: rgba(254,217,64,1);
+}
+

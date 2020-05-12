@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "个人中心",
-  "usingComponents": {}
+  "navigationBarBackgroundColor": "#FED940",
+  "usingComponents": {
+    "loading": "/pages/common/loading/loading"
+  }
 }

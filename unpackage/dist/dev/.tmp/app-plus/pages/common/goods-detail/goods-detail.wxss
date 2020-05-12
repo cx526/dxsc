@@ -40,10 +40,11 @@ page {
 .swiper-box swiper swiper-item {
       box-sizing: border-box;
       width: 100%;
+      height: 100%;
 }
 .swiper-box swiper swiper-item view {
         box-sizing: border-box;
-        height: 350rpx;
+        height: 100%;
 }
 .swiper-box swiper swiper-item view image {
           width: 100%;
@@ -83,7 +84,6 @@ page {
         color: #686868;
         font-size: 30rpx;
         box-sizing: border-box;
-        margin-left: 8rpx;
 }
 .goods-info .goods-title .price {
       box-sizing: border-box;
@@ -112,6 +112,11 @@ page {
 .goods-info .goods-title .price view:last-child text {
           font-size: 18rpx;
           color: #AAAAAA;
+}
+.goods-info .goods-title .des {
+      font-size: 24rpx;
+      color: #A6A6A6;
+      margin-top: 20rpx;
 }
 .goods-info .goods-params {
     box-sizing: border-box;
@@ -181,7 +186,7 @@ page {
       border-right: 0;
 }
 .goods-sell .goods-nav .active {
-      color: #B4302D;
+      color: #fcc43d;
 }
 .goods-sell .goods-show {
     box-sizing: border-box;
@@ -317,12 +322,13 @@ page {
 }
 .footer-box {
   box-sizing: border-box;
-  height: 100rpx;
+  background: #fff;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   z-index: 90;
+  border-top: 1px solid #f1f1f1;
 }
 .footer-box .footer {
     box-sizing: border-box;
@@ -330,6 +336,7 @@ page {
     display: -webkit-flex;
     display: flex;
     line-height: 100rpx;
+    height: 90rpx;
     -webkit-box-align: center;
     -webkit-align-items: center;
             align-items: center;
@@ -385,6 +392,21 @@ page {
 .footer-box .footer .collect view view text {
             font-size: 20rpx;
             color: #fff;
+}
+.footer-box .footer .collect view button {
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+          border: 0;
+          z-index: 9;
+          background: transparent;
+}
+.footer-box .footer .collect view button:after {
+          border: 0;
 }
 .footer-box .footer .cart {
       background: #6C2E2E;
@@ -468,20 +490,22 @@ page {
 }
 .show-box .show-info .show-title .title .name {
           font-size: 34rpx;
-          color: #444;
+          color: #333;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
           width: 100%;
           margin-top: 10rpx;
+          font-weight: 700;
 }
 .show-box .show-info .show-title .title .price {
           font-size: 48rpx;
           margin-top: 20rpx;
+          color: #C3000B;
 }
 .show-box .show-info .show-title .show-close {
-        width: 40rpx;
-        height: 40rpx;
+        width: 30rpx;
+        height: 30rpx;
         margin-top: 10rpx;
 }
 .show-box .show-info .show-title .show-close image {
@@ -546,18 +570,12 @@ page {
                 flex-wrap: nowrap;
 }
 .show-box .show-params .params-number .number-item .item {
-          height: 45rpx;
-          line-height: 45rpx;
+          height: 80rpx;
+          line-height: 90rpx;
           box-sizing: border-box;
           border: 1px solid #efefef;
           position: relative;
-          width: 45rpx;
-}
-.show-box .show-params .params-number .number-item .item text {
-            font-size: 24rpx;
-            position: absolute;
-            left: 17%;
-            top: 0;
+          width: 80rpx;
 }
 .show-box .show-params .params-number .number-item .item image {
             width: 30rpx;
@@ -586,5 +604,31 @@ page {
 .rich-img {
   width: 100% !important;
   height: 400px !important;
+}
+.shop-box {
+  box-sizing: border-box;
+  background: #fff;
+  padding: 40rpx 30rpx;
+  border-bottom: 1px solid #F1F1F1;
+}
+.shop-box .shop {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+}
+.shop-box .shop image {
+      width: 80rpx;
+      height: 80rpx;
+      margin-right: 16rpx;
+}
+.shop-box .shop .shop-title {
+      font-size: 30rpx;
+      color: #444;
 }
 

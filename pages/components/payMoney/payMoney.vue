@@ -8,7 +8,7 @@
 					<picker :range="payWay" :range-key="'name'" @change="changePay">
 						<text>{{payWay[payIndex].name}}</text>
 					</picker>
-					<image src="/static/images/icon-right.png" mode=""></image>
+					<image :src="$src+'/images/icon-right.png'" mode=""></image>
 				</view>
 			</view>
 		</view>
@@ -88,7 +88,8 @@
 					{name: '余额支付',value: 1}
 				],
 				payIndex: 0,
-				value: 0//默认微信支付
+				value: 0,//默认微信支付
+				$src: this.$src
 			};
 		},
 		onLoad() {

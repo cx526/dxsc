@@ -5,31 +5,33 @@
 			<view class="item" style="line-height: 200rpx;" @click="changeImg">
 				<text>头像</text>
 				<view>
-					<image v-if="avatar" class="headimgsize" :src="avatar" 
-					style="width: 145rpx;height: 145rpx;border-radius: 50%;margin-right: 28rpx;"></image>
-					<image v-else src="/static/images/icon-right.png" style="width: 30rpx;height: 30rpx;"></image>
-					
+					<image :src="$src+'/images/shop-logo.png'" mode="" v-if="avatar == 0"
+					style="width: 145rpx;height: 145rpx;border-radius: 50%;margin-right: 28rpx;">
+					</image>
+					<image v-else :src="baseURL + avatar" 
+					style="width: 145rpx;height: 145rpx;border-radius: 50%;margin-right: 28rpx;">
+					</image>
 				</view>
 			</view>
 			<view class="item" style="line-height: 90rpx;" @click="changeName">
 				<text>昵称</text>
 				<view>
 					<text>{{user_name}}</text>
-					<image src="/static/images/icon-right.png" style="width: 30rpx;height: 30rpx;"></image>
+					<image :src="$src+'/images/icon-right.png'" style="width: 30rpx;height: 30rpx;"></image>
 				</view>
 			</view>
 			<view class="item" style="line-height: 90rpx;" @click="reset()">
 				<text>密码</text>
 				<view>
 					<text style="margin-right: 28rpx;">修改</text>
-					<image src="/static/images/icon-right.png" style="width: 30rpx;height: 30rpx;"></image>
+					<image :src="$src+'/images/icon-right.png'" style="width: 30rpx;height: 30rpx;"></image>
 				</view>
 			</view>
 			<view class="item" style="line-height: 90rpx;" @click="setPassword">
 				<text>支付密码</text>
 				<view>
 					<text style="margin-right: 28rpx;">设置</text>
-					<image src="/static/images/icon-right.png" style="width: 30rpx;height: 30rpx;"></image>
+					<image :src="$src+'/images/icon-right.png'" style="width: 30rpx;height: 30rpx;"></image>
 				</view>
 			</view>
 		</view>
@@ -55,7 +57,8 @@
 					2:0
 				},
 				area:'',
-				$api: ''
+				$api: '',
+				$src: this.$src
 			};
 		},
 		onShow() {
@@ -79,7 +82,7 @@
 						method:"POST",
 					}).then(function(res){
 						that.user_name = res.data.member_name;
-						that.avatar = that.baseURL + res.data.member_img;
+						that.avatar = res.data.member_img;
 						that.phone = res.data.phone;
 						
 						let address = res.data.address;

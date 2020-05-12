@@ -29,39 +29,44 @@
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
-  padding: 36rpx 52rpx 50rpx 52rpx;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  border-top: 1px solid #F5F5F5;
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
+  padding: 20rpx 0;
+  flex-wrap: wrap;
 }
 .choose-box .choose {
     box-sizing: border-box;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-            flex: 1;
-    margin-right: 6rpx;
-    width: calc(20% - 5rpx);
+    width: 20%;
     height: 126rpx;
-    background: #F5F5F5;
+    margin-bottom: 10rpx;
 }
-.choose-box .choose view {
+.choose-box .choose .item {
       position: relative;
       top: 50%;
       -webkit-transform: translateY(-42%);
               transform: translateY(-42%);
       text-align: center;
 }
-.choose-box .choose view image {
+.choose-box .choose .item image {
         width: 50rpx;
         height: 50rpx;
 }
-.choose-box .choose view view {
+.choose-box .choose .item .context {
+        width: 100%;
         font-size: 20rpx;
         text-align: center;
         color: #626262;
-        margin-top: 10rpx;
+        position: absolute;
+        bottom: -30rpx;
+        left: 50%;
+        -webkit-transform: translateX(-51%);
+                transform: translateX(-51%);
 }
-.choose-box .choose:last-child {
+.choose-box .choose:nth-child(5n) {
     margin-right: 0;
 }
 

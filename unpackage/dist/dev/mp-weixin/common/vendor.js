@@ -1555,19 +1555,19 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 123:
+/***/ 121:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 124);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 122);
 
 
 /***/ }),
 
-/***/ 124:
+/***/ 122:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -1598,7 +1598,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 125);
+module.exports = __webpack_require__(/*! ./runtime */ 123);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -1615,7 +1615,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 125:
+/***/ 123:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -2477,9 +2477,9 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 15:
-/*!************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/store/workingstore/store/index.js ***!
-  \************************************************************************/
+/*!*********************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/版本/workingstore/store/index.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2494,9 +2494,15 @@ var store = new _vuex.default.Store({
     keywords: [],
     // 储存搜索结果
     searchResult: [],
-    $api: 'http://lfs.086soft.cn/',
+    $api: 'https://admin.dxsc.vip/',
     // 读取购物车有没有货品存在
-    goodsLength: false },
+    goodsLength: false,
+    // 存储用户点击的是哪个折扣
+    discount: 0,
+    // 储存推广uid
+    uid: '',
+    // 储存应付的金额
+    price: '' },
 
   mutations: {
     // 搜索历史
@@ -2526,7 +2532,18 @@ var store = new _vuex.default.Store({
     // 改变首页购物车图标
     getGoodsLength: function getGoodsLength(state, payload) {
       state.goodsLength = payload.data.goods_list.length > 0 ? true : false;
+    },
+    // 改变折扣状态
+    changeDiscount: function changeDiscount(state, payload) {
+      state.discount = payload.index;
+    },
+    // 改变价格
+    changePrice: function changePrice(state, payload) {
+      console.log(payload);
+      state.price = payload.price;
+      console.log(state.price);
     } },
+
 
   getters: {},
 
@@ -3505,9 +3522,9 @@ var index_esm = {
 /***/ }),
 
 /***/ 17:
-/*!**************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/store/workingstore/pages/request.js ***!
-  \**************************************************************************/
+/*!***********************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/版本/workingstore/pages/request.js ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3600,10 +3617,7 @@ function getToken() {
       success: function success(res) {
         token = res.data.token;
         var endTime = new Date().getTime() + 86400000;
-        uni.setStorage({
-          key: 'token',
-          data: Array(token, endTime) });
-
+        uni.setStorageSync("token", Array(token, endTime));
         resolve(token);
       } });
 
@@ -3614,14 +3628,15 @@ function getToken() {
 /***/ }),
 
 /***/ 18:
-/*!*************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/store/workingstore/common/index.js ***!
-  \*************************************************************************/
+/*!**********************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/版本/workingstore/common/index.js ***!
+  \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.API = void 0;var API = 'https://admin.dxsc.vip/';exports.API = API;
+Object.defineProperty(exports, "__esModule", { value: true });exports.SRC = exports.API = void 0;var API = 'https://admin.dxsc.vip/';exports.API = API;
+var SRC = 'https://www.dxsc.vip';exports.SRC = SRC;
 
 /***/ }),
 
@@ -9686,239 +9701,10 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 32:
-/*!**************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/store/workingstore/common/wechat.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-var _request = __webpack_require__(/*! ../pages/request.js */ 17);var jweixin = __webpack_require__(/*! ./weixin.js */ 33);var _default =
-{
-  //判断是否在微信中  
-  isWechat: function isWechat() {
-    var ua = window.navigator.userAgent.toLowerCase();
-    if (ua.match(/micromessenger/i) == 'micromessenger') {
-      // console.log('是微信客户端')
-      return true;
-    } else {
-      // console.log('不是微信客户端')
-      return false;
-    }
-  },
-  //初始化sdk配置  
-  initJssdkShare: function initJssdkShare(callback, url) {
-    (0, _request.request)({
-      url: 'index.php?s=/wap/index/apiGetWechatPackage' }).
-    then(function (res) {
-      if (res.data) {
-        jweixin.config({
-          debug: true,
-          appId: res.data.data.appId,
-          timestamp: res.data.data.jsTimesTamp,
-          nonceStr: res.data.data.jsNonceStr,
-          signature: res.data.data.jsSignature,
-          jsApiList: [
-          'checkJsApi',
-          'onMenuShareTimeline',
-          'onMenuShareAppMessage',
-          'getLocation'] });
-
-
-        //配置完成后，再执行分享等功能  
-        if (callback) {
-          callback(res.data);
-        }
-      }
-    });
-  },
-  initJssdk: function initJssdk(callback) {
-    (0, _request.request)({
-      url: 'index.php?s=/wap/index/apiGetWechatPackage',
-      data: {
-        url: window.location.href } }).
-
-    then(function (res) {
-      if (res.data) {
-        jweixin.config({
-          debug: true,
-          appId: res.data.data.appId,
-          timestamp: res.data.data.jsTimesTamp,
-          nonceStr: res.data.data.jsNonceStr,
-          signature: res.data.data.jsSignature,
-          jsApiList: [
-          'checkJsApi',
-          'getLocation',
-          'scanQRCode',
-          'getBrandWCPayRequest',
-          'chooseWXPay'] });
-
-
-        //配置完成后，再执行分享等功能  
-        if (callback) {
-          callback(res.data);
-        }
-      }
-    });
-  },
-  //初始化微信支付配置
-  initJssdkPay: function initJssdkPay(callback) {
-    (0, _request.request)({
-      url: 'index.php?s=/wap/index/apiGetWechatPackage',
-      data: {
-        url: window.location.href } }).
-
-    then(function (res) {
-      if (res.data) {
-        jweixin.config({
-          debug: true,
-          appId: res.data.data.appId,
-          timestamp: res.data.data.jsTimesTamp,
-          nonceStr: res.data.data.jsNonceStr,
-          signature: res.data.data.jsSignature,
-          jsApiList: [
-          'checkJsApi',
-          'onMenuShareTimeline',
-          'onMenuShareAppMessage',
-          'getLocation',
-          'chooseWXPay',
-          "getBrandWCPayRequest"] });
-
-
-        //配置完成后，再执行支付等功能  
-        if (callback) {
-          callback();
-        }
-      }
-    });
-  },
-  //在需要自定义分享的页面中调用  
-  share: function share(data, url) {
-    url = url ? url : window.location.href;
-    if (!this.isWechat()) {
-      return;
-    }
-    //每次都需要重新初始化配置，才可以进行分享  
-    this.initJssdkShare(function (signData) {
-      jweixin.ready(function () {
-        var shareData = {
-          title: data && data.title ? data.title : signData.site_name,
-          desc: data && data.desc ? data.desc : signData.site_description,
-          link: url,
-          imgUrl: data && data.img ? data.img : signData.site_logo,
-          success: function success(res) {
-            //用户点击分享后的回调，这里可以进行统计，例如分享送金币之类的  
-            // post('/api/member/share');
-          },
-          cancel: function cancel(res) {} };
-
-        //分享给朋友接口  
-        jweixin.onMenuShareAppMessage(shareData);
-        //分享到朋友圈接口  
-        jweixin.onMenuShareTimeline(shareData);
-      });
-    }, url);
-  },
-  //在需要定位页面调用
-  location: function location(callback) {
-    if (!this.isWechat()) {
-      console.log('不是微信客户端');
-      return;
-    }
-    console.info('定位');
-    this.initJssdk(function (res) {
-      jweixin.ready(function () {
-        console.info('定位ready');
-        jweixin.getLocation({
-          type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-          success: function success(res) {
-            console.log(res);
-            callback(res);
-          },
-          fail: function fail(res) {
-            console.log(res);
-          }
-          // complete:function(res){
-          //     console.log(res)
-          // }
-        });
-      });
-    });
-  },
-  sacn: function sacn(callback) {
-    if (!this.isWechat()) {
-      uni.showToast({
-        title: '请在微信里打开',
-        icon: 'none' });
-
-      return;
-    }
-    this.initJssdk(function (res) {
-      jweixin.ready(function () {
-        console.info('扫一扫ready');
-        jweixin.scanQRCode({
-          needResult: 0,
-          scanType: ["qrCode", "barCode"],
-          success: function success(res) {
-            var result = res.resultStr;
-          } });
-
-      });
-    });
-  },
-  //微信支付
-  wchatpay: function wchatpay(data) {
-    // if (!this.isWechat()) {
-    //     uni.showToast({
-    //     	title: '请在微信里打开',
-    //     	icon: 'none'
-    //     })
-    //     return;
-    // }
-    console.log(data);
-    this.initJssdk(function () {
-      var times = data.timeStamp;
-      jweixin.ready(function (res) {
-        jweixin.chooseWXPay({
-          appId: data.appId,
-          nonceStr: data.nonceStr,
-          package: data.package,
-          signType: data.signType,
-          paySign: data.paySign,
-          timestamp: data.timeStamp,
-          success: function success(res) {
-            alert("成功");
-          },
-          fail: function fail(res) {
-            alert("失败");
-          } });
-
-      });
-    });
-  } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 33:
-/*!**************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/store/workingstore/common/weixin.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var __WEBPACK_AMD_DEFINE_RESULT__;function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}!function (e, n) { true ? !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () {return n(e);}).call(exports, __webpack_require__, exports, module),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : undefined;}(window, function (o, e) {if (!o.jWeixin) {var _w;var n,c = { config: "preVerifyJSAPI", onMenuShareTimeline: "menu:share:timeline", onMenuShareAppMessage: "menu:share:appmessage", onMenuShareQQ: "menu:share:qq", onMenuShareWeibo: "menu:share:weiboApp", onMenuShareQZone: "menu:share:QZone", previewImage: "imagePreview", getLocation: "geoLocation", openProductSpecificView: "openProductViewWithPid", addCard: "batchAddCard", openCard: "batchViewCard", chooseWXPay: "getBrandWCPayRequest", openEnterpriseRedPacket: "getRecevieBizHongBaoRequest", startSearchBeacons: "startMonitoringBeacons", stopSearchBeacons: "stopMonitoringBeacons", onSearchBeacons: "onBeaconsInRange", consumeAndShareCard: "consumedShareCard", openAddress: "editAddress" },a = function () {var e = {};for (var n in c) {e[c[n]] = n;}return e;}(),i = o.document,t = i.title,r = navigator.userAgent.toLowerCase(),s = navigator.platform.toLowerCase(),d = !(!s.match("mac") && !s.match("win")),u = -1 != r.indexOf("wxdebugger"),l = -1 != r.indexOf("micromessenger"),p = -1 != r.indexOf("android"),f = -1 != r.indexOf("iphone") || -1 != r.indexOf("ipad"),m = (n = r.match(/micromessenger\/(\d+\.\d+\.\d+)/) || r.match(/micromessenger\/(\d+\.\d+)/)) ? n[1] : "",g = { initStartTime: L(), initEndTime: 0, preVerifyStartTime: 0, preVerifyEndTime: 0 },h = { version: 1, appId: "", initTime: 0, preVerifyTime: 0, networkType: "", isPreVerifyOk: 1, systemType: f ? 1 : p ? 2 : -1, clientVersion: m, url: encodeURIComponent(location.href) },v = {},S = { _completes: [] },y = { state: 0, data: {} };O(function () {g.initEndTime = L();});var I = !1,_ = [],w = (_w = { config: function config(e) {B("config", v = e);var t = !1 !== v.check;O(function () {if (t) M(c.config, { verifyJsApiList: C(v.jsApiList), verifyOpenTagList: C(v.openTagList) }, function () {S._complete = function (e) {g.preVerifyEndTime = L(), y.state = 1, y.data = e;}, S.success = function (e) {h.isPreVerifyOk = 0;}, S.fail = function (e) {S._fail ? S._fail(e) : y.state = -1;};var t = S._completes;return t.push(function () {!function () {if (!(d || u || v.debug || m < "6.0.2" || h.systemType < 0)) {var i = new Image();h.appId = v.appId, h.initTime = g.initEndTime - g.initStartTime, h.preVerifyTime = g.preVerifyEndTime - g.preVerifyStartTime, w.getNetworkType({ isInnerInvoke: !0, success: function success(e) {h.networkType = e.networkType;var n = "https://open.weixin.qq.com/sdk/report?v=" + h.version + "&o=" + h.isPreVerifyOk + "&s=" + h.systemType + "&c=" + h.clientVersion + "&a=" + h.appId + "&n=" + h.networkType + "&i=" + h.initTime + "&p=" + h.preVerifyTime + "&u=" + h.url;i.src = n;} });}}();}), S.complete = function (e) {for (var n = 0, i = t.length; n < i; ++n) {t[n]();}S._completes = [];}, S;}()), g.preVerifyStartTime = L();else {y.state = 1;for (var e = S._completes, n = 0, i = e.length; n < i; ++n) {e[n]();}S._completes = [];}}), w.invoke || (w.invoke = function (e, n, i) {o.WeixinJSBridge && WeixinJSBridge.invoke(e, x(n), i);}, w.on = function (e, n) {o.WeixinJSBridge && WeixinJSBridge.on(e, n);});}, ready: function ready(e) {0 != y.state ? e() : (S._completes.push(e), !l && v.debug && e());}, error: function error(e) {m < "6.0.2" || (-1 == y.state ? e(y.data) : S._fail = e);}, checkJsApi: function checkJsApi(e) {M("checkJsApi", { jsApiList: C(e.jsApiList) }, (e._complete = function (e) {if (p) {var n = e.checkResult;n && (e.checkResult = JSON.parse(n));}e = function (e) {var n = e.checkResult;for (var i in n) {var t = a[i];t && (n[t] = n[i], delete n[i]);}return e;}(e);}, e));}, onMenuShareTimeline: function onMenuShareTimeline(e) {P(c.onMenuShareTimeline, { complete: function complete() {M("shareTimeline", { title: e.title || t, desc: e.title || t, img_url: e.imgUrl || "", link: e.link || location.href, type: e.type || "link", data_url: e.dataUrl || "" }, e);} }, e);}, onMenuShareAppMessage: function onMenuShareAppMessage(n) {P(c.onMenuShareAppMessage, { complete: function complete(e) {"favorite" === e.scene ? M("sendAppMessage", { title: n.title || t, desc: n.desc || "", link: n.link || location.href, img_url: n.imgUrl || "", type: n.type || "link", data_url: n.dataUrl || "" }) : M("sendAppMessage", { title: n.title || t, desc: n.desc || "", link: n.link || location.href, img_url: n.imgUrl || "", type: n.type || "link", data_url: n.dataUrl || "" }, n);} }, n);}, onMenuShareQQ: function onMenuShareQQ(e) {P(c.onMenuShareQQ, { complete: function complete() {M("shareQQ", { title: e.title || t, desc: e.desc || "", img_url: e.imgUrl || "", link: e.link || location.href }, e);} }, e);}, onMenuShareWeibo: function onMenuShareWeibo(e) {P(c.onMenuShareWeibo, { complete: function complete() {M("shareWeiboApp", { title: e.title || t, desc: e.desc || "", img_url: e.imgUrl || "", link: e.link || location.href }, e);} }, e);}, onMenuShareQZone: function onMenuShareQZone(e) {P(c.onMenuShareQZone, { complete: function complete() {M("shareQZone", { title: e.title || t, desc: e.desc || "", img_url: e.imgUrl || "", link: e.link || location.href }, e);} }, e);}, updateTimelineShareData: function updateTimelineShareData(e) {M("updateTimelineShareData", { title: e.title, link: e.link, imgUrl: e.imgUrl }, e);}, updateAppMessageShareData: function updateAppMessageShareData(e) {M("updateAppMessageShareData", { title: e.title, desc: e.desc, link: e.link, imgUrl: e.imgUrl }, e);}, startRecord: function startRecord(e) {M("startRecord", {}, e);}, stopRecord: function stopRecord(e) {M("stopRecord", {}, e);}, onVoiceRecordEnd: function onVoiceRecordEnd(e) {P("onVoiceRecordEnd", e);}, playVoice: function playVoice(e) {M("playVoice", { localId: e.localId }, e);}, pauseVoice: function pauseVoice(e) {M("pauseVoice", { localId: e.localId }, e);}, stopVoice: function stopVoice(e) {M("stopVoice", { localId: e.localId }, e);}, onVoicePlayEnd: function onVoicePlayEnd(e) {P("onVoicePlayEnd", e);}, uploadVoice: function uploadVoice(e) {M("uploadVoice", { localId: e.localId, isShowProgressTips: 0 == e.isShowProgressTips ? 0 : 1 }, e);}, downloadVoice: function downloadVoice(e) {M("downloadVoice", { serverId: e.serverId, isShowProgressTips: 0 == e.isShowProgressTips ? 0 : 1 }, e);}, translateVoice: function translateVoice(e) {M("translateVoice", { localId: e.localId, isShowProgressTips: 0 == e.isShowProgressTips ? 0 : 1 }, e);}, chooseImage: function chooseImage(e) {M("chooseImage", { scene: "1|2", count: e.count || 9, sizeType: e.sizeType || ["original", "compressed"], sourceType: e.sourceType || ["album", "camera"] }, (e._complete = function (e) {if (p) {var n = e.localIds;try {n && (e.localIds = JSON.parse(n));} catch (e) {}}}, e));}, getLocation: function getLocation(e) {}, previewImage: function previewImage(e) {M(c.previewImage, { current: e.current, urls: e.urls }, e);}, uploadImage: function uploadImage(e) {M("uploadImage", { localId: e.localId, isShowProgressTips: 0 == e.isShowProgressTips ? 0 : 1 }, e);}, downloadImage: function downloadImage(e) {M("downloadImage", { serverId: e.serverId, isShowProgressTips: 0 == e.isShowProgressTips ? 0 : 1 }, e);}, getLocalImgData: function getLocalImgData(e) {!1 === I ? (I = !0, M("getLocalImgData", { localId: e.localId }, (e._complete = function (e) {if (I = !1, 0 < _.length) {var n = _.shift();wx.getLocalImgData(n);}}, e))) : _.push(e);}, getNetworkType: function getNetworkType(e) {M("getNetworkType", {}, (e._complete = function (e) {e = function (e) {var n = e.errMsg;e.errMsg = "getNetworkType:ok";var i = e.subtype;if (delete e.subtype, i) e.networkType = i;else {var t = n.indexOf(":"),o = n.substring(t + 1);switch (o) {case "wifi":case "edge":case "wwan":e.networkType = o;break;default:e.errMsg = "getNetworkType:fail";}}return e;}(e);}, e));}, openLocation: function openLocation(e) {M("openLocation", { latitude: e.latitude, longitude: e.longitude, name: e.name || "", address: e.address || "", scale: e.scale || 28, infoUrl: e.infoUrl || "" }, e);} }, _defineProperty(_w, "getLocation", function getLocation(e) {M(c.getLocation, { type: (e = e || {}).type || "wgs84" }, (e._complete = function (e) {delete e.type;}, e));}), _defineProperty(_w, "hideOptionMenu", function hideOptionMenu(e) {M("hideOptionMenu", {}, e);}), _defineProperty(_w, "showOptionMenu", function showOptionMenu(e) {M("showOptionMenu", {}, e);}), _defineProperty(_w, "closeWindow", function closeWindow(e) {M("closeWindow", {}, e = e || {});}), _defineProperty(_w, "hideMenuItems", function hideMenuItems(e) {M("hideMenuItems", { menuList: e.menuList }, e);}), _defineProperty(_w, "showMenuItems", function showMenuItems(e) {M("showMenuItems", { menuList: e.menuList }, e);}), _defineProperty(_w, "hideAllNonBaseMenuItem", function hideAllNonBaseMenuItem(e) {M("hideAllNonBaseMenuItem", {}, e);}), _defineProperty(_w, "showAllNonBaseMenuItem", function showAllNonBaseMenuItem(e) {M("showAllNonBaseMenuItem", {}, e);}), _defineProperty(_w, "scanQRCode", function scanQRCode(e) {M("scanQRCode", { needResult: (e = e || {}).needResult || 0, scanType: e.scanType || ["qrCode", "barCode"] }, (e._complete = function (e) {if (f) {var n = e.resultStr;if (n) {var i = JSON.parse(n);e.resultStr = i && i.scan_code && i.scan_code.scan_result;}}}, e));}), _defineProperty(_w, "openAddress", function openAddress(e) {M(c.openAddress, {}, (e._complete = function (e) {e = function (e) {return e.postalCode = e.addressPostalCode, delete e.addressPostalCode, e.provinceName = e.proviceFirstStageName, delete e.proviceFirstStageName, e.cityName = e.addressCitySecondStageName, delete e.addressCitySecondStageName, e.countryName = e.addressCountiesThirdStageName, delete e.addressCountiesThirdStageName, e.detailInfo = e.addressDetailInfo, delete e.addressDetailInfo, e;}(e);}, e));}), _defineProperty(_w, "openProductSpecificView", function openProductSpecificView(e) {M(c.openProductSpecificView, { pid: e.productId, view_type: e.viewType || 0, ext_info: e.extInfo }, e);}), _defineProperty(_w, "addCard", function addCard(e) {for (var n = e.cardList, i = [], t = 0, o = n.length; t < o; ++t) {var r = n[t],a = { card_id: r.cardId, card_ext: r.cardExt };i.push(a);}M(c.addCard, { card_list: i }, (e._complete = function (e) {var n = e.card_list;if (n) {for (var i = 0, t = (n = JSON.parse(n)).length; i < t; ++i) {var o = n[i];o.cardId = o.card_id, o.cardExt = o.card_ext, o.isSuccess = !!o.is_succ, delete o.card_id, delete o.card_ext, delete o.is_succ;}e.cardList = n, delete e.card_list;}}, e));}), _defineProperty(_w, "chooseCard", function chooseCard(e) {M("chooseCard", { app_id: v.appId, location_id: e.shopId || "", sign_type: e.signType || "SHA1", card_id: e.cardId || "", card_type: e.cardType || "", card_sign: e.cardSign, time_stamp: e.timestamp + "", nonce_str: e.nonceStr }, (e._complete = function (e) {e.cardList = e.choose_card_info, delete e.choose_card_info;}, e));}), _defineProperty(_w, "openCard", function openCard(e) {for (var n = e.cardList, i = [], t = 0, o = n.length; t < o; ++t) {var r = n[t],a = { card_id: r.cardId, code: r.code };i.push(a);}M(c.openCard, { card_list: i }, e);}), _defineProperty(_w, "consumeAndShareCard", function consumeAndShareCard(e) {M(c.consumeAndShareCard, { consumedCardId: e.cardId, consumedCode: e.code }, e);}), _defineProperty(_w, "chooseWXPay", function chooseWXPay(e) {M(c.chooseWXPay, V(e), e);}), _defineProperty(_w, "openEnterpriseRedPacket", function openEnterpriseRedPacket(e) {M(c.openEnterpriseRedPacket, V(e), e);}), _defineProperty(_w, "startSearchBeacons", function startSearchBeacons(e) {M(c.startSearchBeacons, { ticket: e.ticket }, e);}), _defineProperty(_w, "stopSearchBeacons", function stopSearchBeacons(e) {M(c.stopSearchBeacons, {}, e);}), _defineProperty(_w, "onSearchBeacons", function onSearchBeacons(e) {P(c.onSearchBeacons, e);}), _defineProperty(_w, "openEnterpriseChat", function openEnterpriseChat(e) {M("openEnterpriseChat", { useridlist: e.userIds, chatname: e.groupName }, e);}), _defineProperty(_w, "launchMiniProgram", function launchMiniProgram(e) {M("launchMiniProgram", { targetAppId: e.targetAppId, path: function (e) {if ("string" == typeof e && 0 < e.length) {var n = e.split("?")[0],i = e.split("?")[1];return n += ".html", void 0 !== i ? n + "?" + i : n;}}(e.path), envVersion: e.envVersion }, e);}), _defineProperty(_w, "openBusinessView", function openBusinessView(e) {M("openBusinessView", { businessType: e.businessType, queryString: e.queryString || "", envVersion: e.envVersion }, (e._complete = function (n) {if (p) {var e = n.extraData;if (e) try {n.extraData = JSON.parse(e);} catch (e) {n.extraData = {};}}}, e));}), _defineProperty(_w, "miniProgram", { navigateBack: function navigateBack(e) {e = e || {}, O(function () {M("invokeMiniProgramAPI", { name: "navigateBack", arg: { delta: e.delta || 1 } }, e);});}, navigateTo: function navigateTo(e) {O(function () {M("invokeMiniProgramAPI", { name: "navigateTo", arg: { url: e.url } }, e);});}, redirectTo: function redirectTo(e) {O(function () {M("invokeMiniProgramAPI", { name: "redirectTo", arg: { url: e.url } }, e);});}, switchTab: function switchTab(e) {O(function () {M("invokeMiniProgramAPI", { name: "switchTab", arg: { url: e.url } }, e);});}, reLaunch: function reLaunch(e) {O(function () {M("invokeMiniProgramAPI", { name: "reLaunch", arg: { url: e.url } }, e);});}, postMessage: function postMessage(e) {O(function () {M("invokeMiniProgramAPI", { name: "postMessage", arg: e.data || {} }, e);});}, getEnv: function getEnv(e) {O(function () {e({ miniprogram: "miniprogram" === o.__wxjs_environment });});} }), _w),T = 1,k = {};return i.addEventListener("error", function (e) {if (!p) {var n = e.target,i = n.tagName,t = n.src;if ("IMG" == i || "VIDEO" == i || "AUDIO" == i || "SOURCE" == i) if (-1 != t.indexOf("wxlocalresource://")) {e.preventDefault(), e.stopPropagation();var o = n["wx-id"];if (o || (o = T++, n["wx-id"] = o), k[o]) return;k[o] = !0, wx.ready(function () {wx.getLocalImgData({ localId: t, success: function success(e) {n.src = e.localData;} });});}}}, !0), i.addEventListener("load", function (e) {if (!p) {var n = e.target,i = n.tagName;n.src;if ("IMG" == i || "VIDEO" == i || "AUDIO" == i || "SOURCE" == i) {var t = n["wx-id"];t && (k[t] = !1);}}}, !0), e && (o.wx = o.jWeixin = w), w;}function M(n, e, i) {o.WeixinJSBridge ? WeixinJSBridge.invoke(n, x(e), function (e) {A(n, e, i);}) : B(n, i);}function P(n, i, t) {o.WeixinJSBridge ? WeixinJSBridge.on(n, function (e) {t && t.trigger && t.trigger(e), A(n, e, i);}) : B(n, t || i);}function x(e) {return (e = e || {}).appId = v.appId, e.verifyAppId = v.appId, e.verifySignType = "sha1", e.verifyTimestamp = v.timestamp + "", e.verifyNonceStr = v.nonceStr, e.verifySignature = v.signature, e;}function V(e) {return { timeStamp: e.timestamp + "", nonceStr: e.nonceStr, package: e.package, paySign: e.paySign, signType: e.signType || "SHA1" };}function A(e, n, i) {"openEnterpriseChat" != e && "openBusinessView" !== e || (n.errCode = n.err_code), delete n.err_code, delete n.err_desc, delete n.err_detail;var t = n.errMsg;t || (t = n.err_msg, delete n.err_msg, t = function (e, n) {var i = e,t = a[i];t && (i = t);var o = "ok";if (n) {var r = n.indexOf(":");"confirm" == (o = n.substring(r + 1)) && (o = "ok"), "failed" == o && (o = "fail"), -1 != o.indexOf("failed_") && (o = o.substring(7)), -1 != o.indexOf("fail_") && (o = o.substring(5)), "access denied" != (o = (o = o.replace(/_/g, " ")).toLowerCase()) && "no permission to execute" != o || (o = "permission denied"), "config" == i && "function not exist" == o && (o = "ok"), "" == o && (o = "fail");}return n = i + ":" + o;}(e, t), n.errMsg = t), (i = i || {})._complete && (i._complete(n), delete i._complete), t = n.errMsg || "", v.debug && !i.isInnerInvoke && alert(JSON.stringify(n));var o = t.indexOf(":");switch (t.substring(o + 1)) {case "ok":i.success && i.success(n);break;case "cancel":i.cancel && i.cancel(n);break;default:i.fail && i.fail(n);}i.complete && i.complete(n);}function C(e) {if (e) {for (var n = 0, i = e.length; n < i; ++n) {var t = e[n],o = c[t];o && (e[n] = o);}return e;}}function B(e, n) {if (!(!v.debug || n && n.isInnerInvoke)) {var i = a[e];i && (e = i), n && n._complete && delete n._complete, console.log('"' + e + '",', n || "");}}function L() {return new Date().getTime();}function O(e) {l && (o.WeixinJSBridge ? e() : i.addEventListener && i.addEventListener("WeixinJSBridgeReady", e, !1));}});
-
-/***/ }),
-
 /***/ 4:
-/*!********************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/store/workingstore/pages.json ***!
-  \********************************************************************/
+/*!*****************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/版本/workingstore/pages.json ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10826,21 +10612,21 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ }),
 
 /***/ 7:
-/*!*************************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/store/workingstore/pages.json?{"type":"style"} ***!
-  \*************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/版本/workingstore/pages.json?{"type":"style"} ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "店下商城", "usingComponents": { "index-nav": "/pages/components/index-nav/index-nav", "swiper": "/pages/common/swiper/swiper", "index-choose": "/pages/components/index-choose/index-choose", "index-title": "/pages/components/index-title/index-title", "index-vip": "/pages/components/index-vip/index-vip", "index-discount": "/pages/components/index-discount/index-discount", "index-news": "/pages/common/goods-list/goods-list", "index-recommend": "/pages/components/index-recommend/index-recommend" }, "usingAutoImportComponents": {} }, "pages/classify/classify": { "navigationBarTitleText": "商品分类", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/car/car": { "navigationBarTitleText": "店下爆品", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/mine/mine": { "navigationBarTitleText": "个人中心", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/search-page/search-page": { "navigationBarTitleText": "搜索", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/common/goods-list/goods-list": { "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/goods-result/goods-result": { "navigationBarTitleText": "商品列表", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/common/goods-detail/goods-detail": { "navigationBarTitleText": "商品详情", "usingComponents": { "uni-badge": "/components/uni-badge/uni-badge" }, "usingAutoImportComponents": {} }, "pages/components/pay/pay": { "navigationBarTitleText": "付款页面", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/choose-shop/choose-shop": { "navigationBarTitleText": "选择门店", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/address/address": { "navigationBarTitleText": "地址", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/new-address/new-address": { "navigationBarTitleText": "新建地址", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/register/register": { "navigationBarTitleText": "注册页", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/login/login": { "navigationBarTitleText": "登录页", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/edit-address/edit-address": { "navigationBarTitleText": "编辑地址", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/order/order": { "navigationBarTitleText": "我的订单", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/order-detail/order-detail": { "navigationBarTitleText": "订单详情", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/return-goods/return-goods": { "navigationBarTitleText": "申请退货", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/appraise/appraise": { "navigationBarTitleText": "评价", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/collect/collect": { "navigationBarTitleText": "我的收藏", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/money/money": { "navigationBarTitleText": "我的钱包", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/bill/bill": { "navigationBarTitleText": "我的账单", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/business/business": { "navigationBarTitleText": "商家入驻", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/forget/forget": { "navigationBarTitleText": "找回密码", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/QRlogin/QRlogin": { "navigationBarTitleText": "手机验证码登录", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/userInfo/userInfo": { "navigationBarTitleText": "资料卡", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/reset/reset": { "navigationBarTitleText": "重置密码", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/telephone/telephone": { "navigationBarTitleText": "绑定手机号", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/generalize/generalize": { "navigationBarTitleText": "我的推广", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/line-detail/line-detail": { "navigationBarTitleText": "商品详情", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/change-username/change-username": { "navigationBarTitleText": "修改昵称", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/logistics/logistics": { "navigationBarTitleText": "物流详情", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/shop/shop": { "navigationBarTitleText": "店家详情", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/product-down/product-down": { "navigationBarTitleText": "折扣区", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/refer-member/refer-member": { "navigationBarTitleText": "优惠买单", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/checkstand/checkstand": { "navigationBarTitleText": "收银台", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/coupon/coupon": { "navigationBarTitleText": "折扣券", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/payMoney/payMoney": { "navigationBarTitleText": "充值", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/withdraw/withdraw": { "navigationBarTitleText": "提现", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/bank/bank": { "navigationBarTitleText": "我的银行卡", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/components/wechatpay/wechatpay": { "navigationBarTitleText": "支付", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8", "onReachBottomDistance": 10 } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "店下商城", "navigationBarBackgroundColor": "#FED940" }, "pages/classify/classify": { "navigationBarTitleText": "商品分类" }, "pages/car/car": { "navigationBarTitleText": "店下爆品" }, "pages/mine/mine": { "navigationBarTitleText": "个人中心", "navigationBarBackgroundColor": "#FED940" }, "pages/components/search-page/search-page": { "navigationBarTitleText": "搜索" }, "pages/common/goods-list/goods-list": {}, "pages/components/goods-result/goods-result": { "navigationBarTitleText": "商品列表" }, "pages/common/goods-detail/goods-detail": { "navigationBarTitleText": "商品详情" }, "pages/components/pay/pay": { "navigationBarTitleText": "付款页面" }, "pages/components/choose-shop/choose-shop": { "navigationBarTitleText": "选择门店" }, "pages/components/address/address": { "navigationBarTitleText": "地址" }, "pages/components/new-address/new-address": { "navigationBarTitleText": "新建地址" }, "pages/components/register/register": { "navigationBarTitleText": "注册页" }, "pages/components/login/login": { "navigationBarTitleText": "登录页" }, "pages/components/edit-address/edit-address": { "navigationBarTitleText": "编辑地址" }, "pages/components/order/order": { "navigationBarTitleText": "我的订单" }, "pages/components/order-detail/order-detail": { "navigationBarTitleText": "订单详情" }, "pages/components/return-goods/return-goods": { "navigationBarTitleText": "申请退货" }, "pages/components/appraise/appraise": { "navigationBarTitleText": "评价" }, "pages/components/collect/collect": { "navigationBarTitleText": "我的收藏" }, "pages/components/cart/cart": { "navigationBarTitleText": "购物车" }, "pages/components/money/money": { "navigationBarTitleText": "我的钱包" }, "pages/components/bill/bill": { "navigationBarTitleText": "我的账单" }, "pages/components/business/business": { "navigationBarTitleText": "商家入驻" }, "pages/components/forget/forget": { "navigationBarTitleText": "找回密码" }, "pages/components/QRlogin/QRlogin": { "navigationBarTitleText": "手机验证码登录" }, "pages/components/userInfo/userInfo": { "navigationBarTitleText": "资料卡" }, "pages/components/reset/reset": { "navigationBarTitleText": "重置密码" }, "pages/components/telephone/telephone": { "navigationBarTitleText": "绑定手机号" }, "pages/components/generalize/generalize": { "navigationBarTitleText": "我的推广" }, "pages/components/line-detail/line-detail": { "navigationBarTitleText": "商品详情" }, "pages/components/change-username/change-username": { "navigationBarTitleText": "修改昵称" }, "pages/components/logistics/logistics": { "navigationBarTitleText": "物流详情" }, "pages/components/shop/shop": { "navigationBarTitleText": "店家详情" }, "pages/components/product-down/product-down": { "navigationBarTitleText": "折扣区" }, "pages/components/refer-member/refer-member": { "navigationBarTitleText": "优惠买单" }, "pages/components/checkstand/checkstand": { "navigationBarTitleText": "收银台" }, "pages/components/coupon/coupon": { "navigationBarTitleText": "折扣券" }, "pages/components/payMoney/payMoney": { "navigationBarTitleText": "提升等级" }, "pages/components/withdraw/withdraw": { "navigationBarTitleText": "提现" }, "pages/components/bank/bank": { "navigationBarTitleText": "我的银行卡" }, "pages/components/wechatpay/wechatpay": { "navigationBarTitleText": "支付" }, "pages/components/setPayPassword/setPayPassword": { "navigationBarTitleText": "设置支付密码" }, "pages/mine/invite": { "navigationBarTitleText": "绑定员工" }, "pages/mine/staff": { "navigationBarTitleText": "员工管理" }, "pages/components/preson-status/preson-status": { "navigationBarTitleText": "个人身份" }, "pages/components/my-staff/my-staff": { "navigationBarTitleText": "我的员工" }, "pages/components/staff-info/staff-info": { "navigationBarTitleText": "员工详情" }, "pages/components/vip-list/vip-list": { "navigationBarTitleText": "精品折扣" }, "pages/components/more-list/more-list": { "navigationBarTitleText": "更多商品" }, "pages/components/watching-tv/watching-tv": { "navigationBarTitleText": "会员充值折扣" }, "pages/components/drinking/drinking": { "navigationBarTitleText": "饮品专区" }, "pages/components/staff-info/staff-set": { "navigationBarTitleText": "员工分润设置" }, "pages/components/bankcard/bankcard": { "navigationBarTitleText": "绑定银行卡" }, "pages/components/withdraw-plan/withdraw-plan": { "navigationBarTitleText": "提现进度" }, "pages/components/video-pay/video-pay": { "navigationBarTitleText": "特权充值" }, "pages/components/online-goods/online-goods": { "navigationBarTitleText": "线上好货" }, "pages/components/video-checkstand/video-checkstand": { "navigationBarTitleText": "结算" }, "pages/components/group/group": { "navigationBarTitleText": "我的团队" }, "pages/tv/tv": { "navigationBarTitleText": "直播" }, "pages/components/my-group/my-group": {}, "pages/components/refund/refund": { "navigationBarTitleText": "退货" }, "pages/components/payUp/payUp": { "navigationBarTitleText": "充值" }, "pages/components/member/member": { "navigationBarTitleText": "成为会员" }, "pages/components/business-nav/business-nav": { "navigationBarTitleText": "商家入驻" }, "pages/components/withdraw-list/withdraw-list": { "navigationBarTitleText": "提现列表" }, "pages/components/business-manage/business-manage": { "navigationBarTitleText": "商家管理" }, "pages/components/business-manage/shop-setting/shop-setting": { "navigationBarTitleText": "店铺设置" }, "pages/components/business-manage/business-deal/business-deal": { "navigationBarTitleText": "数据中心" }, "pages/components/business-manage/business-finance/business-finance": { "navigationBarTitleText": "财务管理" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "店下商城", "navigationBarBackgroundColor": "#FED940", "backgroundColor": "#F8F8F8", "onReachBottomDistance": 10 } };exports.default = _default;
 
 /***/ }),
 
 /***/ 8:
-/*!************************************************************************************!*\
-  !*** C:/Users/Administrator/Desktop/store/workingstore/pages.json?{"type":"stat"} ***!
-  \************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** C:/Users/Administrator/Desktop/版本/workingstore/pages.json?{"type":"stat"} ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
