@@ -199,7 +199,7 @@
 				<view class="show-info">
 					<view class="show-title">
 						<view class="show-img" v-if="imgUrl.length > 0">
-							<image :src="imgUrl[0].pi_cover" mode=""></image>
+							<image :src="imgUrl[0].pic_cover" mode=""></image>
 						</view>
 						<view class="title" style="overflow: hidden;">
 							<view class="name" style="overflow: hidden;text-overflow: ellipsis;white-space: norwap;">
@@ -536,7 +536,7 @@
 			},
 			// 点击加入购物车按钮
 			handleCart(type) {
-
+				
 				// 判断用户是点击加入购物车或点击立即购买(跳转不同的页面)
 				if (type == 'cart') {
 					this.isType = false;
@@ -558,6 +558,7 @@
 			//#endif
 			// 点击去到购物车页面
 			cart() {
+				// console.log(this.dataList.sku_list)
 				// 判断用户有没有登录
 				request({
 					url: "index.php?s=/wap/member/checkLogin",

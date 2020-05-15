@@ -161,14 +161,14 @@
 						<text>商家入驻</text>
 					</view>
 				</view>
-				<!-- <view class="list-item order-item" @click="goBusinessManage">
+				<view class="list-item order-item" @click="goBusinessManage" v-if="has_shop > 0">
 					<view class="order-img">
 						<image :src="$src+'/images/user-ruzhu.png'" mode=""></image>
 					</view>
 					<view class="order-text">
 						<text>商家管理</text>
 					</view>
-				</view> -->
+				</view>
 				<view class="list-item order-item" @click="staff" v-if="is_parter">
 					<view class="order-img">
 						<image :src="$src+'/images/user-manage.png'" mode=""></image>
@@ -217,7 +217,9 @@
 				user_balance: '',
 				// 加载图
 				loading: false,
-				$src: this.$src
+				$src: this.$src,
+				// 判断用户身份
+				has_shop: ''
 			};
 		},
 		components: {
@@ -273,6 +275,8 @@
 						that.uid = res.data.uid;
 						that.user_name = res.data.user_name;
 						that.avatar = res.data.member_img;
+						// 判断商家的身份
+						that.has_shop = res.data.has_shop
 						that.ordernum = {
 							0:res.data.unpaidOrder,
 							1:res.data.shipmentPendingOrder,

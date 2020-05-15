@@ -4,11 +4,14 @@
 		<view class="header-box">
 			<view class="header">
 				<view class="user">
-					<image :src="$src+'/images/shop-logo.png'"></image>
-					<text>{{shop_name}}</text>
+					<image v-if="shopInfo.shop_logo" :src="$api + shopInfo.shop_logo"></image>
+					<image :src="$src+'/images/shop-logo.png'" v-else></image>
+					<text v-if="shopInfo.shop_name">{{ shopInfo.shop_name }}</text>
+					<text v-else>{{ shop_name }}</text>
 				</view>
 				<view class="setting" @tap='goShopSeeting'>
 					<text>店铺设置</text>
+					
 					<image :src="$src+'/images/icon-right.png'"></image>
 				</view>
 			</view>
@@ -16,32 +19,159 @@
 		<!-- 列表 -->
 		<view class="list-box">
 			<view class="list">
-				<block v-for='(item,index) in dataList' :key='index'>
-					<view class="list-item">
+				<!-- 交易数据 -->
+				<view class="list-item">
 						<!-- 标题 -->
 						<view class="list-title">
 							<view class="title-left">
-								<text>{{item.title}}</text>
+								<text>交易数据</text>
 								<text class="line"></text>
 							</view>
-							<view class="title-right" @tap='goDetail(index)'>
-								<text>{{item.des}}</text>
+							<view class="title-right">
+								<text>数据中心</text>
 								<image :src="$src+'/images/icon-red-right.png'" mode=""></image>
 							</view>
 						</view>
 						<!-- 详情 -->
 						<view class="list-detail">
 							<view class="list-turnover" style="border-bottom: 1px solid #EFEFEF;">
-								<block v-for='(data,dataIndex) in item.list' :key='dataIndex'>
-									<view class="turnover " :class="item.active? 'spcial': ''">
-										<text>{{data.number}}</text>
-										<text class="des">{{data.des}}</text>
+									<view class="turnover">
+										<text v-if="res && res.trade.all">{{ res.trade.all }}</text>
+										<text v-else>0</text>
+										<text class="des">总营业额</text>
 									</view>
-								</block>
+									<view class="turnover">
+										<text v-if="res && res.trade.month">{{ res.trade.month }}</text>
+										<text v-else>0</text>
+										<text class="des">本月营业额</text>
+									</view>
+									<view class="turnover">
+										<text v-if="res && res.trade.day">{{ res.trade.day }}</text>
+										<text v-else>0</text>
+										<text class="des">今日营业额</text>
+									</view>
+							</view>
+							<view class="list-turnover" style="border-bottom: 1px solid #EFEFEF;">
+									<view class="turnover">
+										<text v-if="res && res.trade.num_all">{{ res.trade.num_all}}</text>
+										<text v-else>0</text>
+										<text class="des">总成交订单</text>
+									</view>
+									<view class="turnover">
+										<text v-if="res && res.trade.num_month">{{ res.trade.num_month }}</text>
+										<text v-else>0</text>
+										<text class="des">本月订单数</text>
+									</view>
+									<view class="turnover">
+										<text v-if="res && res.trade.num_day">{{ res.trade.num_day }}</text>
+										<text v-else>0</text>
+										<text class="des">今日订单数</text>
+									</view>
 							</view>
 						</view>
 					</view>
-				</block>
+				<!-- 订单管理 -->
+				<view class="list-item">
+					<!-- 标题 -->
+					<view class="list-title">
+						<view class="title-left">
+							<text>订单管理</text>
+							<text class="line"></text>
+						</view>
+						<view class="title-right">
+							<text>查看详情</text>
+							<image :src="$src+'/images/icon-red-right.png'" mode=""></image>
+						</view>
+					</view>
+					<!-- 详情 -->
+					<view class="list-detail">
+						<view class="list-turnover" style="border-bottom: 1px solid #EFEFEF;">
+								<view class="turnover">
+									<text v-if="res && res.order.unpay">{{ res.order.unpay }}</text>
+									<text v-else>0</text>
+									<text class="des">待支付</text>
+								</view>
+								<view class="turnover">
+									<text v-if="res && res.order.waitsend">{{ res.order.waitsend }}</text>
+									<text v-else>0</text>
+									<text class="des">待发货</text>
+								</view>
+								<view class="turnover">
+									<text v-if="res && res.order.refund">{{ res.order.refund }}</text>
+									<text v-else>0</text>
+									<text class="des">退款/售后</text>
+								</view>
+						</view>
+					</view>
+				</view>
+				<!-- 商品管理 -->
+				<view class="list-item">
+					<!-- 标题 -->
+					<view class="list-title">
+						<view class="title-left">
+							<text>商品管理</text>
+							<text class="line"></text>
+						</view>
+						<view class="title-right">
+							<text>发布商品</text>
+							<image :src="$src+'/images/icon-red-right.png'" mode=""></image>
+						</view>
+					</view>
+					<!-- 详情 -->
+					<view class="list-detail">
+						<view class="list-turnover" style="border-bottom: 1px solid #EFEFEF;">
+								<view class="turnover">
+									<text v-if="res && res.goods.all">{{ res.goods.all }}</text>
+									<text v-else>0</text>
+									<text class="des">总商品数</text>
+								</view>
+								<view class="turnover">
+									<text v-if="res && res.goods.on">{{ res.goods.on }}</text>
+									<text v-else>0</text>
+									<text class="des">出售中</text>
+								</view>
+								<view class="turnover">
+									<text v-if="res && res.goods.off">{{ res.goods.off }}</text>
+									<text v-else>0</text>
+									<text class="des">已下架</text>
+								</view>
+						</view>
+					</view>
+				</view>
+				<!-- 财务管理 -->
+				<view class="list-item">
+					<!-- 标题 -->
+					<view class="list-title">
+						<view class="title-left">
+							<text>财务管理</text>
+							<text class="line"></text>
+						</view>
+						<view class="title-right">
+							<text>查看详情</text>
+							<image :src="$src+'/images/icon-red-right.png'" mode=""></image>
+						</view>
+					</view>
+					<!-- 详情 -->
+					<view class="list-detail">
+						<view class="list-turnover" style="border-bottom: 1px solid #EFEFEF;">
+								<view class="turnover">
+									<text v-if="res && res.finance.balance">{{ res.finance.balance }}</text>
+									<text v-else>0</text>
+									<text class="des">账户余额</text>
+								</view>
+								<view class="turnover">
+							<!-- 		<text v-if="res && res.finance.on">{{ res.finance.on }}</text> -->
+									<text>0</text>
+									<text class="des">会员充值收入</text>
+								</view>
+								<view class="turnover">
+									<!-- <text v-if="res && res.finance.off">{{ res.finance.off }}</text> -->
+									<text>0</text>
+									<text class="des">会员跨店收入</text>
+								</view>
+						</view>
+					</view>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -143,11 +273,17 @@
 						]
 					},
 				],
-				$src: this.$src
+				$src: this.$src,
+				$api: this.$api,
+				shopInfo: '',
+				// 店铺交易数据
+				res: ''
 			};
 		},
 		onLoad(){
+			// 获取店铺资料
 			this.getInfo();
+			this.getData()
 		},
 		methods: {
 			// 跳转到店铺设置页
@@ -172,20 +308,29 @@
 				}
 			},
 			//获取店铺资料
-			getInfo(){
-				
+			getInfo(){	
 				request({
 					url:'index.php?s=/wap/manage/info',
 				}).then(res=>{
-					if(res.code==1){
-						
+					if(res.data.code==1){
+						this.shopInfo = res.data.data;
 					}
 				});
 			},
-			//获取本业数据
-			getData(){
-				
+			// 
+			getData() {
+				request({
+					url: 'index.php?s=/wap/manage/index',
+					method: 'POST',
+				}).then(res => {
+					if(res.data.code == 1) {
+						this.res = res.data.data;
+						console.log(this.res)
+						
+					}
+				})
 			}
+			
 		}
 	}
 </script>
@@ -215,6 +360,7 @@
 				width: 70rpx;
 				height: 70rpx;
 				margin-right: 20rpx;
+				border-radius: 50%;
 			}
 		}
 		.setting {

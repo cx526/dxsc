@@ -98,6 +98,7 @@
  				.news-title {
  					font-size: 30rpx;
  					color: #444444;
+					width: 100%;
  					text {
 						text-overflow: ellipsis;
 						overflow: hidden;

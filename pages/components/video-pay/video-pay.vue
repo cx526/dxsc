@@ -212,11 +212,6 @@
 						})
 					}
 				})
-				// uni.navigateTo({
-				// 	url: '/pages/components/video-checkstand/video-checkstand?id='+id
-				// })
-				
-				
 			}
 		}
 	}
